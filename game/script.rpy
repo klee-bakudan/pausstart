@@ -49,7 +49,7 @@ label start:
 
 
     scene run
-    mc "KYAAAHH"
+    mc "SIAL"
 
     show mc_takut zorder 2:
         xalign 0.75
@@ -69,12 +69,37 @@ label start:
     show mc_bingung zorder 2:
         xalign 0.75
         yalign 0.25
-
+    mc "hoh?"
     pause 1.5
     
+    show black onlayer master zorder 1 as darkoverlay:
+        alpha 0.5
+    hide darkoverlay
+    pause  0.5
+    with dissolve
+
+    scene kelinci_masuk
+
+    scene gorong 2
+    pause 1.0
+    show mc_kaget zorder 2:
+        xalign 0.75
+        yalign 0.25
+        
+    show black onlayer master zorder 1 as darkoverlay:
+        alpha 0.5
+    hide darkoverlay
+    with dissolve
+
+    scene masuk
+    mc "KYAAAHH"
+    show mc zorder 2
     show black onlayer master zorder 1 as darkoverlay:
         alpha 0.5
     with dissolve
 
 
+    
+
+    jump act_2
     return
