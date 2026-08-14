@@ -8,9 +8,15 @@ define a = Character("Absolum")
 define ar = Character("Arden")
 define c = Character("Chiro")
 define h = Character("Heiry")
+define j = Character("Jendral")
     
 transform slightleft:
     xalign 0.25
+    yalign 1.0
+define reporter = Character("Reporter", what_color="#453a12")
+
+transform slightright:
+    xalign 0.75
     yalign 1.0
 define reporter = Character("Reporter", what_color="#453a12")
 
