@@ -151,9 +151,11 @@ style say_label:
     properties gui.text_properties("name", accent=True)
     xalign gui.name_xalign
     yalign 0.5
-
+    
 style say_dialogue:
     properties gui.text_properties("dialogue")
+    font "fonts/IrishGrover.ttf"
+    color "#28201c"
 
     xpos gui.dialogue_xpos
     xsize gui.dialogue_width
@@ -171,29 +173,35 @@ style say_dialogue:
 ##
 ## https://www.renpy.org/doc/html/screen_special.html#input
 
-screen input(prompt):
-    style_prefix "input"
+## Input screen ###############################################################
 
-    window:
+screen input(prompt):
+
+    modal True
+    zorder 200
+
+    frame:
+        xalign 0.5
+        yalign 0.65
+        xsize 800
+        padding (40, 30)
 
         vbox:
-            xanchor gui.dialogue_text_xalign
-            xpos gui.dialogue_xpos
-            xsize gui.dialogue_width
-            ypos gui.dialogue_ypos
+            spacing 20
+            xalign 0.5
 
-            text prompt style "input_prompt"
-            input id "input"
+            text prompt:
+                xalign 0.5
+                color "#453A12"
+                size 40
 
-style input_prompt is default
-
-style input_prompt:
-    xalign gui.dialogue_text_xalign
-    properties gui.text_properties("input_prompt")
-
-style input:
-    xalign gui.dialogue_text_xalign
-    xmaximum gui.dialogue_width
+            input:
+                id "input"
+                xalign 0.5
+                xsize 650
+                color "#453A12"
+                size 35
+                default_focus True
 
 
 ## Choice screen ###############################################################
