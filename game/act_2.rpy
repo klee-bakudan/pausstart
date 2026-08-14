@@ -219,6 +219,15 @@ label act_2:
             alpha 0.5
         show mc_garuk zorder 2
         mc "Tapi gimana kalau aku sebenarnya bukan penyelamat yang kalian cari dan malah mati dijalan?"
+        show l_takut zorder 2
+        l "K-kamu gak akan mati kok di tengah jalan.. I-iyakan absolum??"
+        hide mc_garuk
+        hide l_takut
+        show a_datar zorder 2
+        a "..."
+        show l_takut zorder 2
+        l "KOK DIEM SIH JADI PANIK NIH!!"
+    jump act2_lanjut
     
     label pilihan2:
         scene jamur
@@ -226,6 +235,23 @@ label act_2:
             alpha 0.5
         show mc_bingung zorder 2
         mc "Emang ada bukti selain gulungan takdir itu?"
+        show a_senyum zorder 2
+        a "Tentu saja ada! Buktinya kamu telah memakan klepon yang ada di dalam ruangan itu kan?"
+        hide mc_bingung
+        show mc_kaget zorder 2
+        mc "eh.. Ho’oh lah, emang ada hubungannya?"
+        a "Jikalau kamu tidak mengikuti kelinci dan makan klepon tadi, kamu tidak akan bisa masuk ke dunia ini"
+        a "(tertawa kecil)"
+        a "Asam di gunung, garam di laut, bertemu dalam satu belanga. Takdir hanya memanggil orang yang ditujunya."
+        hide mc_kaget
+        show l_bling zorder 2
+        l "Wow sangat puitis"
+        hide l_bling
+        a "Jika kamu bukan orang yang dituju dunia ini tidak akan memasukkan kamu Nak"
+        show mc_datar zorder 2
+        pause 1.0
+        hide mc_datar
+    jump act2_lanjut
    
     label pilihan3:
         scene jamur
@@ -234,6 +260,29 @@ label act_2:
         show mc_huft zorder 2
         mc "Ada satu hal yang ingin kutanyakan."
         mc "Kalau aku berhasil menyelamatkan dunia ini, aku bisa keluar dari sini dan kembali ke duniaku kan?"
-        
+        show a_senyum zorder 2
+        a "Jangan khawatir, Nak. Untuk kepulanganmu sudah pasti akan terjadi di saat mala petaka di dunia ini berakhir,"
+        a "pintu dunia ini akan terbuka dan membawamu pulang"
+        hide a_senyum
+        show l_datar zorder 2
+        l "T-tuhkan absolum sudah menjamin kepulanganmu!"
+        l "Tidak perlu takut, MC!"
+        l "A-aku akan membantumu menghadapi mala petaka ini… tapi jangan terlalu gegabah… ya?"
+        mc "(menghela nafas)"
+        mc "Yaudah deh mohon bantuannya kalau gitu.. akan aku pegang perkataan kalian berdua!"
+    jump act2_lanjut 
+    
+label act2_lanjut:
+    scene jamur
+    show black onlayer master zorder 1 as darkoverlay:
+        alpha 0.5
+    hide mc_garuk
 
+    show a_datar zorder 2
+    a "mc kamu mungkin bisa memilih jalur yang berbeda dari gulungan takdir ini.."
+    a "Namun, apa pun yang terjadi.. Akhir tersebut akan tetap terjadi"
+    show mc_datar zorder 2
+    mc "...Baiklah.."
+        
+    jump act_3
     return
