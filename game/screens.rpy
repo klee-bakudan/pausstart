@@ -204,12 +204,34 @@ style input:
 ##
 ## https://www.renpy.org/doc/html/screen_special.html#choice
 
+# normal choice
 screen choice(items):
     style_prefix "choice"
-
     vbox:
+        xalign 0.5
+        yalign 0.5
         for i in items:
             textbutton i.caption action i.action
+
+#  choice debat
+screen bubble_choice(choice_texts):
+    style_prefix "choice"
+    default selected_index = -1
+    for i, text in enumerate(choice_texts):
+        textbutton text action If(
+            selected_index == -1,
+            SetScreenVariable("selected_index", i),
+            NullAction()
+        ):
+            background("gui/awan.png" if selected_index == -1 or selected_index == i else "gui/awang.png")
+            xpos choice_positions[i][0]
+            ypos choice_positions[i][0]
+            xsize 550
+            ysize 250
+            text_xalign 0.5
+            text_yalign 0.5
+    if selected_index != -1:
+        timer 3.0 action Return(selected_index)
 
 
 style choice_vbox is vbox
