@@ -7,37 +7,17 @@ define a = Character("Absolum")
 define ar = Character("Arden")
 define c = Character("Chiro")
 define h = Character("Heiry")
-<<<<<<< HEAD
-define reporter = Character("Reporter", what_color="#453a12")
-
-transform klepon_popup:
-    xalign 0.5
-    yalign 1.2
-    alpha 0.0
-    zoom 0.9
-=======
 define j = Character("Jendral")
-    
-transform slightleft:
-    xalign 0.25
-    yalign 1.0
 define reporter = Character("Reporter", what_color="#453a12")
 
-transform slightright:
-    xalign 0.75
-    yalign 1.0
-define reporter = Character("Reporter", what_color="#453a12")
-
-transform topbottom:
-    zoom 3 yalign 0.0
-    linear 2 zoom 1.0
-    linear 3 yalign 1.0
-    pause 0.5
-    linear 3 yalign 0.0
->>>>>>> dac8fd83a87c82e969fc33060f9da4e220525058
+transform item_popup:
+    xalign 0.5
+    yalign 1.1
+    alpha 0.0
+    zoom 0.8
 
     parallel:
-        easeout 0.35 yalign 0.5
+        easeout 0.4 yalign 0.5
 
     parallel:
         linear 0.25 alpha 1.0
@@ -45,6 +25,20 @@ transform topbottom:
     parallel:
         easeout 0.2 zoom 1.05
         easein 0.1 zoom 1.0
+    
+transform slightleft:
+    xalign 0.25
+    yalign 1.0
+
+
+transform topbottom:
+    xalign 0.5
+    yalign 0.0
+    zoom 1.0
+
+    ease 1.5 zoom 1.5
+    ease 1.5 yalign 1.0
+
 
 transform glitch_flicker:
     alpha 1.0
@@ -113,7 +107,6 @@ label start:
     "Polisi" "WOI MUNDUR GA!"
 
     hide pulisi
-    hide darkoverlay
 
 
     show black onlayer master zorder 1 as darkoverlay:
@@ -128,7 +121,6 @@ label start:
     mc "E-EHHH"
 
     hide mc_demo_1
-    hide darkoverlay
 
     show black onlayer master zorder 1 as darkoverlay:
         alpha 0.0
@@ -194,7 +186,7 @@ label start:
     hide darkoverlay
 
 
-    scene kelinci_masuk
+    scene kelinci masuk
     with Dissolve(0.4)
 
     pause 0.5
@@ -245,12 +237,7 @@ label start:
 
     mc "KYAAAHH"
 
-    show black onlayer master zorder 1 as darkoverlay:
-        alpha 0.45
-        linear 0.6 alpha 0.8
-
-    $ renpy.pause(0.5, hard=True)
-
+    hide darkoverlay
     
 
     jump act_2

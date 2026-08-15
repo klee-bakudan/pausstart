@@ -61,7 +61,7 @@ label act_2:
         alpha 0.0
         linear 0.3 alpha 0.4
 
-    show klepon at klepon_popup zorder 2
+    show klepon at item_popup zorder 2
 
     pause 2.0
 
@@ -95,7 +95,7 @@ label act_2:
     window hide
     hide mc_kaget
 
-    scene black
+    scene white
     with Dissolve(0.25)
 
     scene ruangb
@@ -187,105 +187,246 @@ label act_2:
     show black onlayer master zorder 1 as darkoverlay:
         alpha 0.5
     
-    show l_datar zorder 2
+    show l_datar zorder 2:
+        xalign 0.99
+        yanchor 1.0
+        ypos 920
+
     l "kamu mc kan?"
+
     hide l_datar
 
-    show l_datar at slightleft zorder 2
-    show mc_kaget zorder 2
+    show mc_kaget zorder 2:
+        xalign 0.99
+
+    show l_datar zorder 2:
+        xalign 0.02
+        yanchor 1.0
+        ypos 920
+    with ease
+
     mc "kok….tau namaku? ANTEK ANTEK ASING YA??"
+
+    hide l_datar
+    hide mc_kaget
+
+    show l_bling zorder 2:
+        xalign 0.002
+        yanchor 0.94
+        ypos 920
+    
+    show mc_datar zorder 2:
+        xalign 0.99
+
     l "AKHIRNYA! Kamulah penyelamat kami! Kamu adalah orang dari dunia luar yang selama ini tertulis di dalam gulungan takdir! blablabla…."
-    hide mc_kaget 
-    show mc_bingung zorder 2
+
+    hide mc_datar
+    hide l_bling
+
+    show mc_bingung zorder 2:
+        xalign 0.99
+
+    show l_datar zorder 2:
+        xalign 0.02
+        yanchor 1.0
+        ypos 920
+
     mc "Ha.. apaan sih?? Penyelamat??"
+
+    hide mc_bingung
+    hide l_datar
+
+    show l_bling zorder 2:
+        xalign 0.002
+        yanchor 0.94
+        ypos 920
+
+    show mc_datar zorder 2:
+        xalign 0.99
+
     l "Eehh.. Sini ikut aku, kamu pasti kebingungan"
     with dissolve
 
-    scene jamur asap with fade
-    pause 1.0
+    hide mc_datar
+    hide l_bling
+
+    scene jamur asap with Fade(0.8, 0.2, 0.8)
 
     show black onlayer master zorder 1 as darkoverlay:
-        alpha 0.5
+        alpha 0.0
+        linear 0.4 alpha 0.5
+    with dissolve
 
     show a_bayang zorder 2
     pause 1.0
     hide a_bayang
 
     show a_bayang zorder 2
+
     a "Kamu membawa siapa kali ini, wahai kelinci kecil?"
-    show mc_bingung zorder 2
-    pause 0.5
-    hide mc_bingung zorder 2
-    show l_datar zorder 2
+
+    show l_bling zorder 2:
+        xalign 0.02
+        yanchor 0.94
+        ypos 920
+
     l "Wahai absolum yang bijaksana, inilah mc yang kita cari-cari"
-    hide l_datar
+
+    hide l_bling
     hide a_bayang
+
     window hide
     with dissolve
 
     # closeup
-    show mc_full at topbottom zorder 2 
-    pause 8 
+    show mc_full at topbottom zorder 2
+    pause 3.5
     hide mc_full
 
     show a_bayangcrop zorder 2
     a "Sepertinya memang sudah takdirmu untuk datang ke sini…"
 
-    show mc_bingung zorder 2
+    show mc_bingung zorder 2:
+        xalign 0.99
+
     mc "hah..Maksudnya?"
 
-    hide a_bayangcrop
     hide mc_bingung
+
+    show a_bayangcrop zorder 2:
+        xalign 2.7
+        yanchor 0.82
+        ypos 910
+    with ease
+
+    pause 0.5
+
+    hide a_bayangcrop
+    
 
     show a_datarcrop zorder 2
     a "Ah… maaf kelancangan ku, namaku Absolum."
-    show mc_datar zorder 2
+
+    show black onlayer master zorder 1 as darkoverlay:
+        alpha 0.0
+        linear 0.3 alpha 0.4
+
+    show a_datarcrop at vpunch zorder 2:
+        xalign 0.5
     a "Aku dahulu adalah seorang tabib kerajaan… Yaa.. sudah lama sekali"
 
     hide a_datarcrop
-    hide mc_datar
 
-    show gulungan zorder 2
-    pause 1.0
+    show gulungan at item_popup zorder 2
+    pause 3.0
     hide gulungan
 
-    show a_datar zorder 2
+    show a_datarcrop zorder 2
     a "Biar aku jelaskan secara singkat apa yang terjadi di dunia ini…"
+
+    show a_datarcrop at vpunch zorder 2:
+        xalign 0.5
     a "Dahulu, seluruh wilayah di bawah naungan kerajaan dalam keadaan makmur dan jaya."
+
+    show a_datarcrop at vpunch zorder 2:
+        xalign 0.5
     a "Namun, semenjak kenaikan tahta raja yang baru, segalanya berubah drastis."
+
+    show a_datarcrop at vpunch zorder 2:
+        xalign 0.5
     a "Wilayah yang jauh dari perkotaan tidak mendapatkan akses pangan maupun fasilitas yang layak."
 
-    show l_takut zorder 2
+    show a_datarcrop zorder 2:
+        xalign 0.002
+    with ease
+
+    show l_takut zorder 2:
+        xalign 0.99
+        yanchor 0.87
+        ypos 920
+
     l "dan yang terburuk, rakyat kecil ngga bisa melakukan ngapa-ngapain" 
     l "setiap keluh kesah yang mereka sampaikan dibiarin gitu aja.."
 
-    hide a_datar 
+    hide a_datarcrop
     hide l_takut
 
-    show mc_bingung zorder 2
-    mc "(lohh.. kok kayak demo tadi ya..)"
+    show mc_bingung zorder 2:
+        xalign 0.99
+
+    mc "{color=#7e6d2f}(lohh.. kok kayak demo tadi ya..){/color}"
+
     hide mc_bingung
 
-    show mc_hah zorder 2
+    show mc_hah at vpunch zorder 2:
+        xalign 0.99
+
+    mc "Ga mungkin! aku baru aja nyampe di sini, itu pasti cuman dongeng doang!"
+    show mc_datar zorder 2:
+        xalign 0.99
+
     mc "Ga mungkin! aku baru aja nyampe di sini, itu pasti cuman dongeng doang!"
     hide mc_hah
-    
-    show a_datar zorder 2
-    a "Gulungan takdir tidak pernah salah, Nak. Semua ini sudah tertulis sejak ratusan tahun."
 
-    show l_takut zorder 2
+
+    show mc_datar zorder 2:
+        xalign 0.089
+    with ease
+
+    show a_datarcrop zorder 2:
+        xalign 0.89
+
+    a "Gulungan takdir tidak pernah salah, Nak. Semua ini sudah tertulis sejak ratusan tahun."
+    
+    hide mc_datar
+
+    show a_datarcrop zorder 2:
+        xalign 0.089
+    with ease
+
+    show l_takut zorder 2:
+        xalign 0.99
+        yanchor 0.87
+        ypos 920
+
     l "A-Absolum benar kok! Gulungan takdir tidak mungkin berkehendak lain"
     hide l_takut
+
+    show a_datarcrop zorder 2:
+        xalign 0.50
+    with ease
+
     a "Jalan yang kamu hadapi kemungkinan tidak akan mulus, tetapi percayalah bahwa kamu dapat menjalani itu semua, Nak."
 
-    hide a_datar
-    hide l_takut 
+    hide a_datarcrop
 
-    show mc_garuk zorder 2
+    show mc_garuk zorder 2:
+        xanchor 0.89
+        xpos 0.94
+        yalign 0.25
+        
     mc "(Hah… apaan sih,, ga jelas banget dah, niat buat sembunyi di gotong lah malah masuk universe lain…)"
+    
+    hide mc_garuk
+
+    show mc_bingung at vpunch zorder 2:
+        xalign 0.99
     mc "(Ratu merah..? Ratu putih? Apaan sih ini dikira bawang putih bawang merah kali??)"
+
+    hide mc_bingung
+
+    show mc_huft at vpunch zorder 2:
+        xalign 0.99
     mc "(Aku? Beneran jadi pahlawan nih..? Yaelah plis lahh magang aja belom kelar malah disuruh jadi super hero"
+    
+    hide mc_huft
+
+    show mc_berpikir at vpunch zorder 2:
+        xalign 0.99
+
     mc "(keknya aku harus ngomong deh)"
+
+    
 
 #     # MINIGAME DEBAT ADMIN MALAS
 #     label minigame2:
