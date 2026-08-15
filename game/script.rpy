@@ -7,6 +7,7 @@ define a = Character("Absolum")
 define ar = Character("Arden")
 define c = Character("Chiro")
 define h = Character("Heiry")
+<<<<<<< HEAD
 define reporter = Character("Reporter", what_color="#453a12")
 
 transform klepon_popup:
@@ -14,6 +15,26 @@ transform klepon_popup:
     yalign 1.2
     alpha 0.0
     zoom 0.9
+=======
+define j = Character("Jendral")
+    
+transform slightleft:
+    xalign 0.25
+    yalign 1.0
+define reporter = Character("Reporter", what_color="#453a12")
+
+transform slightright:
+    xalign 0.75
+    yalign 1.0
+define reporter = Character("Reporter", what_color="#453a12")
+
+transform topbottom:
+    zoom 3 yalign 0.0
+    linear 2 zoom 1.0
+    linear 3 yalign 1.0
+    pause 0.5
+    linear 3 yalign 0.0
+>>>>>>> dac8fd83a87c82e969fc33060f9da4e220525058
 
     parallel:
         easeout 0.35 yalign 0.5
