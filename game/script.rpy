@@ -201,14 +201,14 @@ label start:
         alpha 0.0
         linear 0.3 alpha 0.4
 
-    show mc_kaget at vpunch zorder 2:
+    show mc_kaget zorder 2:
         xanchor 0.85
         xpos 0.99
         yalign 0.25
 
     $ renpy.pause(0.2, hard=True)
 
-    mc "LOHH?? KELINCI?? aku harus mengikutinya"
+    mc "LOHH?? KELINCI?? aku harus mengikutinya" with vpunch
 
     show black onlayer master zorder 1 as darkoverlay:
         alpha 0.4
@@ -233,9 +233,9 @@ label start:
         xpos 0.99
         yalign 0.25
 
-    $ renpy.pause(0.2, hard=True)
+    $ renpy.pause(0.5, hard=True)
 
-    mc "KYAAAHH"
+    mc "KYAAAHH" with vpunch
 
     hide darkoverlay
     

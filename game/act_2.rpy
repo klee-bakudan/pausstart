@@ -44,11 +44,11 @@ label act_2:
 
     hide mc_bingung
 
-    show mc_kaget at vpunch zorder 2:
+    show mc_kaget zorder 2:
         xalign 0.99
 
 
-    "/menyenggol meja"
+    "/menyenggol meja" with vpunch
     #sfx plis
     hide mc_bingung
     hide mc_kaget
@@ -112,7 +112,7 @@ label act_2:
 
     $ renpy.pause(0.2, hard=True)
 
-    mc "alamak"
+    mc "alamak kok jadi kecil gini.."
 
     hide darkoverlay
     with dissolve
@@ -142,7 +142,7 @@ label act_2:
     with ease
     #transisi bos
 
-    mc "Hah……..eennggg"
+    mc "Hah…… Kok ada manusia hewan??"
     
 
     hide l_datar 
@@ -218,27 +218,27 @@ label act_2:
     show mc_datar zorder 2:
         xalign 0.99
 
-    l "AKHIRNYA! Kamulah penyelamat kami! Kamu adalah orang dari dunia luar yang selama ini tertulis di dalam gulungan takdir! blablabla…."
+    l "AKHIRNYA! Kamulah penyelamat kami! Kamu adalah orang dari dunia luar yang selama ini tertulis di dalam gulungan takdir! Sangat tidak disangka..."
 
     hide mc_datar
-    hide l_bling
 
     show mc_bingung zorder 2:
         xalign 0.99
 
-    show l_datar zorder 2:
-        xalign 0.02
-        yanchor 1.0
+    show l_bling zorder 2:
+        xalign 0.002
+        yanchor 0.94
         ypos 920
 
     mc "Ha.. apaan sih?? Penyelamat??"
+    hide l_bling
 
     hide mc_bingung
     hide l_datar
 
-    show l_bling zorder 2:
-        xalign 0.002
-        yanchor 0.94
+    show l_datar zorder 2:
+        xalign 0.02
+        yanchor 1.0
         ypos 920
 
     show mc_datar zorder 2:
@@ -248,7 +248,7 @@ label act_2:
     with dissolve
 
     hide mc_datar
-    hide l_bling
+    hide l_datar
 
     scene jamur asap with Fade(0.8, 0.2, 0.8)
 
@@ -302,42 +302,55 @@ label act_2:
     pause 0.5
 
     hide a_bayangcrop
-    
-
-    show a_datarcrop zorder 2
-    a "Ah… maaf kelancangan ku, namaku Absolum."
 
     show black onlayer master zorder 1 as darkoverlay:
         alpha 0.0
         linear 0.3 alpha 0.4
+    
+    transform popup:
+        xalign 0.2
+        yanchor 0.82
+        ypos 910
+        block:
+            linear .05 yoffset 10
+            linear .05 yoffset -5
+            linear .05 yoffset 3
+            linear .05 yoffset 0
+            repeat False
+    show a_datar at popup zorder 2
+    a "Ah… maaf kelancangan ku, namaku Absolum."
 
-    show a_datarcrop at vpunch zorder 2:
-        xalign 0.5
+    show a_datar zorder 2:
+        xalign 0.2
     a "Aku dahulu adalah seorang tabib kerajaan… Yaa.. sudah lama sekali"
 
-    hide a_datarcrop
+    hide a_datar
 
     show gulungan at item_popup zorder 2
     pause 3.0
     hide gulungan
 
-    show a_datarcrop zorder 2
+    show a_datar at popup zorder 2
     a "Biar aku jelaskan secara singkat apa yang terjadi di dunia ini…"
 
-    show a_datarcrop at vpunch zorder 2:
-        xalign 0.5
+    show a_datar zorder 2:
+        xalign 0.2
     a "Dahulu, seluruh wilayah di bawah naungan kerajaan dalam keadaan makmur dan jaya."
 
-    show a_datarcrop at vpunch zorder 2:
-        xalign 0.5
+    show a_datar zorder 2:
+        xalign 0.2
     a "Namun, semenjak kenaikan tahta raja yang baru, segalanya berubah drastis."
 
-    show a_datarcrop at vpunch zorder 2:
-        xalign 0.5
+    show a_datar zorder 2:
+        xalign 0.2
     a "Wilayah yang jauh dari perkotaan tidak mendapatkan akses pangan maupun fasilitas yang layak."
 
-    show a_datarcrop zorder 2:
-        xalign 0.002
+    hide a_datar
+
+    show a_datar zorder 2:
+        xanchor 0.0
+        xalign 0.02
+        xoffset -500
     with ease
 
     show l_takut zorder 2:
@@ -348,7 +361,7 @@ label act_2:
     l "dan yang terburuk, rakyat kecil ngga bisa melakukan ngapa-ngapain" 
     l "setiap keluh kesah yang mereka sampaikan dibiarin gitu aja.."
 
-    hide a_datarcrop
+    hide a_datar
     hide l_takut
 
     show mc_bingung zorder 2:
@@ -360,16 +373,16 @@ label act_2:
 
     show mc_hah at vpunch zorder 2:
         xalign 0.99
-
     mc "Ga mungkin! aku baru aja nyampe di sini, itu pasti cuman dongeng doang!"
+    hide mc_hah
+
     show mc_datar zorder 2:
         xalign 0.99
-
     mc "Ga mungkin! aku baru aja nyampe di sini, itu pasti cuman dongeng doang!"
     hide mc_hah
 
 
-    show mc_datar zorder 2:
+    show mc_datar zorder 3:
         xalign 0.089
     with ease
 
