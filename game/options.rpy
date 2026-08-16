@@ -11,7 +11,7 @@
 ## title, and shows up in the interface and error reports.
 ##
 ## The _() surrounding the string marks it as eligible for translation.
-define config.default_fullscreen = False
+define config.default_fullscreen = True
 define config.screen_width = 1920
 define config.screen_height = 1080
 
@@ -27,6 +27,9 @@ define gui.show_name = True
 ## The version of the game.
 
 define config.version = "1.0"
+define config.screen_width = 1920
+define config.screen_height = 1080
+define config.default_fullscreen = False
 
 
 ## Text that is placed on the game's about screen. Place the text between the

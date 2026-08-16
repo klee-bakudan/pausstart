@@ -69,6 +69,7 @@ label act_3:
     # show mc_terluka
     # mc "Ha!?? SIAL"
 
+    # call play_jalan_puzzle("act_4")
     jump act_4
 
 

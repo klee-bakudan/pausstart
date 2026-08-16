@@ -306,5 +306,6 @@ label start:
 
     
 
+    # call play_jalan_puzzle("act_2")
     jump act_2
     return

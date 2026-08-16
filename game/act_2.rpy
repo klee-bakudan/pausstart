@@ -283,5 +283,7 @@ label act_2:
 #     a "Namun, apa pun yang terjadi.. Akhir tersebut akan tetap terjadi"
 #     show mc_datar zorder 2
 #     mc "...Baiklah.."
+
+    # call play_jalan_puzzle("act_3")
         
     jump act_3
