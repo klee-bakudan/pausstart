@@ -246,10 +246,10 @@ label act_2:
         xalign 0.99
 
     l "Eehh.. Sini ikut aku, kamu pasti kebingungan"
-    with dissolve
 
     hide mc_datar
     hide l_datar
+    with dissolve
 
     scene jamur asap with Fade(0.8, 0.2, 0.8)
 
@@ -449,13 +449,101 @@ label act_2:
             alpha 0.5
         show mc_berpikir zorder 2 
 
-        $choice_positions = [(50, 50), (100, 50), (200, 50)]
-        $choice_texts = ["gimana kalau aku emang bukan penyelamat?",
-        "buktinya..ini aja?", "kalau aku menang aku bisa pulang kan?"]
+        show mc_berpikir at vpunch zorder 2:
+            xalign 0.5
+            yalign 0.19
 
-        call screen bubble_choice(choice_texts)
-        $hasil = _return
-        pause 3
+        $ renpy.pause(0.2, hard=True)
+
+    $ choice_positions = [
+    (-80, 20),
+    (1000, 20),
+    (800, 350)
+    ]
+
+    $ choice_texts = [
+        "gimana kalau aku emang bukan penyelamat?",
+        "buktinya..ini aja?",
+        "kalau aku menang aku bisa pulang kan?"
+    ]
+
+    call screen bubble_choice(choice_texts)
+
+    $ hasil = _return
+
+    window show
+
+    hide mc_berpikir
+    hide darkoverlay
+
+    if hasil == 0:
+        jump act2_pilihan1
+    elif hasil == 1:
+        jump act2_pilihan2
+    elif hasil == 2:
+        jump act2_pilihan3
+
+
+label act2_pilihan1:
+
+    scene jamur
+    with dissolve
+
+    show black onlayer master zorder 1 as darkoverlay:
+        alpha 0.0
+        linear 0.3 alpha 0.5
+
+    # MC kanan
+    show mc_garuk zorder 2:
+        xalign 0.99
+        yalign 0.25
+
+    $ renpy.pause(0.2, hard=True)
+
+    mc "Tapi gimana kalau aku sebenarnya bukan penyelamat yang kalian cari dan malah mati dijalan?"
+
+    hide mc_garuk
+
+    # Lucien kiri
+    show l_takut zorder 2:
+        xalign 0.02
+        yanchor 0.87
+        ypos 920
+
+    $ renpy.pause(0.2, hard=True)
+
+    l "K-kamu gak akan mati kok di tengah jalan.. I-iyakan absolum??"
+
+    hide l_takut
+
+    # Absolum kiri / tengah-kiri
+    show a_datar zorder 2:
+        xalign 0.20
+        yanchor 0.82
+        ypos 910
+
+    $ renpy.pause(0.2, hard=True)
+
+    a "..."
+
+    hide a_datar
+
+    # Lucien lagi
+    show l_takut at vpunch zorder 2:
+        xalign 0.02
+        yanchor 0.87
+        ypos 920
+
+    $ renpy.pause(0.2, hard=True)
+
+    l "KOK DIEM SIH JADI PANIK NIH!!" with vpunch
+
+    hide l_takut
+    hide darkoverlay
+    with dissolve
+    window hide
+
+    $ renpy.pause(1.0, hard=True)
 
         if hasil == 0:
             jump pilihan1
@@ -573,60 +661,74 @@ label act2_lanjut:
         xpos 0.94
         yalign 0.25
 
-    show l_datar:
-        xalign 0.02
-        yanchor 1.0
-        ypos 920
+    $ renpy.pause(0.2, hard=True)
+
+    mc "Emang ada bukti selain gulungan takdir itu?"
+
+    hide mc_bingung
+
+    # Absolum kiri
+    show a_senyum zorder 2:
+        xalign 0.20
+        yanchor 0.82
+        ypos 910
+
+    $ renpy.pause(0.2, hard=True)
+
+    a "Tentu saja ada! Buktinya kamu telah memakan klepon yang ada di dalam ruangan itu kan?"
+
+    # MC kanan
+    show mc_kaget at vpunch zorder 2:
+        xalign 0.99
+        yalign 0.25
+
+    show a_senyum zorder 2:
+        xalign 0.089
+        xoffset -600
     with ease
 
+    $ renpy.pause(0.2, hard=True)
 
-    mc "mm- okey.."
+    mc "eh.. Ho'oh lah, emang ada hubungannya?"
 
-    hide l_datar 
+    a "Jikalau kamu tidak mengikuti kelinci dan makan klepon tadi, kamu tidak akan bisa masuk ke dunia ini"
+
+    a "(tertawa kecil)"
+
+    a "Asam di gunung, garam di laut, bertemu dalam satu belanga. Takdir hanya memanggil orang yang ditujunya."
+
     hide mc_kaget
-    with dissolve
+    hide a_senyum
 
-    scene jamur with fade
-    pause 1.0
-    
-    show black onlayer master zorder 1 as darkoverlay:
-        alpha 0.5
-    
-    show l_datar zorder 2:
-        xalign 0.99
-        yanchor 1.0
-        ypos 920
-
-    l "kamu mc kan?"
-
-    hide l_datar
-
-    show mc_kaget zorder 2:
-        xalign 0.99
-
-    show l_datar zorder 2:
-        xalign 0.02
-        yanchor 1.0
-        ypos 920
-    with ease
-
-    mc "kok….tau namaku? ANTEK ANTEK ASING YA??"
-
-    hide l_datar
-    hide mc_kaget
-
-    show l_bling zorder 2:
-        xalign 0.002
+    # Lucien kiri
+    show l_bling at vpunch zorder 2:
+        xalign 0.5
         yanchor 0.94
         ypos 920
-    
-    show mc_datar zorder 2:
-        xalign 0.99
 
-    l "AKHIRNYA! Kamulah penyelamat kami! Kamu adalah orang dari dunia luar yang selama ini tertulis di dalam gulungan takdir! blablabla…."
+    $ renpy.pause(0.2, hard=True)
 
-    hide mc_datar
+    l "Wow sangat puitis"
+
     hide l_bling
+
+    # Absolum balik
+    show a_senyum zorder 2:
+        xalign 0.20
+        yanchor 0.82
+        ypos 910
+
+    $ renpy.pause(0.2, hard=True)
+
+    a "Jika kamu bukan orang yang dituju dunia ini tidak akan memasukkan kamu Nak"
+
+    hide a_senyum
+    hide mc_datar
+    hide darkoverlay
+    with dissolve
+    window hide
+
+    $ renpy.pause(1.0, hard=True)
 
     show mc_bingung zorder 2:
         xalign 0.99
@@ -649,11 +751,17 @@ label act2_lanjut:
     show mc_datar zorder 2:
         xalign 0.99
 
-    l "Eehh.. Sini ikut aku, kamu pasti kebingungan"
-    with dissolve
+    mc "(menghela nafas)"
+
+    mc "Yaudah deh mohon bantuannya kalau gitu.. akan aku pegang perkataan kalian berdua!"
 
     hide mc_datar
-    hide l_bling
+    hide l_datar
+    hide darkoverlay
+    with dissolve
+    window hide
+
+    $ renpy.pause(0.2, hard=True)
 
     scene jamur asap with Fade(0.8, 0.2, 0.8)
 
@@ -662,44 +770,8 @@ label act2_lanjut:
         linear 0.4 alpha 0.5
     with dissolve
 
-    show a_bayang zorder 2
-    pause 1.0
-    hide a_bayang
-
-    show a_bayang zorder 2
-
-    a "Kamu membawa siapa kali ini, wahai kelinci kecil?"
-
-    show l_bling zorder 2:
-        xalign 0.02
-        yanchor 0.94
-        ypos 920
-
-    l "Wahai absolum yang bijaksana, inilah mc yang kita cari-cari"
-
-    hide l_bling
-    hide a_bayang
-
-    window hide
-    with dissolve
-
-    # closeup
-    show mc_full at topbottom zorder 2
-    pause 3.5
-    hide mc_full
-
-    show a_bayangcrop zorder 2
-    a "Sepertinya memang sudah takdirmu untuk datang ke sini…"
-
-    show mc_bingung zorder 2:
-        xalign 0.99
-
-    mc "hah..Maksudnya?"
-
-    hide mc_bingung
-
-    show a_bayangcrop zorder 2:
-        xalign 2.7
+    show a_datar zorder 2:
+        xalign 0.19
         yanchor 0.82
         ypos 910
     with ease
@@ -814,119 +886,11 @@ label act2_lanjut:
     
     hide mc_garuk
 
-    show mc_bingung at vpunch zorder 2:
-        xalign 0.99
-    mc "(Ratu merah..? Ratu putih? Apaan sih ini dikira bawang putih bawang merah kali??)"
-
-    hide mc_bingung
-
-    show mc_huft at vpunch zorder 2:
-        xalign 0.99
-    mc "(Aku? Beneran jadi pahlawan nih..? Yaelah plis lahh magang aja belom kelar malah disuruh jadi super hero"
-    
-    hide mc_huft
-
-    show mc_berpikir at vpunch zorder 2:
-        xalign 0.99
-
-    mc "(keknya aku harus ngomong deh)"
-
-    
-
-    # MINIGAME DEBAT ADMIN MALAS
-    label minigame2:
-        scene jamur
-        show black onlayer master zorder 1 as darkoverlay:
-            alpha 0.5
-        show mc_berpikir zorder 2 
-
-        $choice_positions = [(50, 50), (100, 50), (200, 50)]
-        $choice_texts = ["gimana kalau aku emang bukan penyelamat?",
-        "buktinya..ini aja?", "kalau aku menang aku bisa pulang kan?"]
-
-        call screen bubble_choice(choice_texts)
-        $hasil = _return
-        pause 3
-
-        if hasil == 0:
-            jump pilihan1
-        elif hasil ==  1:
-            jump pilihan2
-        elif hasil == 2:
-            jump pilihan3
-    
-    label pilihan1:
-        scene jamur
-        show black onlayer master zorder 1 as darkoverlay:
-            alpha 0.5
-        show mc_garuk zorder 2
-        mc "Tapi gimana kalau aku sebenarnya bukan penyelamat yang kalian cari dan malah mati dijalan?"
-        show l_takut zorder 2
-        l "K-kamu gak akan mati kok di tengah jalan.. I-iyakan absolum??"
-        hide mc_garuk
-        hide l_takut
-        show a_datar zorder 2
-        a "..."
-        show l_takut zorder 2
-        l "KOK DIEM SIH JADI PANIK NIH!!"
-    jump act2_lanjut
-    
-    label pilihan2:
-        scene jamur
-        show black onlayer master zorder 1 as darkoverlay:
-            alpha 0.5
-        show mc_bingung zorder 2
-        mc "Emang ada bukti selain gulungan takdir itu?"
-        show a_senyum zorder 2
-        a "Tentu saja ada! Buktinya kamu telah memakan klepon yang ada di dalam ruangan itu kan?"
-        hide mc_bingung
-        show mc_kaget zorder 2
-        mc "eh.. Ho’oh lah, emang ada hubungannya?"
-        a "Jikalau kamu tidak mengikuti kelinci dan makan klepon tadi, kamu tidak akan bisa masuk ke dunia ini"
-        a "(tertawa kecil)"
-        a "Asam di gunung, garam di laut, bertemu dalam satu belanga. Takdir hanya memanggil orang yang ditujunya."
-        hide mc_kaget
-        show l_bling zorder 2
-        l "Wow sangat puitis"
-        hide l_bling
-        a "Jika kamu bukan orang yang dituju dunia ini tidak akan memasukkan kamu Nak"
-        show mc_datar zorder 2
-        pause 1.0
-        hide mc_datar
-    jump act2_lanjut
-   
-    label pilihan3:
-        scene jamur
-        show black onlayer master zorder 1 as darkoverlay:
-            alpha 0.5
-        show mc_huft zorder 2
-        mc "Ada satu hal yang ingin kutanyakan."
-        mc "Kalau aku berhasil menyelamatkan dunia ini, aku bisa keluar dari sini dan kembali ke duniaku kan?"
-        show a_senyum zorder 2
-        a "Jangan khawatir, Nak. Untuk kepulanganmu sudah pasti akan terjadi di saat mala petaka di dunia ini berakhir,"
-        a "pintu dunia ini akan terbuka dan membawamu pulang"
-        hide a_senyum
-        show l_datar zorder 2
-        l "T-tuhkan absolum sudah menjamin kepulanganmu!"
-        l "Tidak perlu takut, MC!"
-        l "A-aku akan membantumu menghadapi mala petaka ini… tapi jangan terlalu gegabah… ya?"
-        mc "(menghela nafas)"
-        mc "Yaudah deh mohon bantuannya kalau gitu.. akan aku pegang perkataan kalian berdua!"
-    jump act2_lanjut 
-    
-label act2_lanjut:
-    scene jamur
-    show black onlayer master zorder 1 as darkoverlay:
-        alpha 0.5
-    hide mc_garuk
-
-    show a_datar zorder 2
-    a "mc kamu mungkin bisa memilih jalur yang berbeda dari gulungan takdir ini.."
-    a "Namun, apa pun yang terjadi.. Akhir tersebut akan tetap terjadi"
-    show mc_datar zorder 2
     mc "...Baiklah.."
 
-    call play_jalan_puzzle("act_3")
-    $add_mc_hp(7)
-        
+    hide mc_datar
+    hide darkoverlay
+    with dissolve
+
+    $ renpy.pause(0.2, hard=True)
     jump act_3

@@ -33,8 +33,14 @@ label act_3:
             linear .05 yoffset 3
             linear .05 yoffset 0
             repeat False
+<<<<<<< HEAD
 
     call escape_scene
+=======
+    
+    show l_takut at popup_right zorder 2
+    pause 0.5
+>>>>>>> ef9fb53b1f18594770b58338440e815e42937679
 
 label act3_lanjut
     scene jamur_tengah
@@ -50,7 +56,7 @@ label act3_lanjut
     show mc_terluka
     mc "Ha!?? SIAL"
     show mc_hah at popup_left zorder 2
-    pause 0.5
+    mc "APAAN TUH!!??"
 
     transform popup_right:
         xalign 0.01
@@ -62,8 +68,6 @@ label act3_lanjut
             linear .05 yoffset 3
             linear .05 yoffset 0
             repeat False
-    show l_takut at popup_right zorder 2
-    pause 0.5
 
     hide l_takut
     hide mc_hah
