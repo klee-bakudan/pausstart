@@ -34,7 +34,6 @@ label act_3:
             linear .05 yoffset 0
             repeat False
 
-
     show mc_hah at popup_left zorder 2
     pause 0.5
 

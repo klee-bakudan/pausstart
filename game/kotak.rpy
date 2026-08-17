@@ -22,7 +22,9 @@ init python:
                 renpy.end_interaction("puzzle_done")
 
 screen reassemble_puzzle:
+
     image "backgroundp.png"
+
     frame:
         background "puzzle-frame.png"
         xysize full_page_size
@@ -48,7 +50,8 @@ screen reassemble_puzzle:
                 pos piece_coordinates[i]
                 anchor(0.5, 0.5)
                 focus_mask True
-                image "%s/piece-%s.png" % (current_puzzle_folder, i + 1) 
+                image "%s/piece-%s.png" % (current_puzzle_folder, i + 1): 
+                    alpha 0.25
 
 
 default page_pieces = 9

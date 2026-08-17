@@ -1,14 +1,14 @@
-default choice_positions = [
-    (80, 300), (685, 150), (1290, 300)]
+default choice_positions = [(50, 150), (1150, 50), (850, 400)]
 # ini def letak awan
 
 label act_2:
     scene hitam
 
+
     play sound "audio/transition-act.mp3"
     pause 1.0
 
-    scene act2
+    scene act2 
     with dissolve
 
     pause 3.0
@@ -22,7 +22,7 @@ label act_2:
     show black onlayer master zorder 1 as darkoverlay:
         alpha 0.0
         linear 0.3 alpha 0.4
-
+    
     show mc_garuk zorder 2:
         xanchor 0.89
         xpos 0.94
@@ -35,7 +35,7 @@ label act_2:
         linear 0.3 alpha 0.4
 
     hide mc_garuk
-    # transisi yeah
+    # transisi yeah 
 
     show mc_bingung zorder 2:
         xalign 0.99
@@ -47,11 +47,13 @@ label act_2:
     show mc_kaget zorder 2:
         xalign 0.99
 
+
     "/menyenggol meja" with vpunch
     #sfx plis
     hide mc_bingung
     hide mc_kaget
     hide darkoverlay
+
 
     window hide
 
@@ -62,6 +64,7 @@ label act_2:
     show klepon at item_popup zorder 2
 
     pause 2.0
+
 
     hide klepon
     hide darkoverlay
@@ -118,8 +121,7 @@ label act_2:
     pause 1.0
 
     show black onlayer master zorder 1 as darkoverlay:
-        alpha 0.0
-        linear 0.3 alpha 0.5
+        alpha 0.5
 
     show l_datar zorder 2:
         xalign 0.99
@@ -141,8 +143,9 @@ label act_2:
     #transisi bos
 
     mc "Hah…… Kok ada manusia hewan??"
+    
 
-    hide l_datar
+    hide l_datar 
     hide mc_kaget
     with dissolve
 
@@ -150,8 +153,7 @@ label act_2:
     pause 1.0
 
     show black onlayer master zorder 1 as darkoverlay:
-        alpha 0.0
-        linear 0.3 alpha 0.5
+        alpha 0.5
 
     show l_datar zorder 2:
         xalign 0.99
@@ -172,19 +174,19 @@ label act_2:
         ypos 920
     with ease
 
+
     mc "mm- okey.."
 
-    hide l_datar
+    hide l_datar 
     hide mc_kaget
     with dissolve
 
     scene jamur with fade
     pause 1.0
-
+    
     show black onlayer master zorder 1 as darkoverlay:
-        alpha 0.0
-        linear 0.3 alpha 0.5
-
+        alpha 0.5
+    
     show l_datar zorder 2:
         xalign 0.99
         yanchor 1.0
@@ -212,7 +214,7 @@ label act_2:
         xalign 0.002
         yanchor 0.94
         ypos 920
-
+    
     show mc_datar zorder 2:
         xalign 0.99
 
@@ -304,7 +306,7 @@ label act_2:
     show black onlayer master zorder 1 as darkoverlay:
         alpha 0.0
         linear 0.3 alpha 0.4
-
+    
     transform popup:
         xalign 0.2
         yanchor 0.82
@@ -315,7 +317,6 @@ label act_2:
             linear .05 yoffset 3
             linear .05 yoffset 0
             repeat False
-
     show a_datar at popup zorder 2
     a "Ah… maaf kelancangan ku, namaku Absolum."
 
@@ -357,7 +358,7 @@ label act_2:
         yanchor 0.87
         ypos 920
 
-    l "dan yang terburuk, rakyat kecil ngga bisa melakukan ngapa-ngapain"
+    l "dan yang terburuk, rakyat kecil ngga bisa melakukan ngapa-ngapain" 
     l "setiap keluh kesah yang mereka sampaikan dibiarin gitu aja.."
 
     hide a_datar
@@ -380,6 +381,7 @@ label act_2:
     mc "Ga mungkin! aku baru aja nyampe di sini, itu pasti cuman dongeng doang!"
     hide mc_hah
 
+
     show mc_datar zorder 3:
         xalign 0.089
     with ease
@@ -388,8 +390,8 @@ label act_2:
         xalign 0.89
 
     a "Gulungan takdir tidak pernah salah, Nak. Semua ini sudah tertulis sejak ratusan tahun."
-
-    hide mc_datar with dissolve
+    
+    hide mc_datar
 
     show a_datarcrop zorder 2:
         xalign 0.089
@@ -415,9 +417,9 @@ label act_2:
         xanchor 0.89
         xpos 0.94
         yalign 0.25
-
+        
     mc "(Hah… apaan sih,, ga jelas banget dah, niat buat sembunyi di gotong lah malah masuk universe lain…)"
-
+    
     hide mc_garuk
 
     show mc_bingung at vpunch zorder 2:
@@ -429,11 +431,14 @@ label act_2:
     show mc_huft at vpunch zorder 2:
         xalign 0.99
     mc "(Aku? Beneran jadi pahlawan nih..? Yaelah plis lahh magang aja belom kelar malah disuruh jadi super hero"
-
+    
     hide mc_huft
 
     show mc_berpikir at vpunch zorder 2:
         xalign 0.99
+
+    mc "(keknya aku harus ngomong deh)"
+
 
     mc "(keknya aku harus ngomong deh)"
 
