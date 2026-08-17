@@ -1,4 +1,4 @@
-﻿define mc = Character("MC")
+﻿define mc = Character("[mcname]")
 define d = Character("D'dit")
 define k = Character("Raja Merah")
 define q = Character("Ratu Merah")
@@ -56,151 +56,154 @@ transform glitch_flicker:
     
 label start:
 
-    # # $ renpy.notify("MASUK SINI")
+    $ renpy.notify("MASUK SINI")
     
-    # # $ mcname = renpy.input(
-    # #     "Siapa namamu?",
-    # #     allow="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ ",
-    # #     length=10
-    # # ).strip()
+    $ mcname = renpy.input(
+        "Siapa namamu?", 
+        allow="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ ",
+        length=7
+    ).strip()
 
-    # # $ renpy.notify("Captured: [mcname]")
+    $ renpy.notify("Captured: [mcname]")
 
-    # # if not mcname:
-    # #     $ mcname = "MC"
+    if not mcname:
+        $ mcname = "MC"
 
-    # play sound "audio/transition-act.mp3"
-    # pause 1.0
+    play sound "audio/transition-act.mp3"
+    pause 1.0
 
-    # scene act1
-    # with dissolve
+    scene act1
+    with dissolve
     
-    # pause 6.0
-    # stop sound
+    pause 6.0
+    stop sound
 
-    # scene reporter1
-    # with Fade(0.8, 0.2, 0.8)
+    scene reporter1
+    with Fade(0.8, 0.2, 0.8)
   
-    # play sound "audio/breaking-news.mp3"
-    # pause 6.0
+    play sound "audio/breaking-news.mp3"
+    pause 6.0
 
-    # reporter "Breaking news saudara, berikut adalah cuplikan real time demo yang terjadi"
-    # scene demo 1
-    # with Dissolve(.5)
-    # pause .5
+    reporter "Kita awali informasi pertama, dimana terjadi aksi unjuk rasa mahasiswa yang menuntut keadilan atas kasus korupsi fasilitas umum"
+    reporter "yang melibatkan pejabat tinggi di kota ini. Aksi ini berlangsung damai, namun pihak kepolisian telah mengerahkan pasukan untuk mengamankan situasi."
+    scene demo 1
+    with Dissolve(.5)
+    pause .5
 
-    # stop sound fadeout 1.0
+    stop sound fadeout 1.0
 
-    # scene demo text with Dissolve(0.7)
-    # "Mahasiswa" "HIDUP MAHASISWA!"
+    scene demo text with Dissolve(0.7)
+    "Mahasiswa" "HIDUP MAHASISWA!"
+    play music "audio/demo-mhs.mp3"
 
-    # scene demo 1
+    scene demo 1
 
-    # show black onlayer master zorder 1 as darkoverlay:
-    #     alpha 0.0
-    #     linear 0.3 alpha 0.35
+    show black onlayer master zorder 1 as darkoverlay:
+        alpha 0.0
+        linear 0.3 alpha 0.35
 
-    # show pulisi zorder 2:
-    #     xalign 0.99
+    show pulisi zorder 2:
+        xalign 0.99
 
-    # $ renpy.pause(0.2, hard=True)
+    $ renpy.pause(0.2, hard=True)
 
-    # "Polisi" "WOI MUNDUR GA!"
+    "Polisi" "WOI MUNDUR GA!"
 
-    # hide pulisi
-
-
-    # show black onlayer master zorder 1 as darkoverlay:
-    #     alpha 0.0
-    #     linear 0.3 alpha 0.35
-
-    # show mc_demo_1 zorder 2:
-    #     xalign 0.75
-
-    # $ renpy.pause(0.2, hard=True)
-
-    # mc "E-EHHH"
-
-    # hide mc_demo_1
-
-    # show black onlayer master zorder 1 as darkoverlay:
-    #     alpha 0.0
-    #     linear 0.3 alpha 0.35
-
-    # show mc_demo_2 at vpunch zorder 2:
-    #     xalign 0.75
-
-    # $ renpy.pause(0.2, hard=True)
-
-    # mc "AWAS AWAS GAS AIR MATAAA"
-
-    # hide mc_demo_2
-    # hide darkoverlay
-
-    # scene run
-    # with Dissolve(0.5)
-
-    # mc "SIAL"
-
-    # show black onlayer master zorder 1 as darkoverlay:
-    #     alpha 0.0
-    #     linear 0.4 alpha 0.5
-
-    # show mc_takut zorder 2:
-    #     xanchor 0.85
-    #     xpos 0.99
-    #     yalign 0.25
-
-    # $ renpy.pause(0.2, hard=True)
-
-    # mc "huh..huh..huh..."
-
-    # hide mc_takut
-    # hide darkoverlay
+    hide pulisi
 
 
-    # scene gorong
-    # with Dissolve(0.7)
+    show black onlayer master zorder 1 as darkoverlay:
+        alpha 0.0
+        linear 0.3 alpha 0.35
 
-    # pause 1.5
+    show mc_demo_1 zorder 2:
+        xalign 0.75
 
-    # show black onlayer master zorder 1 as darkoverlay:
-    #     alpha 0.0
-    #     linear 0.3 alpha 0.4
+    $ renpy.pause(0.2, hard=True)
 
-    # show mc_bingung zorder 2:
-    #     xanchor 0.89
-    #     xpos 0.94
-    #     yalign 0.25
+    mc "E-EHHH"
 
-    # $ renpy.pause(0.2, hard=True)
+    hide mc_demo_1
 
-    # mc "hoh?"
+    show black onlayer master zorder 1 as darkoverlay:
+        alpha 0.0
+        linear 0.3 alpha 0.35
 
-    # show black onlayer master zorder 1 as darkoverlay:
-    #     alpha 0.4
-    #     linear 0.4 alpha 0.7
+    show mc_demo_2 at vpunch zorder 2:
+        xalign 0.75
 
-    # $ renpy.pause(0.3, hard=True)
+    $ renpy.pause(0.2, hard=True)
 
-    # hide mc_bingung
-    # hide darkoverlay
+    mc "AWAS AWAS GAS AIR MATAAA"
+
+    hide mc_demo_2
+    hide darkoverlay
+    stop music fadeout 0.5
+
+    scene run
+    with Dissolve(0.5)
+    play music "<from 22.0 to 30.0>audio/run.mp3"
+
+    mc "SIAL"
+
+    show black onlayer master zorder 1 as darkoverlay:
+        alpha 0.0
+        linear 0.4 alpha 0.5
+
+    show mc_takut zorder 2:
+        xanchor 0.85
+        xpos 0.99
+        yalign 0.25
+
+    $ renpy.pause(0.2, hard=True)
+
+    mc "huh..huh..huh..."
+
+    hide mc_takut
+    hide darkoverlay
+
+    scene gorong
+    with Dissolve(0.7)
+
+    pause 1.5
+
+    show black onlayer master zorder 1 as darkoverlay:
+        alpha 0.0
+        linear 0.3 alpha 0.4
+
+    show mc_bingung zorder 2:
+        xanchor 0.89
+        xpos 0.94
+        yalign 0.25
+
+    $ renpy.pause(0.2, hard=True)
+
+    mc "hoh?"
+
+    show black onlayer master zorder 1 as darkoverlay:
+        alpha 0.4
+        linear 0.4 alpha 0.7
+
+    $ renpy.pause(0.3, hard=True)
+
+    hide mc_bingung
+    hide darkoverlay
 
 
-    # scene kelinci masuk
-    # with Dissolve(0.4)
+    scene kelinci masuk
+    with Dissolve(0.4)
 
-    # pause 0.5
+    pause 0.5
 
 
-    # scene gorong 2
-    # with Dissolve(0.5)
+    scene gorong 2
+    with Dissolve(0.5)
 
-    # pause 1.5
+    pause 1.5
 
-    # show black onlayer master zorder 1 as darkoverlay:
-    #     alpha 0.0
-    #     linear 0.3 alpha 0.4
+    show black onlayer master zorder 1 as darkoverlay:
+        alpha 0.0
+        linear 0.3 alpha 0.4
 
     show mc_kaget at vpunch zorder 2:
         xanchor 0.85
@@ -211,36 +214,41 @@ label start:
 
     mc "LOHH?? KELINCI?? aku harus mengikutinya"
 
-    # show black onlayer master zorder 1 as darkoverlay:
-    #     alpha 0.4
-    #     linear 0.4 alpha 0.7
+    show black onlayer master zorder 1 as darkoverlay:
+        alpha 0.4
+        linear 0.4 alpha 0.7
 
-    # $ renpy.pause(0.3, hard=True)
+    stop music fadeout 0.5
 
-    # hide mc_kaget
-    # hide darkoverlay
+    $ renpy.pause(0.3, hard=True)
 
-    # scene masuk
-    # with Dissolve(0.6)
+    hide mc_kaget
+    hide darkoverlay
 
-    # pause 1.0
+    scene masuk
+    with Dissolve(0.6)
 
-    # show black onlayer master zorder 1 as darkoverlay:
-    #     alpha 0.0
-    #     linear 0.3 alpha 0.45
 
-    # show mc_takut zorder 2:
-    #     xanchor 0.85
-    #     xpos 0.99
-    #     yalign 0.25
+    pause 1.0
+
+    show black onlayer master zorder 1 as darkoverlay:
+        alpha 0.0
+        linear 0.3 alpha 0.45
+
+    show mc_takut zorder 2:
+        xanchor 0.85
+        xpos 0.99
+        yalign 0.25
 
     $ renpy.pause(0.2, hard=True)
 
-    mc "KYAAAHH"
+    play music "<from 0.0 to 8.0>audio/gorong.mp3"
 
-    # hide darkoverlay
+    mc "KYAAAHH" with vpunch
+    stop music fadeout 0.5
+    hide darkoverlay
     
 
-    # # call play_jalan_puzzle("act_2")
+    call play_jalan_puzzle("act_2")
     jump act_2
     return

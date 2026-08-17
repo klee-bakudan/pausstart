@@ -33,26 +33,12 @@ label act_3:
             linear .05 yoffset 3
             linear .05 yoffset 0
             repeat False
-
-<<<<<<< HEAD
-    # call escape_scene
-
-#label act3_lanjut
-    # scene jamur_tengah
-    # show mc_takut
-    # mc "hufft hufft… Lurcien kemana dah... Cepet amat larinya"
-    # mc "gimanasih katanya bakal bantu heungg"
-    # hide mc_takut
-    # show maung
-    # "GRAAAAAA"
-    # "(menyakar mc)"
-    # hide maung
-    # show maung_2
-    # show mc_terluka
-    # mc "Ha!?? SIAL"
-=======
-    show mc_hah at popup_left zorder 2
+    
+    show l_takut at popup_right zorder 2
     pause 0.5
+
+    show mc_hah at popup_left zorder 2
+    mc "APAAN TUH!!??"
 
     transform popup_right:
         xalign 0.01
@@ -64,9 +50,6 @@ label act_3:
             linear .05 yoffset 3
             linear .05 yoffset 0
             repeat False
-    show l_takut at popup_right zorder 2
-    pause 0.5
->>>>>>> 344bbf68488e90d78cfb1116ef35c7b16346200b
 
     hide l_takut
     hide mc_hah
