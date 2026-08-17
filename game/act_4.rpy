@@ -75,6 +75,3 @@ label act_4:
 
     call play_jalan_puzzle("act_5")
     jump act_5
-
-
-

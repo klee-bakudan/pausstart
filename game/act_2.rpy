@@ -172,7 +172,7 @@ label act_2:
         ypos 920
     with ease
 
-    mc "mm- okey.." 
+    mc "mm- okey.."
 
     hide l_datar
     hide mc_kaget
@@ -453,9 +453,9 @@ label act_2:
         $ renpy.pause(0.2, hard=True)
 
     $ choice_positions = [
-    (150, 200),
-    (400, 480),
-    (150, 760)
+    (-80, 20),
+    (1000, 20),
+    (800, 350)
     ]
 
     $ choice_texts = [
