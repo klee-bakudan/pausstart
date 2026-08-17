@@ -90,13 +90,13 @@ label act_5:
         pause 3
 
         if hasil == 0:
-            jump pilihan1
+            jump pilihan15
         elif hasil ==  1:
-            jump pilihan2
+            jump pilihan25
         elif hasil == 2:
-            jump pilihan3
+            jump pilihan35
     
-    label pilihan1:
+    label pilihan15:
         scene meja_tea
         pause 0.1
         show mc_ngiler
@@ -104,7 +104,7 @@ label act_5:
         hide mc_ngiler
     jump act5_lanjut
     
-    label pilihan2:
+    label pilihan25:
         scene meja_tea
         show mc_tch
         mc "Ini beneran kita minum teh padahal diluar lagi kacau balau??"
@@ -119,14 +119,14 @@ label act_5:
         hide mc_kaget
     jump act5_lanjut
    
-    label pilihan3:
+    label pilihan35:
         scene meja_tea
         show mc_tch
         mc "WOI! INI KALIAN BENARAN MAU MENGHADAPI MALA PETAKA!?"
         mc "Aku datang ke dunia ini BUKAN buat minum teh!"
         mc "tapi menghadapi mala petaka sialan yang harus aku selesaikan DEMI KALIAN"
         hide mc_tch
-    jump act5_lanjut2 
+    jump act_5p
     
 label act5_lanjut:
     scene tea_party

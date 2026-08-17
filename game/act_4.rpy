@@ -2,16 +2,17 @@ label act_4:
     scene act4 
     pause 0.5
 
-    scene hutan_bakar with dissolve
+    scene hutan_bakar
     pause 0.5
     show black onlayer master zorder 1 as darkoverlay:
         alpha 0.5
     
-    show mc_terluka zorder 2 with dissolve
+    show mc_terluka zorder 2
+    pause 0.3
     mc "baru day 1 nyawa otw melayang"
-    hide mc_terluka
     show c_mingkem zorder 2
     c "tch mendokuse nih perban sendiri"
+    hide mc_terluka
     hide c_mingkem
 
     call play_reassemble_puzzle ("Pieces/puzzle1")
@@ -74,4 +75,8 @@ label act_4:
     hide mc_perban_kesel with dissolve
 
     call play_jalan_puzzle("act_5")
+    $add_mc_hp(7)
     jump act_5
+
+
+

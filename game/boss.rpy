@@ -131,8 +131,13 @@ init python:
 
     def corkEvents(event, x, y, st):
         import pygame_sdl2 as pygame
+        global gallery_ammo
+        global gallery_over
         if event.type == pygame.MOUSEBUTTONUP:
             if event.button == 1 and y < config.screen_height - 10:
+                if gallery_ammo <= 0 or gallery_over:
+                    return
+                gallery_ammo -= 1
                 cork_spirets.append(cork_SM.create(cork_transform))
                 cork_spirets[-1].original_size = (110, 138)
                 cork_spirets[-1].x = (cork_gun_pos[0] + cork_spirets[-1].original_size[0])
@@ -145,6 +150,8 @@ init python:
 
     def corkUpdate(st):
         global score
+        global gallery_ammo
+        global gallery_over
         corks_to_remove = []
         for cork in cork_spirets:
             if cork.travel_time < 0.25:
@@ -181,26 +188,31 @@ init python:
         for cork in corks_to_remove:
             cork.destroy()
             cork_spirets.remove(cork)
+
+        if gallery_ammo <= 0 and not cork_spirets and not gallery_over:
+            gallery_over = True
+            renpy.end_interaction("gallery_finished")
+
         return 0
 
     def prepareShootingGallery():
         global score
         global target_last_time
+        global gallery_ammo
+        global gallery_over
         score = 100
         target_last_time = None
+        gallery_ammo = mc_hp
+        add_mc_hp(-mc_hp) 
+        renpy.notify("HP terpakai jadi %d peluru!" % gallery_ammo)
+        gallery_over = False
 
         for target in target_sprites:
-
             target.hit = False
-
             target.idle_animation_direction = "up"
-
             target.animation_time = 0.0
-
             target.current_frame = 5
-
             target.set_child(Transform(child="images/target-1-4.png",zoom=get_target_zoom(target.row)))
-
 transform half_size:
     zoom 1.0
 

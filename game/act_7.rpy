@@ -79,6 +79,8 @@ label act_7:
 
     call boss
     
+    scene
+    
     
 
 

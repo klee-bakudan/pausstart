@@ -1,16 +1,12 @@
-<<<<<<< HEAD
-﻿init python:
+init python:
     import random 
     mc_hp = 0
     def add_mc_hp(amount):
         global mc_hp
         mc_hp += amount
+        renpy.notify("HP +%d" % amount)
 
-
-define mc = Character("MC")
-=======
-﻿define mc = Character("[mcname]")
->>>>>>> ef9fb53b1f18594770b58338440e815e42937679
+define mc = Character("[mcname]")
 define d = Character("D'dit")
 define k = Character("Raja Merah")
 define q = Character("Ratu Merah")
@@ -67,32 +63,16 @@ transform glitch_flicker:
         repeat False
     
 label start:
-
-<<<<<<< HEAD
-    $renpy.notify("MASUK SINI")
-    
+    scene act1
     $ mcname = renpy.input(
         "Siapa namamu?",
             allow="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ ",
             length=10).strip()
-=======
-    $ renpy.notify("MASUK SINI")
-    
-    $ mcname = renpy.input(
-        "Siapa namamu?", 
-        allow="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ ",
-        length=7
-    ).strip()
->>>>>>> ef9fb53b1f18594770b58338440e815e42937679
 
     $ renpy.notify("Captured: [mcname]")
 
     if not mcname:
-<<<<<<< HEAD
         $mcname = "MC"
-=======
-        $ mcname = "MC"
->>>>>>> ef9fb53b1f18594770b58338440e815e42937679
 
     play sound "audio/transition-act.mp3"
     pause 1.0
@@ -109,12 +89,8 @@ label start:
     play sound "audio/breaking-news.mp3"
     pause 6.0
 
-<<<<<<< HEAD
-    reporter "Breaking news saudara, berikut adalah cuplikan real time demo yang terjadi"
-=======
     reporter "Kita awali informasi pertama, dimana terjadi aksi unjuk rasa mahasiswa yang menuntut keadilan atas kasus korupsi fasilitas umum"
     reporter "yang melibatkan pejabat tinggi di kota ini. Aksi ini berlangsung damai, namun pihak kepolisian telah mengerahkan pasukan untuk mengamankan situasi."
->>>>>>> ef9fb53b1f18594770b58338440e815e42937679
     scene demo 1
     with Dissolve(.5)
     pause .5
@@ -123,10 +99,7 @@ label start:
 
     scene demo text with Dissolve(0.7)
     "Mahasiswa" "HIDUP MAHASISWA!"
-<<<<<<< HEAD
-=======
     play music "audio/demo-mhs.mp3"
->>>>>>> ef9fb53b1f18594770b58338440e815e42937679
 
     scene demo 1
 
@@ -170,17 +143,11 @@ label start:
 
     hide mc_demo_2
     hide darkoverlay
-<<<<<<< HEAD
-
-    scene run
-    with Dissolve(0.5)
-=======
     stop music fadeout 0.5
 
     scene run
     with Dissolve(0.5)
     play music "<from 22.0 to 30.0>audio/run.mp3"
->>>>>>> ef9fb53b1f18594770b58338440e815e42937679
 
     mc "SIAL"
 
@@ -199,8 +166,6 @@ label start:
 
     hide mc_takut
     hide darkoverlay
-<<<<<<< HEAD
-
 
     scene gorong
     with Dissolve(0.7)
@@ -241,48 +206,6 @@ label start:
 
     pause 1.5
 
-=======
-
-    scene gorong
-    with Dissolve(0.7)
-
-    pause 1.5
-
-    show black onlayer master zorder 1 as darkoverlay:
-        alpha 0.0
-        linear 0.3 alpha 0.4
-
-    show mc_bingung zorder 2:
-        xanchor 0.89
-        xpos 0.94
-        yalign 0.25
-
-    $ renpy.pause(0.2, hard=True)
-
-    mc "hoh?"
-
-    show black onlayer master zorder 1 as darkoverlay:
-        alpha 0.4
-        linear 0.4 alpha 0.7
-
-    $ renpy.pause(0.3, hard=True)
-
-    hide mc_bingung
-    hide darkoverlay
-
-
-    scene kelinci masuk
-    with Dissolve(0.4)
-
-    pause 0.5
-
-
-    scene gorong 2
-    with Dissolve(0.5)
-
-    pause 1.5
-
->>>>>>> ef9fb53b1f18594770b58338440e815e42937679
     show black onlayer master zorder 1 as darkoverlay:
         alpha 0.0
         linear 0.3 alpha 0.4
@@ -300,22 +223,6 @@ label start:
         alpha 0.4
         linear 0.4 alpha 0.7
 
-<<<<<<< HEAD
-    $ renpy.pause(0.3, hard=True)
-
-    hide mc_kaget
-    hide darkoverlay
-
-    scene masuk
-    with Dissolve(0.6)
-
-    pause 1.0
-
-    show black onlayer master zorder 1 as darkoverlay:
-        alpha 0.0
-        linear 0.3 alpha 0.45
-
-=======
     stop music fadeout 0.5
 
     $ renpy.pause(0.3, hard=True)
@@ -333,7 +240,6 @@ label start:
         alpha 0.0
         linear 0.3 alpha 0.45
 
->>>>>>> ef9fb53b1f18594770b58338440e815e42937679
     show mc_takut zorder 2:
         xanchor 0.85
         xpos 0.99
@@ -343,18 +249,12 @@ label start:
 
     play music "<from 0.0 to 8.0>audio/gorong.mp3"
 
-<<<<<<< HEAD
-=======
     mc "KYAAAHH" with vpunch
     stop music fadeout 0.5
->>>>>>> ef9fb53b1f18594770b58338440e815e42937679
     hide darkoverlay
     
 
     call play_jalan_puzzle("act_2")
-<<<<<<< HEAD
     $add_mc_hp(7)
-=======
->>>>>>> ef9fb53b1f18594770b58338440e815e42937679
     jump act_2
     return
