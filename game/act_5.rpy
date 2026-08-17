@@ -41,8 +41,7 @@ label act_5:
 
     show h_senyum zorder 2
     h "BAWAHAHAHA bakar-bakar kecil katanya!"
-    show ar_jengkel
-    ar "Aduhh keluar lagi tuh joks garing"
+    #arden
 
     show mc_bingung zorder 2
     mc "Aneh banget... Ini beneran orang yang bakal bantu aku..?"
@@ -52,7 +51,7 @@ label act_5:
     hide d_senyum
     show h_senyum zorder 2
     h "IH DORMMOUSE JANGAN AMBIL PISANG GORENG AKU"
-    show 
+    # arden
 
     show mc_datar zorder 2
     mc "Jadi.. aku mau bertanya tentang-"
@@ -178,14 +177,36 @@ label act5_lanjut:
             jump pilihan32
     
     label pilihan12:
-    jump act_6
+    jump act_5p
     
     label pilihan22:
-    jump act_6
+    jump act_5p
    
     label pilihan32:
-    jump act_6
-    
+    jump act_5p
+
+label act_5p:
+    scene tea_party
+    pause 0.5
+    show black onlayer master zorder 1 as darkoverlay:
+        alpha 0.5
+
+    show d_senyum zorder 2
+    d "nih ganti baju dulu abistu ikut aku ke tempat ratu putih yaw"
+    hide d_senyum
+
+    call play_reassemble_puzzle ("Pieces/puzzle2")
+
+    show mc_baju_senang zorder 2
+    hide mc_baju_senang
+
+    show d_senyum zorder 2
+    d "nah gini dong~"
+    d "yaurrrr letsgo ke ratu putih~"
+
+
+    call play_jalan_puzzle("act_6")
+    $add_mc_hp(7)
     jump act_6
 
 

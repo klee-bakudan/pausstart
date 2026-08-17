@@ -34,7 +34,21 @@ label act_3:
             linear .05 yoffset 0
             repeat False
 
+    call escape_scene
 
+label act3_lanjut
+    scene jamur_tengah
+    show mc_takut
+    mc "hufft hufft… Lurcien kemana dah... Cepet amat larinya"
+    mc "gimanasih katanya bakal bantu heungg"
+    hide mc_takut
+    show maung
+    "GRAAAAAA"
+    "(menyakar mc)"
+    hide maung
+    show maung_2
+    show mc_terluka
+    mc "Ha!?? SIAL"
     show mc_hah at popup_left zorder 2
     pause 0.5
 
@@ -122,7 +136,8 @@ label act_3:
 
     hide pasukan
 
-    # minigame lari
+    call escape_scene
+    $add_mc_hp(7)
 
     scene jamur_tengah
 
@@ -151,6 +166,7 @@ label act_3:
     mc "Ha!?? SIAL GUE HARUS KABUR" with vpunch
 
     call play_jalan_puzzle("act_4")
+    $add_mc_hp(7)
     jump act_4
 
 
