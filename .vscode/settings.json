@@ -5,7 +5,7 @@
         "**/*.rpymc": true,
         "**/cache/": true
     },
-    "renpyWarp.sdkPath": "c:/renpy-8.4.1-sdk",
+    "renpyWarp.sdkPath": "c:/Users/LENOVO/AppData/Roaming/Code/User/globalStorage/paisleysoftworks.renpywarp/file-downloader-downloads/8.4.1",
     "editor.tokenColorCustomizations": {
         "textMateRules": [
             {
@@ -117,6 +117,18 @@
                 "scope": "renpy.meta.color.#7e6d2f",
                 "settings": {
                     "foreground": "#7e6d2f"
+                }
+            },
+            {
+                "scope": "renpy.meta.color.#cfc",
+                "settings": {
+                    "foreground": "#cfc"
+                }
+            },
+            {
+                "scope": "renpy.meta.color.#fff",
+                "settings": {
+                    "foreground": "#fff"
                 }
             }
         ]
