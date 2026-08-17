@@ -33,9 +33,15 @@ label act_3:
             linear .05 yoffset 3
             linear .05 yoffset 0
             repeat False
+<<<<<<< HEAD
+=======
+    
+    show l_takut at popup_right zorder 2
+    pause 0.5
+>>>>>>> a05a961d6961a4f940f3c4c34efb966269094c9f
 
     show mc_hah at popup_left zorder 2
-    pause 0.5
+    mc "APAAN TUH!!??"
 
     transform popup_right:
         xalign 0.01
@@ -47,8 +53,6 @@ label act_3:
             linear .05 yoffset 3
             linear .05 yoffset 0
             repeat False
-    show l_takut at popup_right zorder 2
-    pause 0.5
 
     hide l_takut
     hide mc_hah
@@ -121,7 +125,10 @@ label act_3:
 
     hide pasukan
 
-    # minigame lari
+    call escape_scene
+    $add_mc_hp(7)
+
+label act3_lanjut:
 
     scene jamur_tengah
 
@@ -150,6 +157,7 @@ label act_3:
     mc "Ha!?? SIAL GUE HARUS KABUR" with vpunch
 
     call play_jalan_puzzle("act_4")
+    $add_mc_hp(7)
     jump act_4
 
 

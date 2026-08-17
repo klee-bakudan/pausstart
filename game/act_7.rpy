@@ -25,11 +25,11 @@ label act_7:
     mc "heum kok keknya ada yang aneh ya"
     mc "apa ya..?"
 
-    # label minigame_kastil:
-    #     $choice_positions = [(50, 100),  (700, 50), (1350, 100), (50, 450), (700, 450), (1350, 450)]
+    label minigame_kastil:
+        $choice_positions = [(50, 100),  (700, 50), (1350, 100), (50, 450), (700, 450), (1350, 450)]
 
-    #     call screen bubble_choicef(debat_kastil)
-    #     $ hasil = _return
+        call screen bubble_choicef(debat_kastil)
+        $ hasil = _return
 
     hide mc_berpikir
     
@@ -83,6 +83,10 @@ label act_7:
     k "Akulah yang menentukan siapa yang mendapat bagian, siapa yang boleh bersuara, dan siapa yang harus disingkirkan."
     k "AKU LAH SANG PENGUASA!!!!"
     # sfx
+
+    call boss
+    
+    scene
     
     
 

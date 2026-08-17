@@ -95,7 +95,7 @@ label act_2:
     window hide
     hide mc_kaget
 
-    scene white
+    scene putih
     with Dissolve(0.25)
 
     scene ruangb
@@ -451,9 +451,8 @@ label act_2:
             alpha 0.0
             linear 0.3 alpha 0.5
 
-        show mc_berpikir at vpunch zorder 2:
+        show mc_berpikir zorder 2:
             xalign 0.99
-            yalign 0.25
 
         $ renpy.pause(0.2, hard=True)
 
@@ -542,6 +541,7 @@ label act2_pilihan1:
 
     hide l_takut
     hide darkoverlay
+    
 
     jump act2_lanjut
 
@@ -634,10 +634,6 @@ label act2_pilihan2:
 
     jump act2_lanjut
 
-
-# =========================
-# PILIHAN 3
-# =========================
 
 label act2_pilihan3:
 
@@ -737,7 +733,9 @@ label act2_lanjut:
 
     hide mc_datar
     hide darkoverlay
+    window hide
 
     call play_jalan_puzzle("act_3")
+    $add_mc_hp(7)
 
     jump act_3

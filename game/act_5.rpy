@@ -113,7 +113,115 @@ label act_5:
         yalign 0.25
 
     h "BAWAHAHAHA bakar-bakar kecil katanya!"
+<<<<<<< HEAD
 
+=======
+    #arden
+
+    show mc_bingung zorder 2
+    mc "Aneh banget... Ini beneran orang yang bakal bantu aku..?"
+
+    show d_senyum zorder 2
+    d "HAHA~ pasti capek kan dijalan, ayok sini kita minum teh dulu sudah waktunya minum teh~"
+    hide d_senyum
+    show h_senyum zorder 2
+    h "IH DORMMOUSE JANGAN AMBIL PISANG GORENG AKU"
+    # arden
+
+    show mc_datar zorder 2
+    mc "Jadi.. aku mau bertanya tentang-"
+    # sfx
+    hide mc_datar
+    # arden
+
+    show d_kesel zorder 2
+    d "dih sok ngeklaim lu"
+    hide d_kesel
+
+    show mc_datar zorder 2
+    mc "Lurcien bantu aku dong..."
+    hide mc_datar
+    show mc_kaget zorder 2
+    mc "lah LU NAPA SEMBUNYI KE BAWAH!?"
+
+    show l_takut zorder 2
+    l "E-eh maaf soalnya aku takut sama tikus itu.."
+    mc "LAH ITU TIKUS?! Kok gede?"
+    l "Co-coba kamu pisahin mereka…"
+    l "sekalian jauhin dari aku peliss"
+
+    label minigame5:
+        scene tea_party
+        show black onlayer master zorder 1 as darkoverlay:
+            alpha 0.5
+        show mc_berpikir zorder 2 
+
+        $choice_positions = [(50, 50), (100, 50), (200, 50)]
+        $choice_texts = ["lumayan nih, pisgor enak nih sama teh",
+        "pergi aja kali ya..?", "haduh bisa serius ga sih!"]
+
+        call screen bubble_choice(choice_texts)
+        $hasil = _return
+        pause 3
+
+        if hasil == 0:
+            jump pilihan15
+        elif hasil ==  1:
+            jump pilihan25
+        elif hasil == 2:
+            jump pilihan35
+    
+    label pilihan15:
+        scene meja_tea
+        pause 0.1
+        show mc_ngiler
+        mc "Eh… keknya jangan makan dulu deh"
+        hide mc_ngiler
+    jump act5_lanjut
+    
+    label pilihan25:
+        scene meja_tea
+        show mc_tch
+        mc "Ini beneran kita minum teh padahal diluar lagi kacau balau??"
+        mc "Kalau ga mau diskusi, aku pergi aja"
+        hide mc_tch
+        # arden
+        show h_mingkem zorder 2
+        h "Bye-bye~"
+        hide h_mingkem
+        show mc_kaget
+        mc "{eh.. Bener juga sih kalau aku pergi tanpa tujuan nanti ketangkep}"
+        hide mc_kaget
+    jump act5_lanjut
+   
+    label pilihan35:
+        scene meja_tea
+        show mc_tch
+        mc "WOI! INI KALIAN BENARAN MAU MENGHADAPI MALA PETAKA!?"
+        mc "Aku datang ke dunia ini BUKAN buat minum teh!"
+        mc "tapi menghadapi mala petaka sialan yang harus aku selesaikan DEMI KALIAN"
+        hide mc_tch
+    jump act_5p
+    
+label act5_lanjut:
+    scene tea_party
+    pause 0.3
+    show black onlayer master zorder 1 as darkoverlay:
+        alpha 0.5
+    
+    show d_datar zorder 2
+    d "Okayy sepertinya pahlawan tidak memiliki jadwal untuk minum teh.."
+    d "Ya..seperti yang terlihat wilayah ini udah kebakar habis.."
+    hide d_datar
+    show d_senyum zorder 2
+    d "cuman sisa meja ini doang sih dan rumah si arden yang sekarang ada di tanah tuh~"
+    hide d_senyum
+    # arden
+    show h_senyum zorder 2
+    h "hehe rumah aku kebakar sih"
+    h "(tertawa)"
+    h "Semuanya! semua-muanyaaa terbakar… TERBAKARR"
+>>>>>>> a05a961d6961a4f940f3c4c34efb966269094c9f
     hide h_senyum
 
     show ar_jengkel zorder 2:
@@ -475,6 +583,7 @@ label act5_lanjut:
         elif hasil == 1:
             jump act5_2_pilihan22
         elif hasil == 2:
+<<<<<<< HEAD
             jump act5_2_pilihan32
 
         window hide
@@ -490,6 +599,42 @@ label act5_lanjut:
 
         window hide
         jump act_6
+=======
+            jump pilihan32
+    
+    label pilihan12:
+    jump act_5p
+    
+    label pilihan22:
+    jump act_5p
+   
+    label pilihan32:
+    jump act_5p
+
+label act_5p:
+    scene tea_party
+    pause 0.5
+    show black onlayer master zorder 1 as darkoverlay:
+        alpha 0.5
+
+    show d_senyum zorder 2
+    d "nih ganti baju dulu abistu ikut aku ke tempat ratu putih yaw"
+    hide d_senyum
+
+    call play_reassemble_puzzle ("Pieces/puzzle2")
+
+    show mc_baju_senang zorder 2
+    hide mc_baju_senang
+
+    show d_senyum zorder 2
+    d "nah gini dong~"
+    d "yaurrrr letsgo ke ratu putih~"
+
+
+    call play_jalan_puzzle("act_6")
+    $add_mc_hp(7)
+    jump act_6
+>>>>>>> a05a961d6961a4f940f3c4c34efb966269094c9f
 
 
     return
