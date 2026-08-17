@@ -29,7 +29,7 @@ screen reassemble_puzzle:
         background "puzzle-frame.png"
         xysize full_page_size
         anchor(0.0, 0.0)
-        pos(538, 121)
+        pos(550, 135)
 
     draggroup:
         for i in range(page_pieces):
@@ -51,12 +51,12 @@ screen reassemble_puzzle:
                 anchor(0.5, 0.5)
                 focus_mask True
                 image "%s/piece-%s.png" % (current_puzzle_folder, i + 1): 
-                    alpha 0.25
+                    alpha 0.4
 
 
-default page_pieces = 9
-default full_page_size = (970, 1059)
-default piece_coordinates = [(541, 135), (820, 135), (1099, 135), (541, 414), (820, 414), (1099, 414), (541,693), (820, 693), (1099, 693)] 
+define page_pieces = 9
+define full_page_size = (970, 1059)
+define piece_coordinates = [(711, 286), (990, 286), (1269, 286), (711, 565), (990, 565), (1269, 565), (711,844), (990, 844), (1269, 844)] 
 default initial_piece_coordinates = []
 default finished_pieces = 0
 default current_puzzle_folder = ""
