@@ -241,6 +241,35 @@ screen bubble_choice(choice_texts):
     if selected_index != -1:
         timer 3.0 action Return(selected_index)
 
+#choice akhir
+screen bubble_choicef(choice_texts):
+    style_prefix "choice"
+    default selected = []
+    text "[(selected)] / 3":
+        xalign 0.5
+        ypos 20
+        size 45
+        color "#FFFFFF"
+
+    for i, (text_before, text_after) in enumerate(choice_texts):
+        $is_selected = i in selected 
+        $is_locked = len(selected) >= 3
+        $display_text = text_after if (is_selected and text_after) else text_before
+
+        textbutton display_text:
+            background("gui/awang.png" if (is_selected or is_locked) else "gui/awan.png")
+            xpos choice_positions[i][0]
+            ypos choice_positions[i][1]
+            xsize 480
+            ysize 200
+            text_xalign 0.5
+            text_yalign 0.5
+            sensitive(not is_selected and not is_locked)
+            action SetScreenVariable("selected", selected + [i])
+        
+    if len(selected) >= 3:
+        timer 1.0 action Return(selected)
+
 
 style choice_vbox is vbox
 style choice_button is button

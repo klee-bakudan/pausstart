@@ -54,8 +54,9 @@ label act_3:
     # j "HIDUP ATAU MATI HARUS KITA BAWAKAN KE BAGINDA RAJA"
     # hide pasukan
 
-    # # minigame lari
+    # call escape_scene
 
+#label act3_lanjut
     # scene jamur_tengah
     # show mc_takut
     # mc "hufft hufft… Lurcien kemana dah... Cepet amat larinya"
