@@ -33,12 +33,9 @@ label act_3:
             linear .05 yoffset 3
             linear .05 yoffset 0
             repeat False
-<<<<<<< HEAD
-=======
     
     show l_takut at popup_right zorder 2
     pause 0.5
->>>>>>> a05a961d6961a4f940f3c4c34efb966269094c9f
 
     show mc_hah at popup_left zorder 2
     mc "APAAN TUH!!??"

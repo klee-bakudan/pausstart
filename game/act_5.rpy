@@ -113,9 +113,6 @@ label act_5:
         yalign 0.25
 
     h "BAWAHAHAHA bakar-bakar kecil katanya!"
-<<<<<<< HEAD
-
-=======
     #arden
 
     show mc_bingung zorder 2
@@ -221,7 +218,6 @@ label act5_lanjut:
     h "hehe rumah aku kebakar sih"
     h "(tertawa)"
     h "Semuanya! semua-muanyaaa terbakar… TERBAKARR"
->>>>>>> a05a961d6961a4f940f3c4c34efb966269094c9f
     hide h_senyum
 
     show ar_jengkel zorder 2:
@@ -454,8 +450,6 @@ label act5_pilihan3:
 
     jump act5_lanjut
 
-
-label act5_lanjut:
     scene tea_party
     with dissolve
     pause 0.3
@@ -583,23 +577,6 @@ label act5_lanjut:
         elif hasil == 1:
             jump act5_2_pilihan22
         elif hasil == 2:
-<<<<<<< HEAD
-            jump act5_2_pilihan32
-
-        window hide
-
-        label act5_2_pilihan12:
-        jump act_6
-
-        label act5_2_pilihan22:
-        jump act_6
-
-        label act5_2_pilihan32:
-        jump act_6
-
-        window hide
-        jump act_6
-=======
             jump pilihan32
     
     label pilihan12:
@@ -634,7 +611,6 @@ label act_5p:
     call play_jalan_puzzle("act_6")
     $add_mc_hp(7)
     jump act_6
->>>>>>> a05a961d6961a4f940f3c4c34efb966269094c9f
 
 
     return

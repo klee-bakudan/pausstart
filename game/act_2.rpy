@@ -439,37 +439,47 @@ label act_2:
 
     mc "(keknya aku harus ngomong deh)"
 
+screen bubble_choice(choice_texts):
+        for i, txt in enumerate(choice_texts):
+            if i<len(choice_positions):
+                $ x_pos, y_pos = choice_positions[i]
 
-    mc "(keknya aku harus ngomong deh)"
+                button:
+                    pos (x_pos, y_pos)
+                    action Return(i)
+                    background "gui/awan.png"
+                    hover_background "gui/awang.png"
+                    xysize (450,220)
 
-    # MINIGAME DEBAT ADMIN MALAS
-    label minigame2:
-        scene jamur
-        with dissolve
+                    text txt:
+                        align (0.5,0.5)
+                        text_align 0.5
+                        color "#ffffff"
+                        size 35
+                        font "IrishGrover.ttf"
+label minigame2:
+    scene jamur
+    with dissolve
 
-        show black onlayer master zorder 1 as darkoverlay:
-            alpha 0.0
-            linear 0.3 alpha 0.5
+    show black onlayer master zorder 1 as darkoverlay:
+        alpha 0.0
+        linear 0.3 alpha 0.5
 
-        show mc_berpikir zorder 2:
-            xalign 0.99
+    show mc_berpikir at vpunch zorder 2:
+        xalign 0.5
+        yalign 0.19
 
-        $ renpy.pause(0.2, hard=True)
+    $ renpy.pause(0.2, hard=True)
 
-    $ choice_positions = [
-    (-80, 20),
-    (1000, 20),
-    (800, 350)
-    ]
-
+    $ choice_positions = [(50, 100), (1000, 100), (500, 650)]
     $ choice_texts = [
         "gimana kalau aku emang bukan penyelamat?",
         "buktinya..ini aja?",
         "kalau aku menang aku bisa pulang kan?"
     ]
+    window hide
 
     call screen bubble_choice(choice_texts)
-
     $ hasil = _return
 
     window show
