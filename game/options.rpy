@@ -15,7 +15,7 @@ define config.default_fullscreen = True
 define config.screen_width = 1920
 define config.screen_height = 1080
 
-define config.name = _("act 1")
+define config.name = _("injustice wonderland")
 
 
 ## Determines if the title given above is shown on the main menu screen. Set

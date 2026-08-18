@@ -79,7 +79,11 @@ label act_7:
 
     call boss
     
-    scene
+    scene tea_party
+    show d_senyum
+    d "akhirnya kamu bangun setelah 4 bulan tidur"
+    hide d_senyum
+    mc "hah...aku kalah..?"
     
     
 
