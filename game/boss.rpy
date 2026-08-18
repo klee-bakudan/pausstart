@@ -303,5 +303,11 @@ label shooting_gallery_setup:
 
 
 label boss:
+    $ renpy.music.set_volume(1.0, channel="music")
+    $ renpy.music.play("audio/boss-fight.mp3", channel="music", loop=True)
+
     call shooting_gallery_setup
+
+    $ renpy.music.stop(channel="music", fadeout=1.0)
+
     return

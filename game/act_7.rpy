@@ -21,44 +21,75 @@ label act_7:
     show black onlayer master zorder 1 as darkoverlay:
         alpha 0.5
     
-    show mc_berpikir zorder 2
+    show mc_baju_berpikir zorder 2:
+        xalign 0.9
+        yalign 0.2
     mc "heum kok keknya ada yang aneh ya"
     mc "apa ya..?"
 
     label minigame_kastil:
         $choice_positions = [(50, 100),  (700, 50), (1350, 100), (50, 450), (700, 450), (1350, 450)]
+        
+        $ renpy.music.set_volume(1.0, channel="music")
+        $ renpy.music.play("audio/debat-bg.mp3", channel="music", loop=True)
 
         call screen bubble_choicef(debat_kastil)
         $ hasil = _return
+        
+        $ renpy.music.stop(channel="music", fadeout=1.0)
 
-    hide mc_berpikir
+    hide mc_baju_berpikir
     
-    show d_kesel zorder 2
+    show d_datar zorder 2:
+        xalign 1.0
+        yalign 0.25
     pause 0.5
-    hide d_kesel
+    hide d_datar
 
-    show j_siap zorder 2
+    show j_siap zorder 2:
+        xalign 1.0
+        yalign 0.25
     j "LOH LOH DIDIT!!"
     hide j_siap
+    window hide 
 
-    show k_terang zorder 2
-    show q_terang zorder 2
+    show k_terang zorder 2:
+        xalign 0.008
+        yalign 0.5
+    show q_terang zorder 2:
+        xalign 1.0
+        yalign 0.5
+
     pause 0.5
 
     hide k_terang
     hide q_terang
 
-    show k_gelap zorder 2
+    show k_gelap zorder 2:
+        xalign 1.0
+        yalign 0.5
     k "PRAJURIT GA BECUS!"
-    show q_gelap zorder 2
-    q "do you need my help baby~"
-    k "OFF WITH THEIR HEAD"
     hide k_gelap
+
+    show q_gelap zorder 2:
+        xalign 1.0
+        yalign 0.5
+
+    q "do you need my help baby~"
+
     hide q_gelap
 
-    "semua orang membeku"
+    show k_gelap zorder 2:
+        xalign 1.0
+        yalign 0.5
+    k "OFF WITH THEIR HEAD"
+    hide k_gelap
 
-    show k_gelap zorder 2 
+    "/semua orang membeku"
+
+    show k_gelap zorder 2:
+        xalign 1.0
+        yalign 0.5
     k "didit… didit… kali ini kau ga akan bisa lepas"
     k "DAN KAU DAN KAU DAN KALIAN SEMUA MUSNAH HUAHAHAHA"
     k "kau kira kebakaran itu kebetulan aja? Kau pikir sumbangan itu beneran gratis?"
@@ -81,8 +112,16 @@ label act_7:
     k "Sampai akhirnya mereka tidak punya pilihan selain tunduk."
     k "AKULAH RAJA"
     k "Akulah yang menentukan siapa yang mendapat bagian, siapa yang boleh bersuara, dan siapa yang harus disingkirkan."
+    show k_gelap at glitch_flicker zorder 2:
+        xalign 1.0
+        yalign 0.5
+
+
     k "AKU LAH SANG PENGUASA!!!!"
-    # sfx
+
+    hide k_gelap
+
+    $ renpy.music.stop(channel="music", fadeout=1.0)
 
     call boss
     

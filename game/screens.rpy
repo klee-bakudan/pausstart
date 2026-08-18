@@ -192,14 +192,14 @@ screen input(prompt):
 
             text prompt:
                 xalign 0.5
-                color "#453A12"
+                color "#ffffff"
                 size 40
 
             input:
                 id "input"
                 xalign 0.5
                 xsize 650
-                color "#453A12"
+                color "#ffffff"
                 size 35
                 default_focus True
 

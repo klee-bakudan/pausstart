@@ -454,6 +454,9 @@ label minigame2:
 
     $ renpy.pause(0.2, hard=True)
 
+    $ renpy.music.set_volume(1.0, channel="music")
+    $ renpy.music.play("audio/debat-bg.mp3", channel="music", loop=True)
+
     $ choice_positions = [(50, 150), (1000, 100), (500, 650)]
     $ choice_texts = [
         "gimana kalau aku emang bukan penyelamat?",
@@ -539,6 +542,7 @@ label act2_pilihan1:
     hide darkoverlay
     
 
+    $ renpy.music.stop(channel="music", fadeout=1.0)
     jump act2_lanjut
 
 label act2_pilihan2:
@@ -633,6 +637,7 @@ label act2_pilihan2:
     hide mc_datar
     hide darkoverlay
 
+    $ renpy.music.stop(channel="music", fadeout=1.0)
     jump act2_lanjut
 
 
@@ -701,6 +706,7 @@ label act2_pilihan3:
     hide l_datar
     hide darkoverlay
 
+    $ renpy.music.stop(channel="music", fadeout=1.0)
     jump act2_lanjut
 
 

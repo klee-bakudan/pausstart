@@ -167,6 +167,7 @@ init python:
         if last_jalan is not None and amount_of_jalans in visited_cells:
             if "right" in last_jalan[2]:
                 renpy.hide_screen("connect_the_jalans")
+                renpy.music.stop(channel="music", fadeout=1.0)
                 add_mc_hp(7)
                 renpy.jump(jalan_next_label)
         
@@ -202,8 +203,12 @@ default connected_jalans = []
 default jalan_next_label = None
 
 label play_jalan_puzzle(next_label):
-    $jalan_next_label = next_label
-    $setup_jalan_game()
+    $ jalan_next_label = next_label
+    $ setup_jalan_game()
+
+    $ renpy.music.set_volume(1.0, channel="music")
+    $ renpy.music.play("audio/puzzle.mp3", channel="music", loop=True)
+
     call screen connect_the_jalans
     return
 

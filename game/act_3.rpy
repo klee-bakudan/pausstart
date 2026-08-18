@@ -1,6 +1,12 @@
 label act_3:
+    play sound "audio/transition-act.mp3"
+    pause 1.0
+
     scene act3
-    pause 0.5
+    with dissolve
+
+    pause 3.0
+    stop sound
 
     scene jamur asap with Fade(0.8, 0.2, 0.8)
 

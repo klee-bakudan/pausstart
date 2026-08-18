@@ -62,9 +62,16 @@ screen escape_qte:
         background None
 
 label escape_scene:
-    $escape_progress = 0
+    $ escape_progress = 0
+
+    $ renpy.music.set_volume(1.0, channel="music")
+    $ renpy.music.play("audio/run.mp3", channel="music", loop=True)
+
     call screen escape_qte
-    $add_mc_hp(7)
+
+    $ renpy.music.stop(channel="music", fadeout=1.0)
+
+    $ add_mc_hp(7)
     pause 0.5
     jump act3_lanjut
 

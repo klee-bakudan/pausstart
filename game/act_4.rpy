@@ -1,6 +1,12 @@
 label act_4:
+    play sound "audio/transition-act.mp3"
+    pause 1.0
+
     scene act4 
-    pause 0.5
+    with dissolve
+
+    pause 3.0
+    stop sound
 
     scene hutan_bakar
     pause 0.5
