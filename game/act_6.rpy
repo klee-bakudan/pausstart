@@ -46,6 +46,7 @@ label act_6:
 
     show molotov zorder 2
     pause 0.5
+    hide molotov
 
     show d_senyum zorder 2
     d "Sudah waktunya kita berangkat~ si kucing sudah membobol keamanan kastil merah"

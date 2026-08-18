@@ -167,6 +167,7 @@ init python:
         if last_jalan is not None and amount_of_jalans in visited_cells:
             if "right" in last_jalan[2]:
                 renpy.hide_screen("connect_the_jalans")
+                add_mc_hp(7)
                 renpy.jump(jalan_next_label)
         
     def rotate_jalan(cell):
@@ -204,5 +205,5 @@ label play_jalan_puzzle(next_label):
     $jalan_next_label = next_label
     $setup_jalan_game()
     call screen connect_the_jalans
-
+    return
 

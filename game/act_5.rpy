@@ -90,10 +90,13 @@ label act_5:
         pause 3
 
         if hasil == 0:
+            $add_mc_hp(3)
             jump pilihan15
         elif hasil ==  1:
+            $add_mc_hp(3)
             jump pilihan25
         elif hasil == 2:
+            $add_mc_hp(6)
             jump pilihan35
     
     label pilihan15:
@@ -170,10 +173,13 @@ label act5_lanjut:
         pause 3
 
         if hasil == 0:
+            $add_mc_hp(1)
             jump pilihan12
         elif hasil ==  1:
+            $add_mc_hp(2)
             jump pilihan22
         elif hasil == 2:
+            $add_mc_hp(5)
             jump pilihan32
     
     label pilihan12:

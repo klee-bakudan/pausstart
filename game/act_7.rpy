@@ -79,13 +79,39 @@ label act_7:
 
     call boss
     
+label ending_a:
+    scene hitam
+    pause 0.5
     scene tea_party
-    show d_senyum
+    show black onlayer master zorder 1 as darkoverlay:
+        alpha 0.5
+    show a_datar zorder  2
     d "akhirnya kamu bangun setelah 4 bulan tidur"
-    hide d_senyum
+    hide a_datar
     mc "hah...aku kalah..?"
-    
-    
+    scene hutan_bakar
+    pause 0.5
+    scene jamur asap
+    pause 0.5
+    scene hitam
+    pause 0.3
+    call screen credits_screen
+    $mc_hp = 0
+    $ renpy.full_restart()
 
-
-    return
+label ending_b:
+    scene putih
+    pause 0.5
+    scene ruangs 
+    pause 0.5
+    show l_bling
+    l "terima kasih penyelamat.."
+    hide l_bling
+    mc "selamat tinggal....."
+    "(sedih)"
+    scene putih
+    "(mc kembali ke dunia nyata)"
+    scene gorong
+    pause 0.3
+    call screen credits_screen
+    $renpy.full_restart()

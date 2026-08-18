@@ -45,7 +45,8 @@ screen escape_qte:
         padding (32,20)
         vbox:
             spacing 12
-            text "tap untuk kabur dawg masukkan text" color "#F2ECE0" size 36 xalign 0.5
+            text "tap untuk lariiii" color "#F2ECE0" size 36 xalign 0.5 
+            # ini nis font minigame lari
 
             fixed:
                 xsize 700
@@ -63,6 +64,7 @@ screen escape_qte:
 label escape_scene:
     $escape_progress = 0
     call screen escape_qte
+    $add_mc_hp(7)
     pause 0.5
     jump act3_lanjut
 

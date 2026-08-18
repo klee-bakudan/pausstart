@@ -137,7 +137,6 @@ init python:
             if event.button == 1 and y < config.screen_height - 10:
                 if gallery_ammo <= 0 or gallery_over:
                     return
-                gallery_ammo -= 1
                 cork_spirets.append(cork_SM.create(cork_transform))
                 cork_spirets[-1].original_size = (110, 138)
                 cork_spirets[-1].x = (cork_gun_pos[0] + cork_spirets[-1].original_size[0])
@@ -176,8 +175,9 @@ init python:
 
                         if (target.x - hitbox_extra_x <= (cork.x - cork.original_size[0] / 2) <= target.x + w + hitbox_extra_x and target.y - hitbox_extra_y <= (cork.y - cork.original_size[1] / 2)  <= target.y + h - extra + hitbox_extra_y):
                             target.hit = True
-                            points = { 1: 5, 2: 10, 3: 15 }[target.row]
+                            points = { 1: 1, 2: 2 , 3: 4 }[target.row]
                             score = max(0,score - points)
+                            gallery_ammo = max(0, gallery_ammo - points)
                             target_SM.redraw(0)
                             hit_something = True
                             break
@@ -189,7 +189,7 @@ init python:
             cork.destroy()
             cork_spirets.remove(cork)
 
-        if gallery_ammo <= 0 and not cork_spirets and not gallery_over:
+        if (gallery_ammo <= 0 or score <= 0) and not cork_spirets and not gallery_over:
             gallery_over = True
             renpy.end_interaction("gallery_finished")
 
@@ -200,7 +200,7 @@ init python:
         global target_last_time
         global gallery_ammo
         global gallery_over
-        score = 100
+        score = 82
         target_last_time = None
         gallery_ammo = mc_hp
         add_mc_hp(-mc_hp) 
@@ -221,11 +221,14 @@ transform spotlights:
     blend "add"
     alpha 0.5
 
+default gallery_ammo = 0
+
 screen scene_1:
 
     image "images/scene-1-background.png" at half_size
+    add "monster"
 
-    textbutton "Shooting Gallery":
+    textbutton "lawan monster":
         align (0.7, 0.3)
 
         text_size 40
@@ -262,6 +265,13 @@ screen shooting_gallery:
         size 50
         pos (110, 80)
         anchor (0.0, 0.0)
+    
+    text "Ammo: [gallery_ammo]":
+        color "#FFFFFF"
+        outlines [(absolute(2), "#00000050", absolute(2), absolute(2))]
+        size 50
+        pos (config.screen_width - 300, 80)
+        anchor (0.0, 0.0)
 
 label shooting_gallery_setup:
     $ cork_gun_image = Image("images/cork-gun.png")
@@ -281,10 +291,15 @@ label shooting_gallery_setup:
     $ target_sprites = []
     $ target_last_time = None
     $ setupTargets()
-    $ score = 100
+    $ score = 82
     $ shooting_gallery = False
     call screen scene_1
-    return
+    hide screen shooting_gallery
+    hide screen scene_1
+    if score <= 0:
+        jump ending_b
+    else:
+        jump ending_a
 
 
 label boss:

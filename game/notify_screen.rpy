@@ -5,7 +5,7 @@ screen notify(message):
         pos (config.screen_width - 20, 20)
         anchor (1.0, 0.0)
         padding (20, 12)
-        background Solid("#000000C0")
+        background Solid("#ee1c1cc0")
 
         text message:
             size 32
@@ -13,3 +13,5 @@ screen notify(message):
             outlines [(absolute(2), "#00000080", absolute(2), absolute(2))]
 
     timer 3.0 action Hide('notify')
+
+    # edit notif disini nis
