@@ -63,6 +63,8 @@ transform glitch_flicker:
         repeat False
     
 label start:
+    stop music fadeout 2.0
+    
     scene act1
     $ mcname = renpy.input(
         "Siapa namamu?",

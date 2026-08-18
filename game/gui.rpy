@@ -91,6 +91,7 @@ define gui.main_menu_background = Transform(
     Movie(play="gui/Main-menu.webm", loop=True),
     xysize=(1920, 1080)
 )
+define config.main_menu_music = "audio/menu-main.mp3"
 define gui.game_menu_background = "gui/game_menu.png"
 
 

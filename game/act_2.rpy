@@ -370,6 +370,8 @@ label act_2:
 
     hide mc_bingung
 
+    $ renpy.movie_cutscene("images/wayang.webm")
+
     show mc_hah at vpunch zorder 2:
         xalign 0.99
     mc "Ga mungkin! aku baru aja nyampe di sini, itu pasti cuman dongeng doang!"
