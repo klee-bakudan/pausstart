@@ -457,42 +457,43 @@ screen bubble_choice(choice_texts):
                         color "#ffffff"
                         size 35
                         font "IrishGrover.ttf"
-label minigame2:
-    scene jamur
-    with dissolve
+    label minigame2:
+        scene jamur
+        with dissolve
 
-    show black onlayer master zorder 1 as darkoverlay:
-        alpha 0.0
-        linear 0.3 alpha 0.5
+        show black onlayer master zorder 1 as darkoverlay:
+            alpha 0.0
+            linear 0.3 alpha 0.5
 
-    show mc_berpikir at vpunch zorder 2:
-        xalign 0.5
-        yalign 0.19
+        show mc_berpikir at vpunch zorder 2:
+            xalign 0.5
+            yalign 0.19
 
-    $ renpy.pause(0.2, hard=True)
+        $ renpy.pause(0.2, hard=True)
 
-    $ choice_positions = [(50, 100), (1000, 100), (500, 650)]
-    $ choice_texts = [
-        "gimana kalau aku emang bukan penyelamat?",
-        "buktinya..ini aja?",
-        "kalau aku menang aku bisa pulang kan?"
-    ]
-    window hide
+        $ choice_positions = [(15, 100), (900, 120), (500, 580)]
+        $ choice_texts = [
+            "gimana kalau aku emang bukan penyelamat?",
+            "buktinya..ini aja?",
+            "kalau aku menang aku bisa pulang kan?"
+        ]
+        window hide
 
-    call screen bubble_choice(choice_texts)
-    $ hasil = _return
+        call screen bubble_choice(choice_texts)
+        $ hasil = _return
 
-    window show
+        window show
 
-    hide mc_berpikir
-    hide darkoverlay
+        hide mc_berpikir
+        hide darkoverlay
 
-    if hasil == 0:
-        jump act2_pilihan1
-    elif hasil == 1:
-        jump act2_pilihan2
-    elif hasil == 2:
-        jump act2_pilihan3
+        if hasil == 0:
+            jump act2_pilihan1
+        elif hasil == 1:
+            jump act2_pilihan2
+        elif hasil == 2:
+            jump act2_pilihan3
+
 
 
 label act2_pilihan1:
@@ -551,14 +552,9 @@ label act2_pilihan1:
 
     hide l_takut
     hide darkoverlay
-    
 
     jump act2_lanjut
 
-
-# =========================
-# PILIHAN 2
-# =========================
 
 label act2_pilihan2:
 

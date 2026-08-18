@@ -223,23 +223,23 @@ screen choice(items):
 
 #  choice debat
 screen bubble_choice(choice_texts):
-    style_prefix "choice"
-    default selected_index = -1
-    for i, text in enumerate(choice_texts):
-        textbutton text action If(
-            selected_index == -1,
-            SetScreenVariable("selected_index", i),
-            NullAction()
-        ):
-            background("gui/awan.png" if selected_index == -1 or selected_index == i else "gui/awang.png")
-            xpos choice_positions[i][0]
-            ypos choice_positions[i][0]
-            xsize 550
-            ysize 250
-            text_xalign 0.5
-            text_yalign 0.5
-    if selected_index != -1:
-        timer 3.0 action Return(selected_index)
+        for i, txt in enumerate(choice_texts):
+            if i<len(choice_positions):
+                $ x_pos, y_pos = choice_positions[i]
+
+                button:
+                    pos (x_pos, y_pos)
+                    action Return(i)
+                    idle_background "gui/awan.png"
+                    hover_background "gui/awang.png"
+                    xysize (1100,600)
+
+                    text txt:
+                        align (0.5,0.5)
+                        text_align 0.5
+                        color "#ffffff"
+                        size 35
+                        font "IrishGrover.ttf"
 
 #choice akhir
 screen bubble_choicef(choice_texts):
