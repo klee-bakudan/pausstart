@@ -23,6 +23,8 @@ label act_6:
     pause 0.5
     hide pedang
     
+    pause 6.0
+    stop sound
 
     show mc_baju_bingung zorder 2
     mc "Pedang ini..Apakah ini bisa mengalahkan malapetaka itu?"

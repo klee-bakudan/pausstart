@@ -5,8 +5,15 @@ define debat_kastil = [("Diluar banyak gelandangan tapi di kastil ini foya foya"
 ("Kebijakan di sini sama aja kek di dunia nyata", "menguntungkan penghuni kastil saja")]
 
 label act_7:
-    scene act7 
-    pause 0.5
+    play sound "audio/transition-act.mp3"
+    pause 1.0
+
+    scene act7
+    with dissolve
+    
+    pause 6.0
+    stop sound
+
 
     scene kastil_merah
     pause 0.5
