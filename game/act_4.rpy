@@ -10,9 +10,9 @@ label act_4:
     show mc_terluka zorder 2
     pause 0.3
     mc "baru day 1 nyawa otw melayang"
+    hide mc_terluka
     show c_mingkem zorder 2
     c "tch mendokuse nih perban sendiri"
-    hide mc_terluka
     hide c_mingkem
 
     call play_reassemble_puzzle ("Pieces/puzzle1")

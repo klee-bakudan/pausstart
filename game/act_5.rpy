@@ -1,25 +1,3 @@
-# MINIGAME - BUBBLE CHOICE
-screen bubble_choice(choice_texts):
-
-    for i, txt in enumerate(choice_texts):
-
-        if i < len(choice_positions):
-
-            $ x_pos, y_pos = choice_positions[i]
-
-            button:
-                pos (x_pos, y_pos)
-                action Return(i)
-
-                background "gui/awan.png"
-                xysize (1100, 600)
-
-                text txt:
-                    align (0.5, 0.5)
-                    text_align 0.5
-                    color "#ffffff"
-                    size 35
-                    font "IrishGrover.ttf"
 label act_5:
     play sound "audio/transition-act.mp3"
     pause 1.0
@@ -153,13 +131,12 @@ label act_5:
             alpha 0.5
         show mc_berpikir zorder 2 
 
-        $choice_positions = [(50, 50), (100, 50), (200, 50)]
+        $choice_positions = [(50, 150), (1000, 100), (500, 650)]
         $choice_texts = ["lumayan nih, pisgor enak nih sama teh",
         "pergi aja kali ya..?", "haduh bisa serius ga sih!"]
 
         call screen bubble_choice(choice_texts)
         $hasil = _return
-        pause 3
 
         if hasil == 0:
             $add_mc_hp(3)
@@ -329,6 +306,7 @@ label act5_lanjut:
     hide ar_jengkel
     hide darkoverlay
 
+default choice_positions = []
     # MINIGAME - TEA PARTY
 label act5_minigame5:
 
@@ -347,20 +325,16 @@ label act5_minigame5:
 
     window hide
 
-    $ choice_positions = [
-        (15, 100),
-        (900, 120),
-        (500, 580)
-    ]
+    $ choice_positions = [(50, 150), (1000, 100), (500, 650)]
 
     $ choice_texts = [
         "lumayan nih, pisgor enak nih sama teh",
         "pergi aja kali ya..?",
         "haduh bisa serius ga sih!"
     ]
+    window hide
 
     call screen bubble_choice(choice_texts)
-
     $ hasil = _return
 
     window show
@@ -375,7 +349,7 @@ label act5_minigame5:
     elif hasil == 2:
         jump act5_pilihan3
 
-    label act5_pilihan1:
+label act5_pilihan1:
 
     scene meja_tea
     with dissolve

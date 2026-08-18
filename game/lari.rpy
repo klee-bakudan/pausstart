@@ -45,7 +45,7 @@ screen escape_qte:
         padding (32,20)
         vbox:
             spacing 12
-            text "tap untuk lariiii" color "#F2ECE0" size 36 xalign 0.5 
+            text "click (mouse kiri) untuk lariiii" color "#F2ECE0" size 36 xalign 0.5 
             # ini nis font minigame lari
 
             fixed:

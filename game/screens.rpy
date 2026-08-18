@@ -225,14 +225,13 @@ screen choice(items):
 screen bubble_choice(choice_texts):
         for i, txt in enumerate(choice_texts):
             if i<len(choice_positions):
-                $ x_pos, y_pos = choice_positions[i]
 
                 button:
-                    pos (x_pos, y_pos)
+                    pos choice_positions[i]
                     action Return(i)
                     idle_background "gui/awan.png"
                     hover_background "gui/awang.png"
-                    xysize (1100,600)
+                    xysize (1100, 600)
 
                     text txt:
                         align (0.5,0.5)
@@ -258,7 +257,7 @@ screen bubble_choicef(choice_texts):
         $display_text = text_after if (is_selected and text_after) else text_before
 
         textbutton display_text:
-            background("gui/awang.png" if (is_selected or is_locked) else "gui/awan.png")
+            background("gui/awang.png" if (is_selected or is_locked) else "gui/awang.png")
             xpos choice_positions[i][0]
             ypos choice_positions[i][1]
             xsize 480

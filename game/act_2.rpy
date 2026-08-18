@@ -1,6 +1,3 @@
-default choice_positions = [(50, 150), (1150, 50), (850, 400)]
-# ini def letak awan
-
 label act_2:
     scene hitam
 
@@ -441,24 +438,6 @@ label act_2:
 
     mc "(keknya aku harus ngomong deh)"
 
-screen bubble_choice(choice_texts):
-        for i, txt in enumerate(choice_texts):
-            if i<len(choice_positions):
-                $ x_pos, y_pos = choice_positions[i]
-
-                button:
-                    pos (x_pos, y_pos)
-                    action Return(i)
-                    background "gui/awan.png"
-                    hover_background "gui/awang.png"
-                    xysize (450,220)
-
-                    text txt:
-                        align (0.5,0.5)
-                        text_align 0.5
-                        color "#ffffff"
-                        size 35
-                        font "IrishGrover.ttf"
 label minigame2:
     scene jamur
     with dissolve
@@ -473,7 +452,7 @@ label minigame2:
 
     $ renpy.pause(0.2, hard=True)
 
-    $ choice_positions = [(50, 100), (1000, 100), (500, 650)]
+    $ choice_positions = [(50, 150), (1000, 100), (500, 650)]
     $ choice_texts = [
         "gimana kalau aku emang bukan penyelamat?",
         "buktinya..ini aja?",
@@ -590,6 +569,14 @@ label act2_pilihan2:
 
     a "Tentu saja ada! Buktinya kamu telah memakan klepon yang ada di dalam ruangan itu kan?"
 
+    hide a_senyum
+
+    show a_senyum zorder 2:
+        xanchor 0.02
+        xalign 0.02
+        xoffset -500
+    with ease
+
     # MC kanan
     show mc_kaget at vpunch zorder 2:
         xalign 0.99
@@ -597,8 +584,10 @@ label act2_pilihan2:
 
     $ renpy.pause(0.2, hard=True)
 
-    mc "eh.. Ho'oh lah, emang ada hubungannya?"
+    
 
+    mc "eh.. Ho'oh lah, emang ada hubungannya?"
+    
     a "Jikalau kamu tidak mengikuti kelinci dan makan klepon tadi, kamu tidak akan bisa masuk ke dunia ini"
 
     a "(tertawa kecil)"
