@@ -38,7 +38,7 @@ label act_5:
         xalign 0.99
         yalign 0.25
 
-    mc "dasar pemerintah, kekacauan begini aja masih tutup mata"
+    mc "kerjaan ga becus, udah kacau gini aja masih tutup mata"
 
     hide mc_tch
     hide darkoverlay
@@ -63,7 +63,7 @@ label act_5:
         xalign 1.1
         yalign 0.25
 
-    d "Kelinci nackal~, kalau lagi kencan ga perlu pamer sana sini juga kali~"
+    d "Kelinci nackal~ kalau lagi kencan ga perlu pamer sana sini juga kali~"
 
     hide d_senyum
 
@@ -93,12 +93,12 @@ label act_5:
     h "BAWAHAHAHA bakar-bakar kecil katanya!"
     hide h_senyum
 
-    show mc_bingung zorder 2:
-        xalign 0.99
+    show ar_jengkel zorder 2:
+        xalign 1.0
         yalign 0.25
 
-    mc "Aneh banget... Ini beneran orang yang bakal bantu aku..?"
-    hide mc_bingung
+    ar "Aduhh keluar lagi dah tuh jokes garing"
+    hide ar_jengkel
 
     show d_senyum zorder 2:
         xalign 1.1
@@ -113,17 +113,31 @@ label act_5:
     h "IH DORMMOUSE JANGAN AMBIL PISANG GORENG AKU"
     hide h_senyum
 
+    show d_kesel zorder 2:
+        xalign 0.99
+        yalign 0.25
+    d "DIH! siapa juga yang mau ngambil"
+    hide d_kesel
+
     show mc_datar zorder 2:
         xalign 0.99
         yalign 0.25
     mc "Jadi.. aku mau bertanya tentang-"
     hide mc_datar
 
+    # sfx piring pecah
     show d_kesel zorder 2:
-        xalign 1.1
+        xalign 0.99
         yalign 0.25
-    d "dih sok ngeklaim lu"
+    d "WOI PEGANG PIRING YANG BENER!"
     hide d_kesel
+
+    show mc_bingung zorder 2:
+        xalign 0.99
+        yalign 0.25
+
+    mc "Aneh banget... Ini beneran orang yang bakal bantu aku..?"
+    hide mc_bingung
 
     show mc_datar zorder 2:
         xalign 0.99
@@ -289,7 +303,7 @@ label act5_pilihan3:
     hide mc_tch
     window hide
 
-    jump act5_lanjut
+    jump act5_minigame6
 
 
 label act5_lanjut:
@@ -313,6 +327,12 @@ label act5_lanjut:
 
     hide d_senyum
 
+    show ar_jengkel zorder 2:
+        xalign 1.0
+        yalign 0.25
+    ar "NAMANYA JUGA BUNKER"
+    hide ar_jengkel
+
     show h_senyum zorder 2:
         xalign 1.0
         yalign 0.25
@@ -321,106 +341,27 @@ label act5_lanjut:
     h "(tertawa)"
     h "Semuanya! semua-muanyaaa terbakar… TERBAKARR"
     hide h_senyum
-
     show ar_jengkel zorder 2:
         xalign 1.0
         yalign 0.25
 
-    ar "Aduhh keluar lagi tuh joks garing"
+    ar "Aduhh kumat lagi tuh gilanya"
 
     hide ar_jengkel
 
-    show mc_bingung zorder 2:
-        xalign 0.99
-        yalign 0.25
-
-    mc "Aneh banget... Ini beneran orang yang bakal bantu aku..?"
-    
+    show ar_normal zorder 2
+    ar "mangkanya"
+    show mc_bingung zorder 2
+    mc "mangkanya apa?"
+    ar "There is no place for us here"
     hide mc_bingung
-    show d_senyum zorder 2:
-        xalign 1.1
-        yalign 1.5
+    hide ar_normal
 
-    d "HAHA~ pasti capek kan dijalan, ayok sini kita minum teh dulu sudah waktunya minum teh~"
-
-    hide d_senyum
-
-    show h_senyum zorder 2:
-        xalign 1.0
-        yalign 0.25
-
-    h "IH DORMMOUSE JANGAN AMBIL PISANG GORENG AKU"
-    hide h_senyum
-
-    show mc_datar zorder 2:
-        xalign 0.99
-        yalign 0.25
-
-    mc "Jadi.. aku mau bertanya tentang-"
-
-    hide mc_datar
-
-    show ar_jengkel zorder 2:
-        xalign 1.0
-        yalign 0.25
-
-    ar "Oi lu ngapain sih kang topi kagak jelas main bantal kursi. ITU PUNYA GW!"
-
-    hide ar_jengkel
-
-    show d_kesel zorder 2:
-        xalign 1.0
-        yalign 0.25
-
-    d "dih sok ngeklaim lu"
-
-    hide d_kesel
-
-    show mc_datar zorder 2:
-        xalign 0.99
-
-    mc "Lurcien bantu aku dong..."
-
-    hide mc_datar
-
-    show mc_kaget at vpunch zorder 2:
-        xalign 0.99
-
-    mc "lah LU NAPA SEMBUNYI KE BAWAH!?"
-    
-    hide mc_kaget
-    
-    show l_takut zorder 2:
-        xalign 0.99
-        yanchor 0.87
-        ypos 920
-
-    l "E-eh maaf soalnya aku takut sama tikus itu.."
-    
-    hide l_takut
-
-    show mc_kaget zorder 2:
-        xalign 0.99
-
-    mc "LAH ITU TIKUS?! Kok gede?"
-
-    hide mc_kaget
-
-    show l_takut zorder 2:
-        xalign 0.99
-        yanchor 0.87
-        ypos 920
-
-    l "Co-coba kamu pisahin mereka…"
-    l "sekalian jauhin dari aku peliss"
-
-    hide l_takut
-    hide darkoverlay
 
     show d_senyum zorder 2:
         xalign 1.1
         yalign 0.25
-
+    d "jadi gimana nih~ sang penyelamat"
     d "decision~ desicion~"
 
     hide d_senyum
@@ -475,4 +416,118 @@ label act5_minigame6:
     elif hasil == 2:
         $ add_mc_hp(5)
 
+    jump act5_teko
+
+label act5_teko:
+    # sfx kuda 
+    scene teaparty_asap 
+    pause 1
+    show black onlayer master zorder 1 as darkoverlay:
+        alpha 0.5
+    
+    show d_senyum zorder 2
+    d "OH HELL NAWHHHHH THATS THE PRAJURIT"
+    d "kamu cepet makan ini truz langsung masuk ke teko yah"
+    hide d_senyum
+
+    show klepon zorder 2
+    pause 0.3
+    hide klepon
+
+    show mc_huft zorder 2
+    mc "apa lagi ini..pliss.."
+    # sfx nguing
+    "/mengecil"
+    scene dalam_teko
+    pause 0.3
+    show black onlayer master zorder 1 as darkoverlay:
+        alpha 0.5
+    show mc_melirik zorder 2 
+    pause 0.5
+    hide mc_melirik
+
+    j "iyuh ketemu gelandangan ini lagi"
+    "/menggema"
+    scene teaparty_asap 
+    show black onlayer master zorder 1 as darkoverlay:
+        alpha 0.5
+    
+    show d_senyum zorder 2
+    d "kamyu kok gitu sich~"
+    d "ini namanya ngalcer~ katro ih"
+    hide d_senyum
+
+    show j_mangap zorder 2
+    j "WOI CEPET SERAHIN MC"
+    j "kamu tidak mau bernasib sama seperti ayam potong kan!"
+    hide j_mangap
+    show j_siap zorder 2
+    p "mc sudah tidak ada di sini jendral"
+    hide j_siap
+
+    show d_kesel zorder 2
+    d "ku bilang juga apa kau tidak percaya"
+    
+    show j_mangap zorder 2
+    j "PRAJURIT GA GUNA!"
+    j "BUANG-BUANG WAKTU AJA"
+    j "AYO CEPAT PERGI!"
+    hide j_mangap
+    hide d_kesel
+
+    pause 0.3
+    scene dalam_teko
+    pause 0.3
+    show black onlayer master zorder 1 as darkoverlay:
+        alpha 0.5
+    h "Hey, prajuritnya sudah pergi"
+    h "keluar abistu makanlah ini"
+    scene tea_party
+    show klepon
+    pause 0.3
+    hide klepon
+    show black onlayer master zorder 1 as darkoverlay:
+        alpha 0.5
+    show h_senyum zorder 2
+    h "nih dari didit"
+    hide h_senyum
+    call play_reassemble_puzzle ("Pieces/puzzle2")
+
+    show baju
+    pause 0.3
+    hide baju
+
+    hide h_senyum
+    show d_datar zorder 2
+    d "YA AMPUN AKU TIDAK LIHAT APA-APA SUERRR"
+    d "e-eh udah kan ya"
+    show mc_baju_senang zorder 2
+    mc "aman bang"
+    hide d_datar
+    show d_senyum zorder 2
+    d "yaurrrr letsgo ke ratu putih~"
+    hide d_senyum
+    hide mc_baju_senang
+
+    show h_senyum zorder 2
+    show ar_senyum zorder 2
+    "ati ati yee"
+    hide h_senyum
+    hide ar_senyum
+
+    show l_takut zorder 2
+    l " s-semoga perjalanan kalian lancar"
+    hide l_takut
+
+    call play_jalan_puzzle("act_6")
+    $add_mc_hp(7)
     jump act_6
+
+
+
+
+
+
+
+
+

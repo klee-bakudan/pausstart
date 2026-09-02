@@ -27,13 +27,12 @@ label act_6:
     
     show pedang at item_popup zorder 2
 
-    pause 2.0
+    pause 1
 
     hide pedang
-    hide darkoverlay
     
-    pause 6.0
-
+    show black onlayer master zorder 1 as darkoverlay:
+        alpha 0.5
     show mc_baju_bingung zorder 2:
         xalign 0.99
         yalign 0.25
@@ -79,7 +78,7 @@ label act_6:
     show mc_baju_kaget zorder 2:
         xalign 0.99
         yalign 0.25
-    mc "Ehh kucing..? heum oke deh"
+    mc "Ehh kucing..? eum oke deh"
     hide mc_baju_kaget
 
     show d_datar zorder 2:
@@ -94,6 +93,34 @@ label act_6:
         yalign 0.25
     d "(tertawa)"
     hide d_senyum
+
+    scene jamurkb
+    pause 0.3
+    show black onlayer master zorder 1 as darkoverlay:
+        alpha 0.5
+    
+    show j_bayang zorder 2
+    j "hayooo didit mau kemana hayoo"
+    hide j_bayang
+
+    show d_kesel zorder 2
+    d "####"
+    d "in three, two, one~"
+    hide d_kesel
+
+    call dor 
+
+    
+label act_6lanjut:
+    scene jamurkb
+    pause 0.3
+    show black onlayer master zorder 1 as darkoverlay:
+        alpha 0.5
+    show d_kesel zorder 2
+    d "tch"
+    d "hampir aja masuk backroom"
+    hide d_kesel
+    j "SIALANN"
     call play_jalan_puzzle("act_7")
     $add_mc_hp(7)
     jump act_7

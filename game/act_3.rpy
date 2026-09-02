@@ -157,7 +157,7 @@ label act3_lanjut:
 
     $ renpy.pause(0.2, hard=True)
 
-    mc "Ha!?? SIAL GUE HARUS KABUR" with vpunch
+    mc "Ha!?? SIAL AKU HARUS KABUR" with vpunch
 
     call play_jalan_puzzle("act_4")
     $add_mc_hp(7)

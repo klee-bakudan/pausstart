@@ -15,4 +15,33 @@ screen notify(message):
 
     timer 3.0 action Hide('notify')
 
-    # edit notif disini nis
+screen hp_indicator():
+    zorder 100
+    frame:
+        xalign 1.0
+        yalign 0.0
+        xoffset -20
+        yoffset 20
+        xpadding 12
+        ypadding 8
+        background "#162d6ac0"
+
+        hbox:
+            spacing 8
+            text "HP:" style "hp_label_text"
+            bar range mc_hp_max value mc_hp:
+                style "gui_bar"
+                xysize (150, 18)
+            text "[mc_hp]/[mc_hp_max]" style "hp_value_text"
+    
+style hp_label_text:
+    size 16
+    color "#fff"
+    outlines[(absolute(1), "#000", absolute(1), absolute(1))]
+    
+style hp_value_text:
+    size 16
+    color "#fff"
+    outlines[(absolute(1), "#000", absolute(1), absolute(1))]
+
+    

@@ -77,7 +77,7 @@ label act_4:
         xalign 0.98
         yalign 0.25
 
-    mc "Yaelah lanjut ke tea party aja deh"
+    mc "Yaelah lanjut jalan aja deh"
     hide mc_perban_kesel with dissolve
 
     call play_jalan_puzzle("act_5")

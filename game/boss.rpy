@@ -9,6 +9,12 @@ init python:
         else:
             return target_row_3_zoom
 
+    def format_time(t):
+        total_seconds = int(max(0, t))
+        minutes = total_seconds // 60
+        seconds = total_seconds % 60
+        return "%d:%02d" % (minutes, seconds)
+
     def corkGunTransform(t, st, at):
         global cork_gun_pos
         global cork_gun_opos
@@ -21,10 +27,10 @@ init python:
         return 0
 
     def setupTargets():
-        target_start_x = 500
-        target_row_1_y = 160
-        target_row_2_y = 500
-        target_row_3_y = 700
+        target_start_x = 460
+        target_row_1_y = 120
+        target_row_2_y = 430
+        target_row_3_y = 680
         target_spacing = 200
         target_down_time = (0.0, 2.0)
         target_up_time = 2.0
@@ -66,10 +72,17 @@ init python:
 
     def targetUpdate(st):
         global target_last_time
+        global gallery_time_left
+        global gallery_over
         if target_last_time is None:
             target_last_time = st
         dt = st - target_last_time
         target_last_time = st
+
+        # Countdown the 3-minute timer while the round is still active
+        if not gallery_over:
+            gallery_time_left = max(0.0, gallery_time_left - dt)
+
         for target in target_sprites:
             zoom = get_target_zoom(target.row)
             if target.hit:
@@ -131,11 +144,10 @@ init python:
 
     def corkEvents(event, x, y, st):
         import pygame_sdl2 as pygame
-        global gallery_ammo
         global gallery_over
         if event.type == pygame.MOUSEBUTTONUP:
             if event.button == 1 and y < config.screen_height - 10:
-                if gallery_ammo <= 0 or gallery_over:
+                if gallery_time_left <= 0 or gallery_over:
                     return
                 cork_spirets.append(cork_SM.create(cork_transform))
                 cork_spirets[-1].original_size = (110, 138)
@@ -149,7 +161,6 @@ init python:
 
     def corkUpdate(st):
         global score
-        global gallery_ammo
         global gallery_over
         corks_to_remove = []
         for cork in cork_spirets:
@@ -177,7 +188,6 @@ init python:
                             target.hit = True
                             points = { 1: 1, 2: 2 , 3: 4 }[target.row]
                             score = max(0,score - points)
-                            gallery_ammo = max(0, gallery_ammo - points)
                             target_SM.redraw(0)
                             hit_something = True
                             break
@@ -189,7 +199,8 @@ init python:
             cork.destroy()
             cork_spirets.remove(cork)
 
-        if (gallery_ammo <= 0 or score <= 0) and not cork_spirets and not gallery_over:
+        # Round ends when the score hits 0 (menang) or the 3-minute timer runs out (kalah)
+        if (gallery_time_left <= 0 or score <= 0) and not cork_spirets and not gallery_over:
             gallery_over = True
             renpy.end_interaction("gallery_finished")
 
@@ -198,13 +209,11 @@ init python:
     def prepareShootingGallery():
         global score
         global target_last_time
-        global gallery_ammo
+        global gallery_time_left
         global gallery_over
-        score = 82
+        score = 100
         target_last_time = None
-        gallery_ammo = mc_hp
-        add_mc_hp(-mc_hp) 
-        renpy.notify("HP terpakai jadi %d peluru!" % gallery_ammo)
+        gallery_time_left = 60.0
         gallery_over = False
 
         for target in target_sprites:
@@ -221,14 +230,14 @@ transform spotlights:
     blend "add"
     alpha 0.5
 
-default gallery_ammo = 0
+default gallery_time_left = 180.0
 
 screen scene_1:
 
-    image "images/scene-1-background.png" at half_size
+    image "images/jamurkb.png" at half_size
     add "monster"
 
-    textbutton "lawan monster":
+    textbutton "TANGKAP DIDIT":
         align (0.7, 0.3)
 
         text_size 40
@@ -265,8 +274,8 @@ screen shooting_gallery:
         size 50
         pos (110, 80)
         anchor (0.0, 0.0)
-    
-    text "Ammo: [gallery_ammo]":
+
+    text "Waktu: [format_time(gallery_time_left)]":
         color "#FFFFFF"
         outlines [(absolute(2), "#00000050", absolute(2), absolute(2))]
         size 50
@@ -291,18 +300,21 @@ label shooting_gallery_setup:
     $ target_sprites = []
     $ target_last_time = None
     $ setupTargets()
-    $ score = 82
+    $ score = 100
+    $ gallery_time_left = 60.0
     $ shooting_gallery = False
     call screen scene_1
     hide screen shooting_gallery
     hide screen scene_1
+    $ d_hp = 20
+    $ renpy.notify("HP D'dit + %d" % d_hp)
     if score <= 0:
-        jump ending_b
+        jump backroom
     else:
-        jump ending_a
+        jump act_6lanjut
 
 
-label boss:
+label dor:
     $ renpy.music.set_volume(1.0, channel="music")
     $ renpy.music.play("audio/boss-fight.mp3", channel="music", loop=True)
 

@@ -139,7 +139,7 @@ label act_2:
     with ease
     #transisi bos
 
-    mc "Hah…… Kok ada manusia hewan??"
+    mc "Lah…… Kok ada furry??"
     
 
     hide l_datar 
@@ -320,6 +320,7 @@ label act_2:
     show a_datar zorder 2:
         xalign 0.2
     a "Aku dahulu adalah seorang tabib kerajaan… Yaa.. sudah lama sekali"
+    a "(500 tahun lalu)"
 
     hide a_datar
 
@@ -340,7 +341,7 @@ label act_2:
 
     show a_datar zorder 2:
         xalign 0.2
-    a "Wilayah yang jauh dari perkotaan tidak mendapatkan akses pangan maupun fasilitas yang layak."
+    a "rakyat ditelantarkan, raja dan ratu hanya bersenang-senang"
 
     hide a_datar
 
@@ -355,7 +356,7 @@ label act_2:
         yanchor 0.87
         ypos 920
 
-    l "dan yang terburuk, rakyat kecil ngga bisa melakukan ngapa-ngapain" 
+    l "dan yang terburuk, sekarang kita ga bisa ngapa-ngapain" 
     l "setiap keluh kesah yang mereka sampaikan dibiarin gitu aja.."
 
     hide a_datar
@@ -374,14 +375,8 @@ label act_2:
 
     show mc_hah at vpunch zorder 2:
         xalign 0.99
-    mc "Ga mungkin! aku baru aja nyampe di sini, itu pasti cuman dongeng doang!"
+    mc "Ga mungkin! aku baru aja nyampe sini, itu pasti cuman dongeng doang!"
     hide mc_hah
-
-    show mc_datar zorder 2:
-        xalign 0.99
-    mc "Ga mungkin! aku baru aja nyampe di sini, itu pasti cuman dongeng doang!"
-    hide mc_hah
-
 
     show mc_datar zorder 3:
         xalign 0.089
@@ -419,7 +414,7 @@ label act_2:
         xpos 0.94
         yalign 0.25
         
-    mc "(Hah… apaan sih,, ga jelas banget dah, niat buat sembunyi di gotong lah malah masuk universe lain…)"
+    mc "(Hah… apaan sih,, ga jelas banget dah, niat sembunyi di gorong malah masuk universe lain…)"
     
     hide mc_garuk
 
@@ -431,7 +426,7 @@ label act_2:
 
     show mc_huft at vpunch zorder 2:
         xalign 0.99
-    mc "(Aku? Beneran jadi pahlawan nih..? Yaelah plis lahh magang aja belom kelar malah disuruh jadi super hero"
+    mc "(Aku? Beneran jadi pahlawan nih..? Yaelah plis lahh magang aja belom kelar malah disuruh jadi super hero)"
     
     hide mc_huft
 
