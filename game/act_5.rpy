@@ -458,7 +458,7 @@ label act5_teko:
     hide d_senyum
 
     show j_mangap zorder 2
-    j "WOI CEPET SERAHIN MC"
+    j "WOI CEPET SERAHIN [mcname]"
     j "kamu tidak mau bernasib sama seperti ayam potong kan!"
     hide j_mangap
     show j_siap zorder 2

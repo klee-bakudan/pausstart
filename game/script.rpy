@@ -1,5 +1,5 @@
 default mc_hp = 0
-default mc_hp_max = 80
+default mc_hp_max = 88
 
 init python:
     import random

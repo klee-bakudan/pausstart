@@ -235,7 +235,7 @@ default gallery_time_left = 180.0
 screen scene_1:
 
     image "images/jamurkb.png" at half_size
-    add "monster"
+    add "target-1-1"
 
     textbutton "TANGKAP DIDIT":
         align (0.7, 0.3)
@@ -306,7 +306,7 @@ label shooting_gallery_setup:
     call screen scene_1
     hide screen shooting_gallery
     hide screen scene_1
-    $ d_hp = 20
+    $ d_hp = 25
     $ renpy.notify("HP D'dit + %d" % d_hp)
     if score <= 0:
         jump backroom

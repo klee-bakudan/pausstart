@@ -189,7 +189,7 @@ label act_2:
         yanchor 1.0
         ypos 920
 
-    l "kamu mc kan?"
+    l "kamu [mcname] kan?"
 
     hide l_datar
 

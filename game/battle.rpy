@@ -1,3 +1,9 @@
+## =========================================================
+## battle.rpy  (fix: hapus auto-reset guard yang bikin loop,
+##              kasih id ke timer dialog musuh, delay musuh
+##              dibedain normal vs heavy sesuai mekanik HTML)
+## =========================================================
+
 define border_dark   = "#2a1f14"
 define panel_bg      = "#efe6d0"
 define panel_border  = 3
@@ -51,10 +57,13 @@ init python:
     import random
     import time
 
+    in_battle = False
+
     gauge_max = 5
     heavy_every = 3
     heavy_react_seconds = 2.5
-    monster_dialogue_delay = 1.5
+    monster_dialogue_delay_normal = 1.2
+    monster_dialogue_delay_heavy = 1.7
 
     monster_dialogue_lines = [
         "kau kira kebakaran itu kebetulan aja?",
@@ -74,6 +83,13 @@ init python:
         "GRAHHHH",
     ]
 
+    # Pengaman: kalau mc_hp/mc_hp_max belum ke-set di script.rpy, kasih default
+    # supaya screen hp_indicator nggak silent-fail.
+    if not hasattr(store, "mc_hp_max"):
+        mc_hp_max = 1000
+    if not hasattr(store, "mc_hp"):
+        mc_hp = mc_hp_max
+
     def add_mc_hp(amount):
         store.mc_hp += amount
         if store.mc_hp > store.mc_hp_max:
@@ -84,10 +100,10 @@ init python:
 
     config.overlay_screens.append("hp_indicator")
 
-    attack_dmg = 5
-    skill_dmg = 10
-    monster_atk_dmg = 6
-    monster_heavy_dmg = 12
+    attack_dmg = 6
+    skill_dmg = 12
+    monster_atk_dmg = 8
+    monster_heavy_dmg = 16
     monster_max_hp = 100
 
     class Fighter(object):
@@ -99,8 +115,13 @@ init python:
             self.mood = "neutral"
             self.defending = False
 
-        def portrait(self):
-            mood = "shield" if self.defending else self.mood
+        def portrait(self, show_guard=False):
+            if not self.is_alive():
+                mood = "sad"
+            elif self.defending and show_guard:
+                mood = "shield"
+            else:
+                mood = self.mood
             return "images/battle/%s_%s.png" % (mood, self.key)
 
         def is_alive(self):
@@ -110,9 +131,16 @@ init python:
             self.hp = max(0, self.hp - amount)
             if self.key == "mc":
                 store.mc_hp = self.hp
-            self.mood = "angry"
+            if self.is_alive():
+                self.mood = "angry"
+            else:
+                self.mood = "sad"
+                self.defending = False
 
         def reset_mood(self):
+            if not self.is_alive():
+                self.mood = "sad"
+                return
             if self.defending:
                 return
             self.mood = "sad" if self.hp <= self.max_hp * 0.5 else "neutral"
@@ -141,7 +169,7 @@ init python:
             player_display_name = "MC"
         return [
             Fighter("mc", player_display_name, mc_hp_max),
-            Fighter("d", "D'dit", 20),
+            Fighter("d", "D'dit", 25),
         ]
 
     party = []
@@ -163,6 +191,8 @@ init python:
     screen_shake_flag = False
     screen_flash_flag = None
     monster_dialogue_active = False
+    resolving = False
+    resolving_is_skill = False
 
     def is_next_monster_heavy():
         return (monster_turn_count % heavy_every) == (heavy_every - 1)
@@ -177,7 +207,11 @@ init python:
         return current_actor_index
 
     def enter_actor_turn():
-        global heavy_deadline
+        global heavy_deadline, screen_shake_flag, resolving
+        # reset shake flag di sini secara langsung, BUKAN lewat timer async,
+        # supaya nggak ada proses yang nyelonong di tengah klik tombol
+        screen_shake_flag = False
+        resolving = False
         idx = next_actor()
         if idx < len(party):
             party[idx].reset_mood()
@@ -201,18 +235,27 @@ init python:
         global current_actor_index, gauge, battle_log, battle_over, battle_won
         global heavy_deadline, screen_shake_flag, screen_flash_flag
         global last_hit_target, last_hit_is_monster, last_hit_amount, last_hit_id
+        global resolving, resolving_is_skill
+
+        # Kunci: kalau lagi resolving (masih nunggu delay giliran sebelumnya),
+        # klik ga akan diproses. Ini yang mencegah klik numpuk "ketelan" ke
+        # giliran berikutnya (persis kayak flag `resolving` di demo HTML).
+        if resolving or battle_over or monster_dialogue_active:
+            return
+
+        resolving = True
+        resolving_is_skill = (action_type == "skill")
 
         heavy_deadline = None
         last_hit_target = None
         last_hit_is_monster = False
         actor = party[current_actor_index]
-        logs = []
 
         if action_type == "attack":
             dmg = attack_dmg
             monster.take_damage(dmg)
             gauge = min(gauge_max, gauge + 1)
-            logs.append("%s menyerang %s! -%d HP. (Gauge %d/%d)" % (actor.name, monster.name, dmg, gauge, gauge_max))
+            battle_log = "%s menyerang %s! -%d HP." % (actor.name, monster.name, dmg)
             screen_shake_flag = True
             last_hit_is_monster = True
             last_hit_amount = dmg
@@ -220,7 +263,7 @@ init python:
 
         elif action_type == "defend":
             actor.defending = True
-            logs.append("%s bersiap bertahan." % actor.name)
+            battle_log = "%s bersiap bertahan." % actor.name
 
         elif action_type == "skill":
             dmg = skill_dmg
@@ -228,7 +271,7 @@ init python:
             monster.staggered = True
             actor.mood = "happy"
             gauge = 0
-            logs.append("%s pakai SKILL! %s -%d HP & kena Stagger." % (actor.name, monster.name, dmg))
+            battle_log = "%s pakai SKILL! %s -%d HP & kena Stagger." % (actor.name, monster.name, dmg)
             screen_shake_flag = True
             screen_flash_flag = "white"
             last_hit_is_monster = True
@@ -236,16 +279,22 @@ init python:
             last_hit_id += 1
 
         elif action_type == "timeout":
-            logs.append("%s telat bereaksi! Gagal bertahan tepat waktu..." % actor.name)
-
-        battle_log = "\n".join(logs)
+            battle_log = "%s telat bereaksi! Gagal bertahan tepat waktu..." % actor.name
 
         if not monster.is_alive():
             battle_over = True
             battle_won = True
             battle_log += "\n\n%s dikalahkan!" % monster.name
             return
+        # resolving TETAP True di sini, sengaja — supaya tombol nggak lagi
+        # bisa diklik pas battle_over. Screen battle_over yang akan ambil alih.
 
+    def finish_player_action():
+        # Dipanggil lewat timer di screen, ~0.9-1.1 detik SETELAH do_action,
+        # persis kayak setTimeout di commitAction() pada demo HTML.
+        # Di sinilah giliran baru benar-benar pindah & tombol baru muncul.
+        global current_actor_index, resolving
+        resolving = False
         current_actor_index += 1
         while current_actor_index < len(party) and not party[current_actor_index].is_alive():
             current_actor_index += 1
@@ -278,7 +327,6 @@ init python:
             dmg = int(dmg * (0.4 if heavy else 0.5))
 
         target.take_damage(dmg)
-        monster_turn_count += 1
         last_hit_target = party.index(target)
         last_hit_is_monster = False
         last_hit_heavy = heavy
@@ -288,13 +336,13 @@ init python:
         if heavy:
             screen_flash_flag = "red"
 
-        # cuma dialog monster, tanpa narasi serangan
         if monster_turn_count < len(monster_dialogue_lines):
             speech = monster_dialogue_lines[monster_turn_count]
         else:
             speech = monster_dialogue_lines[monster_turn_count % len(monster_dialogue_lines)]
 
         battle_log = speech
+        monster_turn_count += 1
 
         if not alive_party():
             battle_over = True
@@ -319,8 +367,7 @@ init python:
         global party, monster, battle_log, chosen_actions, current_actor_index
         global battle_over, battle_won, gauge, monster_turn_count, heavy_deadline
         global last_hit_target, last_hit_is_monster, last_hit_heavy, screen_shake_flag, screen_flash_flag
-        global last_hit_amount, last_hit_id, monster_dialogue_active
-        store.mc_hp = store.mc_hp_max
+        global last_hit_amount, last_hit_id, monster_dialogue_active, resolving
         party = make_party()
         monster = Monster("monster", "SKRIMER", monster_max_hp)
         gauge = 0
@@ -339,44 +386,47 @@ init python:
         screen_shake_flag = False
         screen_flash_flag = None
         monster_dialogue_active = False
+        resolving = False
         enter_actor_turn()
 
 # screen battle
 screen hp_indicator():
     zorder 100
-    frame:
-        xpos 0
-        xanchor 0.0
-        xoffset 10
-        ypos 5
-        background Solid(border_dark)
-        padding (2, 2)
+    if not in_battle:
         frame:
-            background Solid(panel_bg)
-            padding (8, 4)
-            hbox:
-                spacing 6
-                text "MC HP" size 13 color "#181428" bold True
-                bar value mc_hp range mc_hp_max xsize 100 ysize 12 left_bar Solid("#c0392b") right_bar Solid("#3a2a1a")
-                text "[mc_hp]/[mc_hp_max]" size 12 color "#181428"
+            xpos 0
+            xanchor 0.0
+            xoffset 10
+            ypos 5
+            background Solid(border_dark)
+            padding (2, 2)
+            frame:
+                background Solid(panel_bg)
+                padding (8, 4)
+                hbox:
+                    spacing 6
+                    text "MC HP" size 13 color "#181428" bold True
+                    bar value mc_hp range mc_hp_max xsize 100 ysize 12 left_bar Solid("#c0392b") right_bar Solid("#3a2a1a")
+                    text "[mc_hp]/[mc_hp_max]" size 12 color "#181428"
 
 screen battle_screen():
 
     tag menu
     zorder 0
-    if monster is None or not party:
-        $ reset_battle()
 
-    add "images/battle/bg.png" 
+    # >>> FIX: guard "if monster is None or not party: $ reset_battle()"
+    # yang ada di versi sebelumnya DIHAPUS. Guard itu jalan tiap screen
+    # di-render ulang dan jadi penyebab loop full-HP-reset. reset_battle()
+    # sekarang cuma dipanggil sekali dari `label battle`, persis kayak di
+    # screens_battle.rpy v10 yang sudah terbukti jalan normal.
 
-    if screen_shake_flag:
-        timer 0.25 action SetVariable("screen_shake_flag", False)
+    add "images/battle/bg.png"
 
     # ---------- Panel party: posisi absolut persis ----------
     for i, fighter in enumerate(party):
         $ fighter_at = shake_fx if (screen_shake_flag and not last_hit_is_monster and last_hit_target == i) else Transform()
-        $ mood_shown = "GUARD" if fighter.defending else fighter.mood.upper()
-        $ is_active = (i == current_actor_index and not battle_over and not monster_dialogue_active)
+        $ is_current_turn = (i == current_actor_index and not battle_over and not monster_dialogue_active)
+        $ mood_shown = ("DEAD" if not fighter.is_alive() else ("GUARD" if (fighter.defending and is_current_turn) else fighter.mood.upper()))
 
         $ fx, fy = (77, 108) if i == 0 else (1285, 108)
         $ ax, ay = (103, 132) if i == 0 else (1311, 132)
@@ -387,10 +437,20 @@ screen battle_screen():
         $ bawah_rel = (bx - fx, by - fy)
         $ portrait_rel = (px - bx, py - by)
 
+        $ frame_w, frame_h = renpy.image_size("images/battle/frame.png")
+        $ border_thick = 8
+        $ border_gap = 6
+
         fixed:
             xpos fx
             ypos fy
             at fighter_at
+
+            if is_current_turn:
+                add Solid("#ffd54f") xpos -border_gap ypos -border_gap xsize (frame_w + border_gap*2) ysize border_thick
+                add Solid("#ffd54f") xpos -border_gap ypos (frame_h + border_gap - border_thick) xsize (frame_w + border_gap*2) ysize border_thick
+                add Solid("#ffd54f") xpos -border_gap ypos -border_gap xsize border_thick ysize (frame_h + border_gap*2)
+                add Solid("#ffd54f") xpos (frame_w + border_gap - border_thick) ypos -border_gap xsize border_thick ysize (frame_h + border_gap*2)
 
             add "images/battle/frame.png"
 
@@ -398,7 +458,7 @@ screen battle_screen():
                 xpos atas_rel[0]
                 ypos atas_rel[1]
                 background Image("images/battle/kotak_atas.png")
-                text "[mood_shown]" size 14 color "#181428" xalign 0.5 bold True
+                text "[mood_shown]" size 14 color ("#ff4444" if not fighter.is_alive() else "#181428") xalign 0.5 bold True
 
             frame:
                 xpos bawah_rel[0]
@@ -407,11 +467,13 @@ screen battle_screen():
                 fixed:
                     xpos portrait_rel[0]
                     ypos portrait_rel[1]
-                    add fighter.portrait()
+                    add fighter.portrait(show_guard=is_current_turn)
                     if last_hit_id > 0 and (not last_hit_is_monster) and last_hit_target == i:
-                        add AlphaMask(Solid("#3a6fd8"), fighter.portrait()):
+                        add AlphaMask(Solid("#3a6fd8"), fighter.portrait(show_guard=is_current_turn)):
                             id "partyhitflash_%d_%d" % (last_hit_id, i)
                             at hit_flash_fx
+                    if not fighter.is_alive():
+                        add AlphaMask(Solid("#888888cc"), fighter.portrait(show_guard=is_current_turn))
 
             hbox:
                 xpos bawah_rel[0]
@@ -533,7 +595,18 @@ screen battle_screen():
         timer 0.05 action Return(not party_wiped)
 
     elif monster_dialogue_active:
-        timer monster_dialogue_delay action Function(finish_monster_turn)
+        # >>> FIX: dikasih id supaya timer ini nggak restart tiap re-render,
+        # dan delay-nya dibedain normal vs heavy (1.2s / 1.7s), sesuai
+        # mekanik enemyTurn() di demo HTML (1200ms / 1700ms).
+        $ dialogue_delay = monster_dialogue_delay_heavy if last_hit_heavy else monster_dialogue_delay_normal
+        timer dialogue_delay action Function(finish_monster_turn) id "monster_dialogue_timer"
+
+    elif resolving:
+        # Jeda sebelum giliran berikutnya muncul (900ms biasa, 1100ms skill),
+        # persis kayak setTimeout di demo HTML. Tombol nggak dirender sama
+        # sekali di sini, jadi ga ada yang bisa "ketelan" diklik.
+        # id dikasih supaya timer ini ga restart tiap screen re-render.
+        timer (1.1 if resolving_is_skill else 0.9) action Function(finish_player_action) id "resolve_timer"
 
     elif current_actor_index < len(party):
         $ actor = party[current_actor_index]
@@ -545,12 +618,14 @@ screen battle_screen():
         text "What should [actor.name] do?" size 16 color "#efe6d0" bold True xalign 0.5 ypos 875
 
         textbutton "ATTACK":
+            id "btn_attack"
             xpos 602
             ypos 929
             text_size 16
             action Function(do_action, "attack")
 
         textbutton "DEFEND":
+            id "btn_defend"
             xpos 848
             ypos 929
             text_size 16
@@ -558,6 +633,7 @@ screen battle_screen():
             action Function(do_action, "defend")
 
         textbutton skill_label:
+            id "btn_skill"
             xpos 1095
             ypos 929
             text_size 16
@@ -583,10 +659,12 @@ screen battle_screen():
 
 
 label battle:
+    $ in_battle = True
     $ renpy.block_rollback()
     $ reset_battle()
     call screen battle_screen
     $ battle_result = _return
+    $ in_battle = False
     $ renpy.block_rollback()
 
     if battle_result:

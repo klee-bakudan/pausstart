@@ -30,7 +30,8 @@ label act_7:
     mc "(tapi hawanya aneh)"
     hide mc_baju_datar
 
-    j "anda ini siapa?"
+    show pelayan zorder 2
+    pl "anda ini siapa?"
     show mc_baju_kaget zorder 2
     mc "eum a- ano-"
     show c_mangap zorder 2
@@ -38,9 +39,9 @@ label act_7:
     mc "(huft dat so kripi)"
     hide mc_baju_kaget
     c "dia ini bangsawan"
-    p "o-oh maaf yang mulia hamba sudah lancang.."
+    pl "o-oh maaf yang mulia hamba sudah lancang.."
     c "ya, sana minggir"
-    # hide pelayan 
+    hide pelayan 
     show mc_baju_senang zorder 2
     mc "eh kucing? makasi ya"
     hide c_mangap
