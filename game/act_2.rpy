@@ -59,6 +59,7 @@ label act_2:
         linear 0.3 alpha 0.4
 
     show klepon at item_popup zorder 2
+    play sound "audio/sfx-wow.mp3"
 
     pause 2.0
 
@@ -83,12 +84,13 @@ label act_2:
     mc "Kok ada rasa kek- ya.. Adalah pokoknya"
 
     hide mc_makan
-
+    play sound "audio/menyusut.mp3"
     show mc_kaget at glitch_flicker zorder 2:
         xalign 0.99
 
     mc "EEEEHHH"
 
+    
     window hide
     hide mc_kaget
 
@@ -177,6 +179,8 @@ label act_2:
     hide l_datar 
     hide mc_kaget
     with dissolve
+
+    play music "audio/forest-sfx.mp3" loop
 
     scene jamur with fade
     pause 1.0
@@ -267,7 +271,7 @@ label act_2:
         yanchor 0.94
         ypos 920
 
-    l "Wahai absolum yang bijaksana, inilah mc yang kita cari-cari"
+    l "Wahai absolum yang bijaksana, inilah [mcname] yang kita cari-cari"
 
     hide l_bling
     hide a_bayang
@@ -413,27 +417,26 @@ label act_2:
         xanchor 0.89
         xpos 0.94
         yalign 0.25
-        
-    mc "(Hah… apaan sih,, ga jelas banget dah, niat sembunyi di gorong malah masuk universe lain…)"
+    mc "{color=#7e6d2f}(Hah… apaan sih,, ga jelas banget dah, niat sembunyi di gorong malah masuk universe lain…){/color}"
     
     hide mc_garuk
 
     show mc_bingung at vpunch zorder 2:
         xalign 0.99
-    mc "(Ratu merah..? Ratu putih? Apaan sih ini dikira bawang putih bawang merah kali??)"
+    mc "{color=#7e6d2f}(Ratu merah..? Ratu putih? Apaan sih ini dikira bawang putih bawang merah kali??){/color}"
 
     hide mc_bingung
 
     show mc_huft at vpunch zorder 2:
         xalign 0.99
-    mc "(Aku? Beneran jadi pahlawan nih..? Yaelah plis lahh magang aja belom kelar malah disuruh jadi super hero)"
+    mc "{color=#7e6d2f}(Aku? Beneran jadi pahlawan nih..? Yaelah plis lahh magang aja belom kelar malah disuruh jadi super hero){/color}"
     
     hide mc_huft
 
     show mc_berpikir at vpunch zorder 2:
         xalign 0.99
 
-    mc "(keknya aku harus ngomong deh)"
+    mc "{color=#7e6d2f}(keknya aku harus ngomong deh){/color}"
 
 label minigame2:
     scene jamur
@@ -682,7 +685,7 @@ label act2_pilihan3:
 
     l "T-tuhkan absolum sudah menjamin kepulanganmu!"
 
-    l "Tidak perlu takut, MC!"
+    l "Tidak perlu takut, [mcname]!"
 
     l "A-aku akan membantumu menghadapi mala petaka ini… tapi jangan terlalu gegabah… ya?"
 
@@ -719,7 +722,7 @@ label act2_lanjut:
         yanchor 0.82
         ypos 910
 
-    a "mc kamu mungkin bisa memilih jalur yang berbeda dari gulungan takdir ini.."
+    a "[mcname] kamu mungkin bisa memilih jalur yang berbeda dari gulungan takdir ini.."
 
     a "Namun, apa pun yang terjadi.. Akhir tersebut akan tetap terjadi"
 
@@ -735,9 +738,10 @@ label act2_lanjut:
 
     hide mc_datar
     hide darkoverlay
+    stop music fadeout 1.0
     window hide
 
-    call play_jalan_puzzle("act_3")
+    call play_jalan_puzzle("act_3") from _call_play_jalan_puzzle
     $add_mc_hp(7)
 
     jump act_3

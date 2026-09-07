@@ -49,7 +49,7 @@ screen escape_qte:
     image "images/bgl.png" at shake_transform
     add "escape_run" xalign 0.5 yalign 0.5
 
-    text "[escape_time_left]" size 48 color "#F2ECE0" xpos 30 ypos 20
+    text "[escape_time_left]" size 48 color "#F2ECE0" xpos 30 ypos 20 font "IrishGrover.ttf"
 
     frame:
         xalign 0.5 yalign 0.92
@@ -57,7 +57,7 @@ screen escape_qte:
         padding (32,20)
         vbox:
             spacing 12
-            text "click (mouse kiri) untuk lariiii" color "#F2ECE0" size 36 xalign 0.5 
+            text "click (mouse kiri) untuk lariiii" color "#F2ECE0" size 36 xalign 0.5 font "IrishGrover.ttf"
             # ini nis font minigame lari
 
             fixed:
@@ -89,5 +89,6 @@ label escape_scene:
         pause 0.5
         jump act3_lanjut
     else:
+        $ renpy.music.stop(channel="music", fadeout=1.0)
         jump sikrit1
 

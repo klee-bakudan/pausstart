@@ -1,3 +1,14 @@
+init python:
+    renpy.music.register_channel("walking", "sfx", loop=False)
+
+transform expression_pop:
+    yoffset 0
+
+    easeout 0.15 yoffset -35
+    easein 0.12 yoffset 0
+    easeout 0.10 yoffset -15
+    easein 0.10 yoffset 0
+
 label act_5:
     play sound "audio/transition-act.mp3"
     pause 1.0
@@ -38,7 +49,7 @@ label act_5:
         xalign 0.99
         yalign 0.25
 
-    mc "kerjaan ga becus, udah kacau gini aja masih tutup mata"
+    mc "kerajaan ga becus, udah kacau gini aja masih tutup mata"
 
     hide mc_tch
     hide darkoverlay
@@ -52,72 +63,97 @@ label act_5:
         alpha 0.0
         linear 0.3 alpha 0.5
 
-    show d_datar zorder 2:
+    show d_datar-fix zorder 2:
         xalign 1.1
         yalign 0.25
 
     d "Uweaaa, lihat siapa yang dibawa kelinci imut kali ini~"
-    hide d_datar
+    hide d_datar-fix
 
-    show d_senyum zorder 2:
+    show d_senyum-fix at expression_pop zorder 2:
         xalign 1.1
         yalign 0.25
 
     d "Kelinci nackal~ kalau lagi kencan ga perlu pamer sana sini juga kali~"
+    hide d_senyum-fix
 
-    hide d_senyum
+    show d_datar-fix:
+        xalign -0.05
+        yalign 0.25
+    with ease
 
     show l_datar zorder 2:
         xalign 0.99
-        yanchor 0.87
+        yanchor 1.0
         ypos 920
 
-    l "I-imut? Apasih!! Ini si MC loh yang ada di gulungan takdir itu"
+    l "I-imut? Apasih!! Ini si [mcname] loh yang ada di gulungan takdir itu"
 
-    hide l_datar
+    hide d_datar-fix
+    
 
-    show d_senyum zorder 2:
-        xalign 1.1
+    show d_senyum-fix at expression_pop zorder 2:
+        xalign -0.05
         yalign 0.25
 
     d "owhhhh ternyata kamyu~"
-    d "selamat datang di wonderland~ maaf ya kalo berdebu"
+    d "selamat datang [mcname] di wonderland~ maaf ya kalo berdebu"
     d "habis bakar-bakar kecil soalnya HAHAHAHA~"
+    
+    hide l_datar
 
-    hide d_senyum
-
-    show h_senyum zorder 2:
+    show h_senyum-fix at expression_pop zorder 2:
         xalign 1.0
         yalign 0.25
 
     h "BAWAHAHAHA bakar-bakar kecil katanya!"
-    hide h_senyum
+   
+    hide d_senyum-fix
+    hide h_senyum-fix
 
-    show ar_jengkel zorder 2:
+    show h_mingkem-fix:
+        xalign -0.05
+        yalign 0.25
+    with ease
+
+    show ar_jengkel at expression_pop zorder 2:
         xalign 1.0
         yalign 0.25
 
     ar "Aduhh keluar lagi dah tuh jokes garing"
+    hide h_mingkem-fix
     hide ar_jengkel
 
-    show d_senyum zorder 2:
+    show ar_normal:
+        xalign -1
+        yalign 0.25
+    with ease
+
+    hide h_senyum-fix
+    show d_senyum-fix at expression_pop zorder 2:
         xalign 1.1
         yalign 0.25
 
     d "HAHA~ pasti capek kan dijalan, ayok sini kita minum teh dulu sudah waktunya minum teh~"
-    hide d_senyum
+    hide d_senyum-fix
+    hide ar_normal
 
-    show h_senyum zorder 2:
+    show h_mingkem-fix at expression_pop zorder 2:
         xalign 1.0
         yalign 0.25
     h "IH DORMMOUSE JANGAN AMBIL PISANG GORENG AKU"
-    hide h_senyum
+    hide h_mingkem-fix
+    show h_mingkem-fix:
+        xalign -0.05
+        yalign 0.25
+    with ease
 
-    show d_kesel zorder 2:
+    show ar_jengkel at expression_pop zorder 2:
         xalign 0.99
         yalign 0.25
-    d "DIH! siapa juga yang mau ngambil"
-    hide d_kesel
+    ar "DIH! siapa juga yang mau ngambil"
+    hide ar_jengkel
+    hide h_mingkem-fix
 
     show mc_datar zorder 2:
         xalign 0.99
@@ -125,29 +161,31 @@ label act_5:
     mc "Jadi.. aku mau bertanya tentang-"
     hide mc_datar
 
-    # sfx piring pecah
-    show d_kesel zorder 2:
+    play sound "audio/broken-glass.mp3"
+    pause 3.0
+
+    show d_kesel-fix at expression_pop zorder 2:
         xalign 0.99
         yalign 0.25
     d "WOI PEGANG PIRING YANG BENER!"
-    hide d_kesel
+    hide d_kesel-fix
 
-    show mc_bingung zorder 2:
+    show mc_tch zorder 2:
         xalign 0.99
-        yalign 0.25
+        yalign 0.1
 
     mc "Aneh banget... Ini beneran orang yang bakal bantu aku..?"
-    hide mc_bingung
+    hide mc_tch
 
-    show mc_datar zorder 2:
+    show mc_beg zorder 2:
         xalign 0.99
-        yalign 0.25
+        yalign 0.1
     mc "Lurcien bantu aku dong..."
-    hide mc_datar
+    hide mc_beg
 
-    show mc_kaget zorder 2:
+    show mc_kaget at expression_pop zorder 2:
         xalign 0.99
-        yalign 0.25
+        yalign 0.1
     mc "lah LU NAPA SEMBUNYI KE BAWAH!?"
     hide mc_kaget
 
@@ -158,14 +196,27 @@ label act_5:
     l "E-eh maaf soalnya aku takut sama tikus itu.."
     hide l_takut
 
-    show mc_kaget zorder 2:
+    show l_takut:
+        xalign 0.1
+        yanchor 0.87
+        ypos 920
+    with ease
+
+    show mc_kaget at expression_pop zorder 2:
         xalign 0.99
         yalign 0.25
     mc "LAH ITU TIKUS?! Kok gede?"
     hide mc_kaget
-
-    show l_takut zorder 2:
+    
+    show mc_datar:
         xalign 0.99
+        yalign 0.25
+    with ease
+
+    hide l_takut
+    
+    show l_takut zorder 2:
+        xalign 0.1
         yanchor 0.87
         ypos 920
     l "Co-coba kamu pisahin mereka…"
@@ -233,11 +284,11 @@ label act5_pilihan1:
 
     show mc_ngiler zorder 2:
         xalign 0.99
-        yalign 0.25
+        yalign 0.1
 
     $ renpy.pause(0.2, hard=True)
 
-    mc "Eh… keknya jangan makan dulu deh"
+    mc "{color=#7e6d2f}(Eh… keknya jangan makan dulu deh){/color}"
 
     hide mc_ngiler
     window hide
@@ -261,7 +312,7 @@ label act5_pilihan2:
 
     hide mc_tch
 
-    show h_mingkem zorder 2:
+    show h_senyum-fix at expression_pop zorder 2:
         xalign 1.0
         yalign 0.25
 
@@ -269,7 +320,7 @@ label act5_pilihan2:
 
     h "Bye-bye~"
 
-    hide h_mingkem
+    hide h_senyum-fix
 
     show mc_kaget at vpunch zorder 2:
         xalign 0.99
@@ -277,7 +328,8 @@ label act5_pilihan2:
 
     $ renpy.pause(0.2, hard=True)
 
-    mc "(eh.. Bener juga sih kalau aku pergi tanpa tujuan nanti ketangkep)"
+    mc "{color=#7e6d2f}(eh.. Bener juga sih kalau aku pergi tanpa tujuan nanti ketangkep){/color}"
+
 
     hide mc_kaget
     window hide
@@ -312,59 +364,111 @@ label act5_lanjut:
     show black onlayer master zorder 1 as darkoverlay:
         alpha 0.5
     
-    show d_datar zorder 2:
+    show d_datar-fix zorder 2:
         xalign 1.1
         yalign 0.25
     d "Okayy sepertinya pahlawan tidak memiliki jadwal untuk minum teh.."
     d "Ya..seperti yang terlihat wilayah ini udah kebakar habis.."
-    hide d_datar
+    hide d_datar-fix
 
-    show d_senyum zorder 2:
+    show d_senyum-fix at expression_pop zorder 2:
         xalign 1.1
         yalign 0.25
 
     d "cuman sisa meja ini doang sih dan rumah si arden yang sekarang ada di tanah tuh~"
 
-    hide d_senyum
+    hide d_senyum-fix
+
+    show d_datar-fix:
+        xalign -0.05
+        yalign 0.25
+    with ease
 
     show ar_jengkel zorder 2:
         xalign 1.0
         yalign 0.25
     ar "NAMANYA JUGA BUNKER"
+    hide d_datar-fix
     hide ar_jengkel
+    show ar_normal:
+        xalign -1
+        yalign 0.25
+    with ease
 
-    show h_senyum zorder 2:
+    show h_senyum-fix zorder 2:
         xalign 1.0
         yalign 0.25
 
     h "hehe rumah aku kebakar sih"
     h "(tertawa)"
     h "Semuanya! semua-muanyaaa terbakar… TERBAKARR"
-    hide h_senyum
-    show ar_jengkel zorder 2:
+    
+    hide h_senyum-fix
+
+    show h_mingkem-fix:
         xalign 1.0
+        yalign 0.25
+    with ease
+
+    hide ar_normal
+
+    show ar_jengkel zorder 2:
+        xanchor 0.35
+        xpos 150
         yalign 0.25
 
     ar "Aduhh kumat lagi tuh gilanya"
-
+    
     hide ar_jengkel
+    hide h_mingkem-fix
 
-    show ar_normal zorder 2
+    show ar_normal-fix zorder 2:
+        xanchor 0.35
+        xpos 150
+        yalign 0.25
     ar "mangkanya"
-    show mc_bingung zorder 2
+    hide ar_normal-fix 
+
+    show ar_normal-fix:
+        xanchor 0.35
+        xpos 150
+        yalign 0.25
+    with ease
+
+    show mc_bingung at expression_pop zorder 2:
+        xalign 0.99
+        yalign 0.1
     mc "mangkanya apa?"
-    ar "There is no place for us here"
-    hide mc_bingung
-    hide ar_normal
+    hide mc_bingung    
+
+    show mc_datar:
+        xalign 0.99
+        yalign 0.1
+    with ease
+
+    hide ar_normal-fix
+    show ar_senyum zorder 2:
+        xanchor 0.35
+        xpos 150
+        yalign 0.25
+
+    ar "There is no place for us here, [mcname]"
+    hide mc_datar
+    hide ar_senyum
 
 
-    show d_senyum zorder 2:
+    show d_datar-fix zorder 2:
         xalign 1.1
         yalign 0.25
     d "jadi gimana nih~ sang penyelamat"
+    hide d_datar-fix 
+
+    show d_senyum-fix at expression_pop zorder 2:
+        xalign 1.1
+        yalign 0.25
     d "decision~ desicion~"
 
-    hide d_senyum
+    hide d_senyum-fix
 
     window hide
 
@@ -389,15 +493,15 @@ label act5_minigame6:
     window hide
 
     $ choice_positions = [
-        (15, 100),
+        (20, 100),
         (900, 120),
         (500, 580)
     ]
 
     $ choice_texts = [
-        "aku harus nyelesaiin apa yang udah ditakdirkan biar bisa cepet pulang",
-        "ini udah diluar batasku sepertinya aku ga bisa ngerubah apa-apa",
-        "ini semua ga bisa dibiarin gitu aja, aku harus memperjuangkan keadilan!"
+        "aku harus menyelesaikan takdir ini dan pulang",
+        "ini di luar batasku. Aku nggak bisa mengubahnya",
+        "ini nggak bisa dibiarkan. Aku harus melawan!"
     ]
 
     call screen bubble_choice(choice_texts)
@@ -425,19 +529,52 @@ label act5_teko:
     show black onlayer master zorder 1 as darkoverlay:
         alpha 0.5
     
-    show d_senyum zorder 2
+    play walking "audio/walking-sounds.mp3"
+    play sound "audio/horse-neigh.mp3"
+    
+    show d_kesel-fix zorder 2:
+        xalign 0.99
+        yalign 0.25
     d "OH HELL NAWHHHHH THATS THE PRAJURIT"
-    d "kamu cepet makan ini truz langsung masuk ke teko yah"
-    hide d_senyum
+    hide d_kesel-fix
 
-    show klepon zorder 2
-    pause 0.3
+    show d_senyum-fix zorder 2:
+        xalign 0.85
+        yalign 0.25
+    d "kamu cepet makan ini truz langsung masuk ke teko yah"
+    hide d_senyum-fix
+    
+    stop walking fadeout 3.0
+    
+    window hide
+
+    show klepon at item_popup zorder 2
+    pause 5
     hide klepon
 
-    show mc_huft zorder 2
+    show mc_huft zorder 2:
+        xalign 0.99
+        yalign 0.1
     mc "apa lagi ini..pliss.."
-    # sfx nguing
+    play sound "audio/menyusut.mp3"
+    hide mc_huft
+
+    show mc_datar at glitch_flicker zorder 2:
+        xalign 0.99
+        yalign 0.1
     "/mengecil"
+    hide mc_datar
+
+    show d_senyum-fix at expression_pop zorder 2:
+        xalign 0.85
+        yalign 0.25
+    d "hoho~ mungilnya, cepat sembunyi kedalam teko ini"
+    hide d_senyum-fix
+
+    show teko at item_popup zorder 2
+    pause 5
+    hide teko
+
     scene dalam_teko
     pause 0.3
     show black onlayer master zorder 1 as darkoverlay:
@@ -452,28 +589,46 @@ label act5_teko:
     show black onlayer master zorder 1 as darkoverlay:
         alpha 0.5
     
-    show d_senyum zorder 2
+    show d_senyum-fix zorder 2:
+        xalign 0.85
+        yalign 0.25
     d "kamyu kok gitu sich~"
     d "ini namanya ngalcer~ katro ih"
-    hide d_senyum
+    hide d_senyum-fix
 
-    show j_mangap zorder 2
+    show d_datar-fix:
+        xalign -0.05
+        yalign 0.25
+    with ease
+
+    show j_mangap at expression_pop zorder 2:
+        xalign 0.99
     j "WOI CEPET SERAHIN [mcname]"
     j "kamu tidak mau bernasib sama seperti ayam potong kan!"
     hide j_mangap
-    show j_siap zorder 2
-    p "mc sudah tidak ada di sini jendral"
+    hide d_datar-fix
+    show j_siap at expression_pop zorder 2:
+        xalign 0.99
+    p "[mcname] sudah tidak ada di sini jendral"
     hide j_siap
 
-    show d_kesel zorder 2
+    show d_kesel-fix zorder 2:
+        xalign 0.85
+        yalign 0.25
     d "ku bilang juga apa kau tidak percaya"
+    hide d_kesel-fix
+    show d_datar-fix:
+        xalign -0.05
+        yalign 0.25
+    with ease
     
-    show j_mangap zorder 2
+    show j_mangap at expression_pop zorder 2:
+        xalign 0.99
     j "PRAJURIT GA GUNA!"
     j "BUANG-BUANG WAKTU AJA"
     j "AYO CEPAT PERGI!"
     hide j_mangap
-    hide d_kesel
+    hide d_datar-fix
 
     pause 0.3
     scene dalam_teko
@@ -483,43 +638,71 @@ label act5_teko:
     h "Hey, prajuritnya sudah pergi"
     h "keluar abistu makanlah ini"
     scene tea_party
-    show klepon
-    pause 0.3
+    show klepon at item_popup zorder 2
+    pause 2
     hide klepon
+
+    play sound "audio/menyusut.mp3"
+
+    pause 3.0
+
     show black onlayer master zorder 1 as darkoverlay:
         alpha 0.5
-    show h_senyum zorder 2
+    show h_senyum-fix zorder 2:
+        xalign 1.0
+        yalign 0.25
     h "nih dari didit"
-    hide h_senyum
-    call play_reassemble_puzzle ("Pieces/puzzle2")
+    hide h_senyum-fix
+    call play_reassemble_puzzle ("Pieces/puzzle2") from _call_play_reassemble_puzzle_1
 
-    show baju
-    pause 0.3
+    show baju at item_popup zorder 2
+    pause 1.5
     hide baju
 
-    hide h_senyum
-    show d_datar zorder 2
+    show d_datar-fix zorder 2:
+        xalign 0.85
+        yalign 0.25
     d "YA AMPUN AKU TIDAK LIHAT APA-APA SUERRR"
     d "e-eh udah kan ya"
-    show mc_baju_senang zorder 2
+    hide d_datar-fix
+
+    show d_datar-fix:
+        xalign -0.05
+        yalign 0.25
+    with ease
+
+    show mc_baju_senang zorder 2:
+        xalign 0.99
+        yalign 0.1
     mc "aman bang"
-    hide d_datar
-    show d_senyum zorder 2
+    hide d_datar-fix
+
+    show d_senyum-fix at expression_pop zorder 2:
+        xalign -0.05
+        yalign 0.25
     d "yaurrrr letsgo ke ratu putih~"
-    hide d_senyum
+    hide d_senyum-fix
     hide mc_baju_senang
 
-    show h_senyum zorder 2
-    show ar_senyum zorder 2
+    show h_senyum-fix zorder 2:
+        xalign 1.0
+        yalign 0.25
+    show ar_senyum zorder 2:
+        xanchor 0.35
+        xpos 150
+        yalign 0.25
     "ati ati yee"
-    hide h_senyum
+    hide h_senyum-fix
     hide ar_senyum
 
-    show l_takut zorder 2
+    show l_bling zorder 2:
+        xalign 0.99
+        yanchor 0.87
+        ypos 920
     l " s-semoga perjalanan kalian lancar"
-    hide l_takut
+    hide l_bling
 
-    call play_jalan_puzzle("act_6")
+    call play_jalan_puzzle("act_6") from _call_play_jalan_puzzle_3
     $add_mc_hp(7)
     jump act_6
 

@@ -237,9 +237,7 @@ init python:
         global last_hit_target, last_hit_is_monster, last_hit_amount, last_hit_id
         global resolving, resolving_is_skill
 
-        # Kunci: kalau lagi resolving (masih nunggu delay giliran sebelumnya),
-        # klik ga akan diproses. Ini yang mencegah klik numpuk "ketelan" ke
-        # giliran berikutnya (persis kayak flag `resolving` di demo HTML).
+        # Jangan proses klik kalau masih dalam proses action
         if resolving or battle_over or monster_dialogue_active:
             return
 
@@ -249,38 +247,79 @@ init python:
         heavy_deadline = None
         last_hit_target = None
         last_hit_is_monster = False
+
         actor = party[current_actor_index]
 
+        # =========================
+        # ATTACK
+        # =========================
         if action_type == "attack":
             dmg = attack_dmg
+
+            # SFX attack
+            renpy.sound.play("audio/ally-atk.mp3")
+
             monster.take_damage(dmg)
+
             gauge = min(gauge_max, gauge + 1)
-            battle_log = "%s menyerang %s! -%d HP." % (actor.name, monster.name, dmg)
+
+            battle_log = "%s menyerang %s! -%d HP." % (
+                actor.name,
+                monster.name,
+                dmg
+            )
+
             screen_shake_flag = True
             last_hit_is_monster = True
             last_hit_amount = dmg
             last_hit_id += 1
 
+        # =========================
+        # DEFEND
+        # =========================
         elif action_type == "defend":
+            renpy.sound.play("audio/heavyatk&defense.mp3")
+
             actor.defending = True
+
             battle_log = "%s bersiap bertahan." % actor.name
 
+        # =========================
+        # SKILL
+        # =========================
         elif action_type == "skill":
             dmg = skill_dmg
+
+            # SFX attack juga untuk skill
+            renpy.sound.play("audio/ally-atk.mp3")
+
             monster.take_damage(dmg)
             monster.staggered = True
+
             actor.mood = "happy"
             gauge = 0
-            battle_log = "%s pakai SKILL! %s -%d HP & kena Stagger." % (actor.name, monster.name, dmg)
+
+            battle_log = "%s pakai SKILL! %s -%d HP & kena Stagger." % (
+                actor.name,
+                monster.name,
+                dmg
+            )
+
             screen_shake_flag = True
             screen_flash_flag = "white"
             last_hit_is_monster = True
             last_hit_amount = dmg
             last_hit_id += 1
 
+        # =========================
+        # TIMEOUT
+        # =========================
         elif action_type == "timeout":
             battle_log = "%s telat bereaksi! Gagal bertahan tepat waktu..." % actor.name
 
+        # =========================
+        # CHECK MONSTER DEATH
+        # =========================
         if not monster.is_alive():
             battle_over = True
             battle_won = True
@@ -325,7 +364,7 @@ init python:
 
         if target.defending:
             dmg = int(dmg * (0.4 if heavy else 0.5))
-
+        renpy.sound.play("audio/enemy-atk.mp3")
         target.take_damage(dmg)
         last_hit_target = party.index(target)
         last_hit_is_monster = False
@@ -662,7 +701,13 @@ label battle:
     $ in_battle = True
     $ renpy.block_rollback()
     $ reset_battle()
+
+    play music "audio/boss-fight.mp3" fadein 1.0
+
     call screen battle_screen
+
+    stop music fadeout 1.0
+
     $ battle_result = _return
     $ in_battle = False
     $ renpy.block_rollback()

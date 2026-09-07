@@ -83,5 +83,7 @@ label molotov_scene:
     $kain_used = 0
     $permata_used = 0
     $air_used = 0
+    play music "audio/assamble-puzzle.mp3" loop
     call screen molotov_minigame
+    stop music fadeout 1.0
     return

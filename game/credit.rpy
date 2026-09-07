@@ -2,9 +2,9 @@ screen credits_screen():
     modal True
     zorder 100
 
-    on "show" action Play("music", "audio/credits-music.mp3")
+    on "show" action Play("music", "audio/credit-bg.mp3")
 
-    add "credits-bg.png"
+    add "hitam.png"
 
     fixed:
         xfill True
@@ -28,16 +28,27 @@ screen credits_screen():
             null height 40
             text "BACKGROUND SOUND & SFX" size 40 xalign 0.5 color "#F2A65A"
             text "Pixabay:" size 30 xalign 0.5 color "#CCCCCC"
-            text "Lux-aeterna" size 30 xalign 0.5 color "#FFFFFF"
-            text "luxaeterna2026" size 30 xalign 0.5 color "#FFFFFF"
-            text "Kuzu420" size 30 xalign 0.5 color "#FFFFFF"
-            text "9JackJack8" size 30 xalign 0.5 color "#FFFFFF"
-            text "poorenglishjuggler" size 30 xalign 0.5 color "#FFFFFF"
-            text "Tim_Kulig_Free_Music" size 30 xalign 0.5 color "#FFFFFF"
-            text "LCWolfMusic" size 30 xalign 0.5 color "#FFFFFF"
+            text "Drowning Teddy (Dreamcore Ambient) — 9JackJack8" size 26 xalign 0.5 color "#FFFFFF"
+            text "Drowsy (Liminal Dreamcore) — 9JackJack8" size 26 xalign 0.5 color "#FFFFFF"
+            text "Glass Breaking — Charlie_Raven" size 26 xalign 0.5 color "#FFFFFF"
+            text "pajama parties — chiikawa" size 26 xalign 0.5 color "#FFFFFF"
+            text "Dramatic Whoosh Trailer — DRAGON-STUDIO" size 26 xalign 0.5 color "#FFFFFF"
+            text "Demonstration 1 — freesound_community" size 26 xalign 0.5 color "#FFFFFF"
+            text "complex — Kane Parsons" size 26 xalign 0.5 color "#FFFFFF"
+            text "China in Space (Cosmic melody) — Kuzu420" size 26 xalign 0.5 color "#FFFFFF"
+            text "Weirdcore — LCWolfMusic" size 26 xalign 0.5 color "#FFFFFF"
+            text "woosh-building- — Liecio" size 26 xalign 0.5 color "#FFFFFF"
+            text "exit-the-simulation-slowed-cinematic-music — Lux-aeterna" size 26 xalign 0.5 color "#FFFFFF"
+            text "Hollow Loop (Sped up) — Lux-aeterna" size 26 xalign 0.5 color "#FFFFFF"
+            text "Liminal deep ambient — Luxaeterna2026" size 26 xalign 0.5 color "#FFFFFF"
+            text "Dark Liminal Void Ambient — Luxaeterna2026" size 26 xalign 0.5 color "#FFFFFF"
+            text "ambient-monster-behemoth-dragon-voice-angry-scream-cry-roar-grow — PhatPhrogStudio" size 26 xalign 0.5 color "#FFFFFF"
+            text "Zephyrcade — Pixelmaniaxx" size 26 xalign 0.5 color "#FFFFFF"
+            text "Simplicity — Tim_Kulig_Free_Music" size 26 xalign 0.5 color "#FFFFFF"
             null height 800
 
     timer 40.0 action Return()
+
 
     key "game_menu" action Return()
     button:

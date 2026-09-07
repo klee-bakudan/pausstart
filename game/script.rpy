@@ -267,7 +267,7 @@ label start:
     hide darkoverlay
     
 
-    call play_jalan_puzzle("act_2")
+    call play_jalan_puzzle("act_2") from _call_play_jalan_puzzle_5
     $add_mc_hp(7)
     jump act_2
     return

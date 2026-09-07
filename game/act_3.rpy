@@ -1,3 +1,6 @@
+init python:
+    renpy.music.register_channel("walking", "sfx", loop=False)
+
 label act_3:
     play sound "audio/transition-act.mp3"
     pause 1.0
@@ -9,7 +12,7 @@ label act_3:
     stop sound
 
     scene jamur asap with Fade(0.8, 0.2, 0.8)
-
+    
     show black onlayer master zorder 1 as darkoverlay:
         alpha 0.0
         linear 0.4 alpha 0.5
@@ -25,6 +28,10 @@ label act_3:
             linear .05 yoffset 3
             linear .05 yoffset 0
             repeat False
+
+    play walking "audio/walking-sounds.mp3"
+    play sound "audio/horse-neigh.mp3"
+
     show a_datar at popup zorder 2
 
     pause 0.5
@@ -60,6 +67,8 @@ label act_3:
     hide l_takut
     hide mc_hah
 
+    stop walking fadeout 3.0
+    
     show a_datar zorder 2:
         xalign 0.2
     a "Sepertinya mereka sudah mulai bergerak.."
@@ -118,7 +127,7 @@ label act_3:
     show j_datar at vpunch zorder 2:
         xalign 0.5
 
-    j "mc jangan sembunyi~~~"
+    j "[mcname] jangan sembunyi~~~"
     # font
     j "CARI SAMPAI KETEMU" with vpunch
     hide j_datar
@@ -128,7 +137,7 @@ label act_3:
 
     hide pasukan
 
-    call escape_scene
+    call escape_scene from _call_escape_scene
     $add_mc_hp(7)
 
 label act3_lanjut:
@@ -146,7 +155,7 @@ label act3_lanjut:
     hide mc_takut
     show maung at vpunch zorder 2
     "GRAAAAAA" 
-    "(menyakar mc)" with vpunch
+    "(menyakar [mcname])" with vpunch
     hide maung
     show maung_2 zorder 2:
         xanchor 0.02
@@ -159,7 +168,7 @@ label act3_lanjut:
 
     mc "Ha!?? SIAL AKU HARUS KABUR" with vpunch
 
-    call play_jalan_puzzle("act_4")
+    call play_jalan_puzzle("act_4") from _call_play_jalan_puzzle_1
     $add_mc_hp(7)
     jump act_4
 

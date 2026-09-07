@@ -283,12 +283,12 @@ screen shooting_gallery:
         anchor (0.0, 0.0)
 
 label shooting_gallery_setup:
-    $ cork_gun_image = Image("images/cork-gun.png")
+    $ cork_gun_image = Image("images/cork-gun_3.png")
     $ cork_gun_size = (330, 384)
     $ cork_gun_pos = (0, 0)
     $ cork_gun_opos = (int(config.screen_width / 2 - cork_gun_size[0] / 2),int(config.screen_height - cork_gun_size[1]))
     $ cork_gun_transform = Transform(child=cork_gun_image,zoom=1.0, pos=(cork_gun_opos[0], cork_gun_opos[1]),function=corkGunTransform)
-    $ cork_image = Image("images/cork.png")
+    $ cork_image = Image("images/cork_3.png")
     $ cork_transform = Transform(child=cork_image,zoom=1.0)
     $ cork_spirets = []
     $ cork_SM = SpriteManager(update=corkUpdate,event=corkEvents)
@@ -309,16 +309,18 @@ label shooting_gallery_setup:
     $ d_hp = 25
     $ renpy.notify("HP D'dit + %d" % d_hp)
     if score <= 0:
+        $ renpy.music.stop(channel="music", fadeout=1.0)
         jump backroom
+
     else:
         jump act_6lanjut
 
 
 label dor:
     $ renpy.music.set_volume(1.0, channel="music")
-    $ renpy.music.play("audio/boss-fight.mp3", channel="music", loop=True)
+    $ renpy.music.play("audio/shooting.mp3", channel="music", loop=True)
 
-    call shooting_gallery_setup
+    call shooting_gallery_setup from _call_shooting_gallery_setup
 
     $ renpy.music.stop(channel="music", fadeout=1.0)
 
