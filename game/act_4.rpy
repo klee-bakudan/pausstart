@@ -1,6 +1,12 @@
 label act_4:
+    play sound "audio/transition-act.mp3"
+    pause 1.0
+
     scene act4 
-    pause 0.5
+    with dissolve
+
+    pause 3.0
+    stop sound
 
     scene hutan_bakar
     pause 0.5
@@ -10,12 +16,12 @@ label act_4:
     show mc_terluka zorder 2
     pause 0.3
     mc "baru day 1 nyawa otw melayang"
+    hide mc_terluka
     show c_mingkem zorder 2
     c "tch mendokuse nih perban sendiri"
-    hide mc_terluka
     hide c_mingkem
 
-    call play_reassemble_puzzle ("Pieces/puzzle1")
+    call play_reassemble_puzzle ("Pieces/puzzle1") from _call_play_reassemble_puzzle
 
     show plester zorder 2
     pause 0.3
@@ -71,10 +77,10 @@ label act_4:
         xalign 0.98
         yalign 0.25
 
-    mc "Yaelah lanjut ke tea party aja deh"
+    mc "Yaelah lanjut jalan aja deh"
     hide mc_perban_kesel with dissolve
 
-    call play_jalan_puzzle("act_5")
+    call play_jalan_puzzle("act_5") from _call_play_jalan_puzzle_2
     $add_mc_hp(7)
     jump act_5
 

@@ -17,6 +17,13 @@ init python:
         if escape_progress > 0 and escape_progress < 100:
             escape_progress = max(escape_progress - 0.6, 0)
     
+    def decayEscapeTimer():
+        global escape_time_left
+        escape_time_left -= 1
+        if escape_time_left <= 0:
+            escape_time_left = 0
+            return False
+    
     def shakeUpdate(t, st, at):
         if st < 0.06:
             t.xoffset = renpy.random.randint(-6, 6)
@@ -27,6 +34,8 @@ init python:
             t.yoffset = 0
             return None
 
+default escape_time_left = 10
+
 image escape_run = Animation("images/lari1.png", 0.15, "images/lari2.png", 0.15, repeat = True)
 
 transform shake_transform:
@@ -35,9 +44,12 @@ transform shake_transform:
 screen escape_qte:
     modal True
     timer 0.015 action Function(decayEscapeProgress, 0) repeat True
+    timer 1.0 action Function(decayEscapeTimer) repeat True
 
     image "images/bgl.png" at shake_transform
     add "escape_run" xalign 0.5 yalign 0.5
+
+    text "[escape_time_left]" size 48 color "#F2ECE0" xpos 30 ypos 20 font "IrishGrover.ttf"
 
     frame:
         xalign 0.5 yalign 0.92
@@ -45,7 +57,8 @@ screen escape_qte:
         padding (32,20)
         vbox:
             spacing 12
-            text "tap untuk kabur dawg masukkan text" color "#F2ECE0" size 36 xalign 0.5
+            text "click (mouse kiri) untuk lariiii" color "#F2ECE0" size 36 xalign 0.5 font "IrishGrover.ttf"
+            # ini nis font minigame lari
 
             fixed:
                 xsize 700
@@ -61,8 +74,21 @@ screen escape_qte:
         background None
 
 label escape_scene:
-    $escape_progress = 0
+    $ escape_progress = 0
+    $ escape_time_left = 10
+
+    $ renpy.music.set_volume(1.0, channel="music")
+    $ renpy.music.play("audio/run.mp3", channel="music", loop=True)
+
     call screen escape_qte
-    pause 0.5
-    jump act3_lanjut
+    
+    if _return:
+        $ renpy.music.stop(channel="music", fadeout=1.0)
+
+        $ add_mc_hp(7)
+        pause 0.5
+        jump act3_lanjut
+    else:
+        $ renpy.music.stop(channel="music", fadeout=1.0)
+        jump sikrit1
 

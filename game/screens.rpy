@@ -192,14 +192,14 @@ screen input(prompt):
 
             text prompt:
                 xalign 0.5
-                color "#453A12"
+                color "#ffffff"
                 size 40
 
             input:
                 id "input"
                 xalign 0.5
                 xsize 650
-                color "#453A12"
+                color "#ffffff"
                 size 35
                 default_focus True
 
@@ -225,14 +225,13 @@ screen choice(items):
 screen bubble_choice(choice_texts):
         for i, txt in enumerate(choice_texts):
             if i<len(choice_positions):
-                $ x_pos, y_pos = choice_positions[i]
 
                 button:
-                    pos (x_pos, y_pos)
+                    pos choice_positions[i]
                     action Return(i)
                     idle_background "gui/awan.png"
                     hover_background "gui/awang.png"
-                    xysize (1100,600)
+                    xysize (1100, 600)
 
                     text txt:
                         align (0.5,0.5)
@@ -241,32 +240,54 @@ screen bubble_choice(choice_texts):
                         size 35
                         font "IrishGrover.ttf"
 
+
 #choice akhir
 screen bubble_choicef(choice_texts):
     style_prefix "choice"
     default selected = []
+
     text "[(selected)] / 3":
         xalign 0.5
         ypos 20
-        size 45
+        size 40
         color "#FFFFFF"
+        font "IrishGrover.ttf"
 
     for i, (text_before, text_after) in enumerate(choice_texts):
-        $is_selected = i in selected 
-        $is_locked = len(selected) >= 3
-        $display_text = text_after if (is_selected and text_after) else text_before
 
-        textbutton display_text:
-            background("gui/awang.png" if (is_selected or is_locked) else "gui/awan.png")
-            xpos choice_positions[i][0]
+        $ is_selected = i in selected
+        $ is_locked = len(selected) >= 3
+        $ display_text = text_after if (is_selected and text_after) else text_before
+
+        button:
+            xpos choice_positions[i][0] - 150
             ypos choice_positions[i][1]
-            xsize 480
-            ysize 200
-            text_xalign 0.5
-            text_yalign 0.5
-            sensitive(not is_selected and not is_locked)
-            action SetScreenVariable("selected", selected + [i])
-        
+            xsize 800
+            ysize 500
+
+            if is_selected or is_locked:
+                background "gui/awang.png"
+            else:
+                idle_background "gui/awan.png"
+                hover_background "gui/awang.png"
+
+            sensitive not is_selected and not is_locked
+
+            action [
+                SetScreenVariable("selected", selected + [i]),
+                Function(add_mc_hp, 1 if text_after is None else 2)
+            ]
+
+            text display_text:
+                xalign 0.2
+                yalign 0.1
+                xoffset 100
+                yoffset 200
+                text_align 0.5
+                color "#ffffff"
+                size 45
+                font "IrishGrover.ttf"
+
     if len(selected) >= 3:
         timer 1.0 action Return(selected)
 
@@ -347,29 +368,31 @@ style quick_button_text:
 ## to other menus, and to start the game.
 
 screen navigation():
-
     if main_menu:
         style_prefix "navigation"
 
         imagebutton:
             idle "gui/startbutton.png" 
             hover "gui/startbutton-hover.png"
-            xpos 73 ypos 339 focus_mask True action Start() 
+            xpos 73 ypos 339 focus_mask True hovered Play("sound", "audio/hover-mainmenu_button.mp3") action Start() 
 
         imagebutton:
             idle "gui/loadbutton.png" 
             hover "gui/loadbutton-hover.png"
-            xpos 176 ypos 539 focus_mask True action ShowMenu("load") 
+            xpos 176 ypos 539 focus_mask True hovered Play("sound", "audio/hover-mainmenu_button.mp3") action ShowMenu("load") 
         
         imagebutton:
-            idle "gui/gallerybutton.png" 
-            hover "gui/gallerybutton-hover.png"
-            xpos 176 ypos 665 focus_mask True action ShowMenu("galery")
-
+            idle "gui/settingbutton.png" 
+            hover "gui/settingbutton-hover.png"
+            xpos 176 ypos 665 focus_mask True hovered Play("sound", "audio/hover-mainmenu_button.mp3") action [Hide("main_menu"), ShowMenu("preferences")]
+        
+        textbutton _("Return"):
+            action Return()
+            
         imagebutton:
             idle "gui/exitbutton.png" 
             hover "gui/exitbutton-hover.png"
-            xpos 176 ypos 791 focus_mask True action Quit(confirm=not main_menu) 
+            xpos 176 ypos 791 focus_mask True hovered Play("sound", "audio/hover-mainmenu_button.mp3") action Quit(confirm=not main_menu) 
 
 style navigation_button is gui_button
 style navigation_button_text is gui_button_text
@@ -416,14 +439,14 @@ screen main_menu():
 
     if gui.show_name:
 
-        vbox:
-            style "main_menu_vbox"
+            add "gui/main-menu_title.png":
+                xpos 5
+                ypos 30
+                xsize 1500
 
-            text "[config.name!t]":
-                style "main_menu_title"
 
-            text "[config.version]":
-                style "main_menu_version"
+            # text "[config.version]":
+            #     style "main_menu_version"
 
 
 style main_menu_frame is empty

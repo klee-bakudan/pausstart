@@ -62,8 +62,15 @@ default finished_pieces = 0
 default current_puzzle_folder = ""
 
 label play_reassemble_puzzle(image_folder):
-    $current_puzzle_folder = image_folder
-    $finished_pieces =  0
-    $setup_puzzle()
+    $ current_puzzle_folder = image_folder
+    $ finished_pieces = 0
+    $ setup_puzzle()
+
+    play music "audio/assamble-puzzle.mp3" loop
+
     call screen reassemble_puzzle
+
+    stop music fadeout 1.0
+
+    $ add_mc_hp(7)
     return

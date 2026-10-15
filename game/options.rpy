@@ -15,7 +15,7 @@ define config.default_fullscreen = True
 define config.screen_width = 1920
 define config.screen_height = 1080
 
-define config.name = _("act 1")
+define config.name = _("injustice wonderland")
 
 
 ## Determines if the title given above is shown on the main menu screen. Set
@@ -43,7 +43,7 @@ define gui.about = _p("""
 ## distribution. This must be ASCII-only, and must not contain spaces, colons,
 ## or semicolons.
 
-define build.name = "act1"
+define build.name = "injustice_wonderland"
 
 
 ## Sounds and music ############################################################

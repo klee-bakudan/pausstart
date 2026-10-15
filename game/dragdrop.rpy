@@ -28,7 +28,8 @@ init python:
 screen molotov_minigame:
     add "images/bgd.png"
 
-    text "bikin molotov yh itulah masukkan text" xpos 70 ypos 40 bold True color "#FFFFFF" size 36
+    text "buat molotov menggunakan air suci" xpos 70 ypos 40 bold True color "#FFFFFF" size 36
+    # anu nis font
 
     frame:
         xpos 70 ypos 160
@@ -36,7 +37,7 @@ screen molotov_minigame:
         padding (20, 14)
         vbox:
             spacing 8
-            text "progres dawg: " color "#F2ECE0" size 24
+            text "progres: " color "#F2ECE0" size 24
             fixed:
                 xsize 300
                 ysize 20
@@ -82,5 +83,7 @@ label molotov_scene:
     $kain_used = 0
     $permata_used = 0
     $air_used = 0
+    play music "audio/assamble-puzzle.mp3" loop
     call screen molotov_minigame
+    stop music fadeout 1.0
     return

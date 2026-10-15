@@ -1,6 +1,3 @@
-default choice_positions = [(50, 150), (1150, 50), (850, 400)]
-# ini def letak awan
-
 label act_2:
     scene hitam
 
@@ -62,6 +59,7 @@ label act_2:
         linear 0.3 alpha 0.4
 
     show klepon at item_popup zorder 2
+    play sound "audio/sfx-wow.mp3"
 
     pause 2.0
 
@@ -86,12 +84,13 @@ label act_2:
     mc "Kok ada rasa kek- ya.. Adalah pokoknya"
 
     hide mc_makan
-
+    play sound "audio/menyusut.mp3"
     show mc_kaget at glitch_flicker zorder 2:
         xalign 0.99
 
     mc "EEEEHHH"
 
+    
     window hide
     hide mc_kaget
 
@@ -142,7 +141,7 @@ label act_2:
     with ease
     #transisi bos
 
-    mc "Hah…… Kok ada manusia hewan??"
+    mc "Lah…… Kok ada furry??"
     
 
     hide l_datar 
@@ -181,6 +180,8 @@ label act_2:
     hide mc_kaget
     with dissolve
 
+    play music "audio/forest-sfx.mp3" loop
+
     scene jamur with fade
     pause 1.0
     
@@ -192,7 +193,7 @@ label act_2:
         yanchor 1.0
         ypos 920
 
-    l "kamu mc kan?"
+    l "kamu [mcname] kan?"
 
     hide l_datar
 
@@ -270,7 +271,7 @@ label act_2:
         yanchor 0.94
         ypos 920
 
-    l "Wahai absolum yang bijaksana, inilah mc yang kita cari-cari"
+    l "Wahai absolum yang bijaksana, inilah [mcname] yang kita cari-cari"
 
     hide l_bling
     hide a_bayang
@@ -323,6 +324,7 @@ label act_2:
     show a_datar zorder 2:
         xalign 0.2
     a "Aku dahulu adalah seorang tabib kerajaan… Yaa.. sudah lama sekali"
+    a "(500 tahun lalu)"
 
     hide a_datar
 
@@ -343,7 +345,7 @@ label act_2:
 
     show a_datar zorder 2:
         xalign 0.2
-    a "Wilayah yang jauh dari perkotaan tidak mendapatkan akses pangan maupun fasilitas yang layak."
+    a "rakyat ditelantarkan, raja dan ratu hanya bersenang-senang"
 
     hide a_datar
 
@@ -358,7 +360,7 @@ label act_2:
         yanchor 0.87
         ypos 920
 
-    l "dan yang terburuk, rakyat kecil ngga bisa melakukan ngapa-ngapain" 
+    l "dan yang terburuk, sekarang kita ga bisa ngapa-ngapain" 
     l "setiap keluh kesah yang mereka sampaikan dibiarin gitu aja.."
 
     hide a_datar
@@ -367,20 +369,18 @@ label act_2:
     show mc_bingung zorder 2:
         xalign 0.99
 
+    $ renpy.movie_cutscene("video/wayang.webm")
+
     mc "{color=#7e6d2f}(lohh.. kok kayak demo tadi ya..){/color}"
 
     hide mc_bingung
 
+    $ renpy.movie_cutscene("images/wayang.webm")
+
     show mc_hah at vpunch zorder 2:
         xalign 0.99
-    mc "Ga mungkin! aku baru aja nyampe di sini, itu pasti cuman dongeng doang!"
+    mc "Ga mungkin! aku baru aja nyampe sini, itu pasti cuman dongeng doang!"
     hide mc_hah
-
-    show mc_datar zorder 2:
-        xalign 0.99
-    mc "Ga mungkin! aku baru aja nyampe di sini, itu pasti cuman dongeng doang!"
-    hide mc_hah
-
 
     show mc_datar zorder 3:
         xalign 0.089
@@ -417,83 +417,69 @@ label act_2:
         xanchor 0.89
         xpos 0.94
         yalign 0.25
-        
-    mc "(Hah… apaan sih,, ga jelas banget dah, niat buat sembunyi di gotong lah malah masuk universe lain…)"
+    mc "{color=#7e6d2f}(Hah… apaan sih,, ga jelas banget dah, niat sembunyi di gorong malah masuk universe lain…){/color}"
     
     hide mc_garuk
 
     show mc_bingung at vpunch zorder 2:
         xalign 0.99
-    mc "(Ratu merah..? Ratu putih? Apaan sih ini dikira bawang putih bawang merah kali??)"
+    mc "{color=#7e6d2f}(Ratu merah..? Ratu putih? Apaan sih ini dikira bawang putih bawang merah kali??){/color}"
 
     hide mc_bingung
 
     show mc_huft at vpunch zorder 2:
         xalign 0.99
-    mc "(Aku? Beneran jadi pahlawan nih..? Yaelah plis lahh magang aja belom kelar malah disuruh jadi super hero"
+    mc "{color=#7e6d2f}(Aku? Beneran jadi pahlawan nih..? Yaelah plis lahh magang aja belom kelar malah disuruh jadi super hero){/color}"
     
     hide mc_huft
 
     show mc_berpikir at vpunch zorder 2:
         xalign 0.99
 
-    mc "(keknya aku harus ngomong deh)"
+    mc "{color=#7e6d2f}(keknya aku harus ngomong deh){/color}"
 
-screen bubble_choice(choice_texts):
-        for i, txt in enumerate(choice_texts):
-            if i<len(choice_positions):
-                $ x_pos, y_pos = choice_positions[i]
+label minigame2:
+    scene jamur
+    with dissolve
 
-                button:
-                    pos (x_pos, y_pos)
-                    action Return(i)
-                    background "gui/awan.png"
-                    hover_background "gui/awang.png"
-                    xysize (450,220)
+    show black onlayer master zorder 1 as darkoverlay:
+        alpha 0.0
+        linear 0.3 alpha 0.5
 
-                    text txt:
-                        align (0.5,0.5)
-                        text_align 0.5
-                        color "#ffffff"
-                        size 35
-                        font "IrishGrover.ttf"
-    label minigame2:
-        scene jamur
-        with dissolve
+    show mc_berpikir at vpunch zorder 2:
+        xalign 0.5
+        yalign 0.19
 
-        show black onlayer master zorder 1 as darkoverlay:
-            alpha 0.0
-            linear 0.3 alpha 0.5
+    $ renpy.pause(0.2, hard=True)
 
-        show mc_berpikir at vpunch zorder 2:
-            xalign 0.5
-            yalign 0.19
+    $ renpy.music.set_volume(1.0, channel="music")
+    $ renpy.music.play("audio/debat-bg.mp3", channel="music", loop=True)
 
-        $ renpy.pause(0.2, hard=True)
+    $ choice_positions = [(50, 150), (1000, 100), (500, 650)]
+    $ choice_texts = [
+        "gimana kalau aku emang bukan penyelamat?",
+        "buktinya..ini aja?",
+        "kalau aku menang aku bisa pulang kan?"
+    ]
+    window hide
 
-        $ choice_positions = [(15, 100), (900, 120), (500, 580)]
-        $ choice_texts = [
-            "gimana kalau aku emang bukan penyelamat?",
-            "buktinya..ini aja?",
-            "kalau aku menang aku bisa pulang kan?"
-        ]
-        window hide
+    call screen bubble_choice(choice_texts)
+    $ hasil = _return
 
-        call screen bubble_choice(choice_texts)
-        $ hasil = _return
+    window show
 
-        window show
+    hide mc_berpikir
+    hide darkoverlay
 
-        hide mc_berpikir
-        hide darkoverlay
-
-        if hasil == 0:
-            jump act2_pilihan1
-        elif hasil == 1:
-            jump act2_pilihan2
-        elif hasil == 2:
-            jump act2_pilihan3
-
+    if hasil == 0:
+        $add_mc_hp(1)
+        jump act2_pilihan1
+    elif hasil == 1:
+        $add_mc_hp(3)
+        jump act2_pilihan2
+    elif hasil == 2:
+        $add_mc_hp(5)
+        jump act2_pilihan3
 
 
 label act2_pilihan1:
@@ -552,9 +538,10 @@ label act2_pilihan1:
 
     hide l_takut
     hide darkoverlay
+    
 
+    $ renpy.music.stop(channel="music", fadeout=1.0)
     jump act2_lanjut
-
 
 label act2_pilihan2:
 
@@ -586,6 +573,14 @@ label act2_pilihan2:
 
     a "Tentu saja ada! Buktinya kamu telah memakan klepon yang ada di dalam ruangan itu kan?"
 
+    hide a_senyum
+
+    show a_senyum zorder 2:
+        xanchor 0.02
+        xalign 0.02
+        xoffset -500
+    with ease
+
     # MC kanan
     show mc_kaget at vpunch zorder 2:
         xalign 0.99
@@ -593,8 +588,10 @@ label act2_pilihan2:
 
     $ renpy.pause(0.2, hard=True)
 
-    mc "eh.. Ho'oh lah, emang ada hubungannya?"
+    
 
+    mc "eh.. Ho'oh lah, emang ada hubungannya?"
+    
     a "Jikalau kamu tidak mengikuti kelinci dan makan klepon tadi, kamu tidak akan bisa masuk ke dunia ini"
 
     a "(tertawa kecil)"
@@ -638,6 +635,7 @@ label act2_pilihan2:
     hide mc_datar
     hide darkoverlay
 
+    $ renpy.music.stop(channel="music", fadeout=1.0)
     jump act2_lanjut
 
 
@@ -687,7 +685,7 @@ label act2_pilihan3:
 
     l "T-tuhkan absolum sudah menjamin kepulanganmu!"
 
-    l "Tidak perlu takut, MC!"
+    l "Tidak perlu takut, [mcname]!"
 
     l "A-aku akan membantumu menghadapi mala petaka ini… tapi jangan terlalu gegabah… ya?"
 
@@ -706,6 +704,7 @@ label act2_pilihan3:
     hide l_datar
     hide darkoverlay
 
+    $ renpy.music.stop(channel="music", fadeout=1.0)
     jump act2_lanjut
 
 
@@ -723,7 +722,7 @@ label act2_lanjut:
         yanchor 0.82
         ypos 910
 
-    a "mc kamu mungkin bisa memilih jalur yang berbeda dari gulungan takdir ini.."
+    a "[mcname] kamu mungkin bisa memilih jalur yang berbeda dari gulungan takdir ini.."
 
     a "Namun, apa pun yang terjadi.. Akhir tersebut akan tetap terjadi"
 
@@ -739,9 +738,10 @@ label act2_lanjut:
 
     hide mc_datar
     hide darkoverlay
+    stop music fadeout 1.0
     window hide
 
-    call play_jalan_puzzle("act_3")
+    call play_jalan_puzzle("act_3") from _call_play_jalan_puzzle
     $add_mc_hp(7)
 
     jump act_3

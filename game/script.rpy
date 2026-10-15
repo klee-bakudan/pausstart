@@ -1,16 +1,23 @@
+default mc_hp = 0
+default mc_hp_max = 88
+
 init python:
-    import random 
-    mc_hp = 0
+    import random
+    config.overlay_screens.append("hp_indicator")
+
     def add_mc_hp(amount):
-        global mc_hp
-        mc_hp += amount
-        renpy.notify("HP +%d" % amount)
+        store.mc_hp += amount
+        if store.mc_hp > store.mc_hp_max:
+            store.mc_hp = store.mc_hp_max
+        elif store.mc_hp < 0:
+            store.mc_hp = 0
+        renpy.notify("HP %+d" % amount)
 
 define mc = Character("[mcname]")
 define d = Character("D'dit")
 define k = Character("Raja Merah")
 define q = Character("Ratu Merah")
-define l = Character("Lucien")
+define l = Character("Lurcien")
 define a = Character("Absolum")
 define ar = Character("Arden")
 define c = Character("Chiro")
@@ -18,6 +25,8 @@ define h = Character("Heiry")
 define j = Character("Jendral")
 define s = Character("Seroquin")
 define reporter = Character("Reporter", what_color="#453a12")
+define p = Character("Prajurit")
+define pl = Character("Pelayan")
 
 transform item_popup:
     xalign 0.5
@@ -63,6 +72,8 @@ transform glitch_flicker:
         repeat False
     
 label start:
+    stop music fadeout 2.0
+    
     scene act1
     $ mcname = renpy.input(
         "Siapa namamu?",
@@ -89,8 +100,8 @@ label start:
     play sound "audio/breaking-news.mp3"
     pause 6.0
 
-    reporter "Kita awali informasi pertama, dimana terjadi aksi unjuk rasa mahasiswa yang menuntut keadilan atas kasus korupsi fasilitas umum"
-    reporter "yang melibatkan pejabat tinggi di kota ini. Aksi ini berlangsung damai, namun pihak kepolisian telah mengerahkan pasukan untuk mengamankan situasi."
+    reporter "Kita awali informasi hari ini, telah terjadi aksi unjuk rasa mahasiswa"
+    reporter "mari kita liat kondisi terkini."
     scene demo 1
     with Dissolve(.5)
     pause .5
@@ -162,7 +173,7 @@ label start:
 
     $ renpy.pause(0.2, hard=True)
 
-    mc "huh..huh..huh..."
+    mc "huff..huf..huff..."
 
     hide mc_takut
     hide darkoverlay
@@ -183,7 +194,7 @@ label start:
 
     $ renpy.pause(0.2, hard=True)
 
-    mc "hoh?"
+    mc "hoh? kelinci..?"
 
     show black onlayer master zorder 1 as darkoverlay:
         alpha 0.4
@@ -217,7 +228,9 @@ label start:
 
     $ renpy.pause(0.2, hard=True)
 
-    mc "LOHH?? KELINCI?? aku harus mengikutinya"
+    mc "LOHH?? BISA MASUK??"
+    mc "(aku sembunyi disitu aja kali ya)"
+
 
     show black onlayer master zorder 1 as darkoverlay:
         alpha 0.4
@@ -254,7 +267,7 @@ label start:
     hide darkoverlay
     
 
-    call play_jalan_puzzle("act_2")
+    call play_jalan_puzzle("act_2") from _call_play_jalan_puzzle_5
     $add_mc_hp(7)
     jump act_2
     return
